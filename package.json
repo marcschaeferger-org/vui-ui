@@ -34,7 +34,7 @@
     "dayjs": "^1.11.13",
     "dotenv": "^16.4.7",
     "js-yaml": "^4.1.0",
-    "lodash": "^4.17.21",
+    "lodash": "^4.18.1",
     "luxon": "^3.6.1",
     "mantine-contextmenu": "^7.17.1",
     "mantine-react-table": "^2.0.0-beta.9",
