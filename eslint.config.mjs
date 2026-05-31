@@ -59,7 +59,6 @@ export default [
       radix: 'error',
       eqeqeq: ['warn', 'smart'],
       'no-undef': 'off',
-      'import/extensions': 'off',
 
       // Stylistic — warnings
       'no-var': 'warn',
