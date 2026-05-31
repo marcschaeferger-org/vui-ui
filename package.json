@@ -39,7 +39,7 @@
     "mantine-contextmenu": "^7.17.1",
     "mantine-react-table": "^2.0.0-beta.9",
     "moment": "^2.30.1",
-    "next": "15.2.3",
+    "next": "15.5.18",
     "next-auth": "^4.24.11",
     "next-runtime-env": "^3.2.2",
     "react": "19.0.0",
