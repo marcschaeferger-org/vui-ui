@@ -3,8 +3,8 @@
 import useSWR from 'swr';
 import { useAppStatus } from '@/contexts/AppContext';
 import { useServerStatus } from '@/contexts/ServerContext';
-import { useAuthErrorHandler } from "@/hooks/user/useAuthErrorHandler";
-import { useEffect, useMemo } from "react";
+import { useAuthErrorHandler } from '@/hooks/user/useAuthErrorHandler';
+import { useEffect, useMemo } from 'react';
 
 export const useAuth = () => {
   const serverValues = useServerStatus();
@@ -22,7 +22,6 @@ export const useAuth = () => {
 
   // 🌐 Fetcher function to load user info
   const fetcher = async (url: string) => {
-
     const res = await fetch(url, {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
@@ -78,6 +77,6 @@ export const useAuth = () => {
   return {
     user,
     error,
-    mutate
+    mutate,
   };
 };

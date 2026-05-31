@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSocketStatus } from '@/contexts/SocketContext';
-import { useAgentStatus } from "@/contexts/AgentContext";
+import { useAgentStatus } from '@/contexts/AgentContext';
 import { hasWatched, setWatched } from '@/lib/WatchedResources';
 
 export function useWatchResources(plural: string) {
@@ -14,19 +14,17 @@ export function useWatchResources(plural: string) {
 
     //if (hasWatched(agentName, plural)) return;
 
-    const message =
-      {
-        type: "watch",
-        kind: "command",
-        payload: {
-          plural,
-          agent_name: agentName
-        }
-      }
+    const message = {
+      type: 'watch',
+      kind: 'command',
+      payload: {
+        plural,
+        agent_name: agentName,
+      },
+    };
 
     socketValues.sendMessageToSocket(JSON.stringify(message));
 
     setWatched(agentName, plural);
   }, [plural, agentValues.currentAgent?.name]);
 }
-

@@ -70,7 +70,7 @@ export const AgentProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         setWatchdogStatus,
         setOrigins,
         setArch,
-        setVeleroInstalledVersion
+        setVeleroInstalledVersion,
       }}
     >
       {children}

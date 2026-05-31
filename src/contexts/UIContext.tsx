@@ -48,7 +48,9 @@ export const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }
   const [showDebugAside, setShowDebugAside] = useState(false);
   const [showBottomDebugBar, setShowBottomDebugBar] = useState(false);
   const [openedUIDrawer, { toggle: toggleUIDrawer }] = useDisclosure();
-  const [isMobile, setIsMobile] = useState(useMediaQuery('(max-width: 1024px)'));
+  const [isMobile, setIsMobile] = useState<boolean | undefined>(
+    useMediaQuery('(max-width: 1024px)'),
+  );
   const [showTaskInProgress, setShowTaskInProgress] = useState(false);
 
   useEffect(() => {
@@ -88,7 +90,7 @@ export const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }
         toggleUIDrawer,
         setIsMobile,
         setBadgeVariant,
-        setShowTaskInProgress
+        setShowTaskInProgress,
       }}
     >
       {children}

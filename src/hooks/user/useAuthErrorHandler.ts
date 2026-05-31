@@ -1,7 +1,7 @@
 'use client';
 
 import { useAppStatus } from '@/contexts/AppContext';
-import { clearInMemoryCache } from "@/cache/inMemoryCache";
+import { clearInMemoryCache } from '@/cache/inMemoryCache';
 
 export const useAuthErrorHandler = () => {
   const appValues = useAppStatus();

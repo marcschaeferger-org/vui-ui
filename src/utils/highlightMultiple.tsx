@@ -7,10 +7,12 @@ export function highlightMultiple(text: string, highlights: string[]): React.Rea
   const parts = text.split(regex);
 
   return parts.map((part, index) =>
-    highlights.some(h => h.toLowerCase() === part.toLowerCase()) ? (
-      <mark key={index} style={{ backgroundColor: '#fbdf5f' }}>{part}</mark>
+    highlights.some((h) => h.toLowerCase() === part.toLowerCase()) ? (
+      <mark key={index} style={{ backgroundColor: '#fbdf5f' }}>
+        {part}
+      </mark>
     ) : (
       part
-    )
+    ),
   );
 }

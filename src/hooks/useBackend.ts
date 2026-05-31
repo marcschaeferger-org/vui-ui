@@ -9,6 +9,6 @@ export const useBackend = ({ target = 'agent' }: { target?: 'core' | 'agent' | '
   return buildBackendUrl({
     target,
     serverValues,
-    agentValues
+    agentValues,
   });
 };
