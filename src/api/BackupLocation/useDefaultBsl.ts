@@ -1,18 +1,11 @@
 import { useApiPost } from '@/hooks/utils/useApiPost';
 
 export const useDefaultBsl = () => {
-  const {
-    data,
-    postData,
-    fetching,
-    error
-  } = useApiPost();
+  const { data, postData, fetching, error } = useApiPost();
 
   const handleDefaultBsl = async (values: any) => {
     try {
-
       return await postData('/v1/bsl/default', values);
-
     } catch (e) {
       // Error handling
     } finally {

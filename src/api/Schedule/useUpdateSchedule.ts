@@ -1,17 +1,11 @@
 import { useApiPut } from '@/hooks/utils/useApiPut';
 
 export const useUpdateSchedule = () => {
-  const {
-    responseStatus,
-    putData,
-    fetching
-  } = useApiPut();
+  const { responseStatus, putData, fetching } = useApiPut();
 
   const handleUpdateSchedule = async (values: any) => {
     try {
-
       return await putData('/v1/schedule', { ...values });
-
     } catch (e) {
       // Error handling
       // console.error('Error during call:', error);

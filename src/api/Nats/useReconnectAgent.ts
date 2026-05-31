@@ -1,18 +1,11 @@
 import { useApiPost } from '@/hooks/utils/useApiPost';
 
 export const useReconnectAgent = () => {
-  const {
-    data,
-    postData,
-    fetching,
-    error
-  } = useApiPost();
+  const { data, postData, fetching, error } = useApiPost();
 
   const reconnectAgent = async () => {
     try {
-
       return await postData('/v1/nats/send-core-restarted', {}, 'core');
-
     } catch (e) {
       // Error handling
       // console.error('Error during call:', error);

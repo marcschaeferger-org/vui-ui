@@ -20,19 +20,13 @@ function jsonToQueryParams(json: any) {
 }
 
 export const useBackups = () => {
-  const {
-    data,
-    getData,
-    fetching,
-    fetchedTime,
-    error
-  } = useApiGet();
+  const { data, getData, fetching, fetchedTime, error } = useApiGet();
 
   const getBackups = async ({
-                              scheduleName,
-                              onlyLast4Schedule,
-                              forced,
-                            }: GetBackupsProps): Promise<void> => {
+    scheduleName,
+    onlyLast4Schedule,
+    forced,
+  }: GetBackupsProps): Promise<void> => {
     try {
       const params = {
         ...(scheduleName && { schedule_name: scheduleName }),
@@ -46,7 +40,6 @@ export const useBackups = () => {
         cache: true,
         force: forced,
       });
-
     } catch (e) {
       // console.error('Error:', e);
     } finally {

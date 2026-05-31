@@ -1,18 +1,11 @@
 import { useApiPost } from '@/hooks/utils/useApiPost';
 
 export const useWatchdogRestart = () => {
-  const {
-    data,
-    postData,
-    fetching,
-    error
-  } = useApiPost();
+  const { data, postData, fetching, error } = useApiPost();
 
   const watchdogRestart = async () => {
     try {
-
       return await postData('/v1/watchdog/restart', {});
-
     } catch (e) {
       // Error handling
       // console.error('Error during call:', error);

@@ -1,20 +1,13 @@
 import { useApiPost } from '@/hooks/utils/useApiPost';
 
 export const useSCCreateMap = () => {
-  const {
-    data,
-    postData,
-    fetching,
-    error
-  } = useApiPost();
+  const { data, postData, fetching, error } = useApiPost();
 
   const handleScCreateMap = async (values: any) => {
     try {
-
       return await postData('/v1/sc-mapping', {
         storageClassMapping: values,
       });
-
     } catch (e) {
       // Error handling
       // console.error('Error during call:', error);

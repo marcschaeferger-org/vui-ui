@@ -1,21 +1,14 @@
 import { useApiGet } from '@/hooks/utils/useApiGet';
 
 export const useAgentHealthWatchdog = () => {
-  const {
-    data,
-    getData,
-    fetching,
-    error
-  } = useApiGet();
+  const { data, getData, fetching, error } = useApiGet();
 
   const getAgentHealthWatchdog = async () => {
     try {
-
       return await getData({
         url: '/health/watchdog',
         target: 'agent',
       });
-
     } catch (e) {
       // Error handling
       // console.error('Error during call:', error);
