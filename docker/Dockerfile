@@ -10,19 +10,15 @@ FROM base AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
 
+RUN corepack enable
+
 ENV NODE_ENV development
 
 WORKDIR /app
-RUN mkdir /app/.yarn
 
 # Install dependencies based on the preferred package manager
-# COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .yarnrc.yml ./
-COPY package.json yarn.lock* .yarnrc.yml ./
-COPY .yarn/. ./.yarn/
-
-# RUN yarn --immutable --network-timeout 100000;
-RUN yarn install --network-timeout 1000000 && ls -la /app/node_modules
-# RUN yarn && ls -la /app/node_modules
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN pnpm install --frozen-lockfile
 
 ######################################################################
 #
@@ -33,22 +29,21 @@ FROM base AS builder
 
 WORKDIR /app
 
-#COPY --from=deps /app/node_modules ./node_modules
 COPY --from=deps /app/node_modules /app/node_modules
 
 COPY . .
 COPY .env.build .env
 
-COPY package.json yarn.lock* .yarnrc.yml ./
-COPY .yarn/. ./.yarn/
+RUN corepack enable
+
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
 ENV NEXT_TELEMETRY_DISABLED 1
 
-# RUN yarn --network-timeout 100000
-RUN yarn build
+RUN pnpm build
 
 
 ######################################################################
