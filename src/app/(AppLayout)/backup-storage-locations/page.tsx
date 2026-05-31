@@ -2,5 +2,9 @@ import { BslDatatable } from '@/components/Features/Velero/BackupLocations/BslDa
 import WithCoreAndAgentReady from '@/components/WithCoreAndAgentReady';
 
 export default function BackupStorageLocationsPage() {
-  return <WithCoreAndAgentReady><BslDatatable/></WithCoreAndAgentReady>;
+  return (
+    <WithCoreAndAgentReady>
+      <BslDatatable />
+    </WithCoreAndAgentReady>
+  );
 }

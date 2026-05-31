@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 import { AuthenticationForm } from '@/components/Features/Auth/AuthenticationForm';
-import { env } from "next-runtime-env";
+import { env } from 'next-runtime-env';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -17,5 +17,5 @@ export default function LoginPage() {
     }
   }, []);
 
-  return <AuthenticationForm/>;
+  return <AuthenticationForm />;
 }

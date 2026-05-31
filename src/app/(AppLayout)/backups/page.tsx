@@ -2,5 +2,9 @@ import { BackupsDatatable } from '@/components/Features/Velero/Backups/BackupsDa
 import WithCoreAndAgentReady from '@/components/WithCoreAndAgentReady';
 
 export default function BackupsPage() {
-  return <WithCoreAndAgentReady><BackupsDatatable/></WithCoreAndAgentReady>;
+  return (
+    <WithCoreAndAgentReady>
+      <BackupsDatatable />
+    </WithCoreAndAgentReady>
+  );
 }
