@@ -10,7 +10,7 @@ export const useCreationBackupSettings = () => {
         cache: true,
         ttl: 60000 * 10,
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

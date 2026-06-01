@@ -9,7 +9,7 @@ export const useAppInfoOrigins = () => {
         url: '/info/origins',
         target: 'static',
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

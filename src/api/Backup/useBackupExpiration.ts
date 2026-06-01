@@ -9,7 +9,7 @@ export const useBackupExpiration = () => {
         url: '/v1/backup/expiration',
         params: `backup_name=${resourceName}`,
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

@@ -1,6 +1,5 @@
 import { Box, Card, Group, Space, Text, Title } from '@mantine/core';
 import { IconDatabase } from '@tabler/icons-react';
-import React from 'react';
 import classes from '@/styles/veleroResourceDetails.module.css';
 
 export function SnapshotLocationDetailsView({ data, ...rest }: any) {

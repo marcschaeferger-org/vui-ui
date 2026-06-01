@@ -12,7 +12,7 @@ export const useWatchdogTestService = () => {
       return await postData('/v1/watchdog/test-service', {
         config,
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

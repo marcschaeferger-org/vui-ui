@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { List, Text } from '@mantine/core';
 import type { MRT_ColumnDef } from 'mantine-react-table';
 

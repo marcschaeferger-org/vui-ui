@@ -6,7 +6,7 @@ export const useWatchdogSendReport = () => {
   const watchdogSendReport = async () => {
     try {
       return await postData('/v1/watchdog/send-report', {});
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

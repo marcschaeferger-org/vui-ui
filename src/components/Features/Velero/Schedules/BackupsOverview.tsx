@@ -1,5 +1,5 @@
 import { useBackups } from '@/api/Backup/useBackups';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { debounce } from 'lodash';
 import { eventEmitter } from '@/lib/EventEmitter.js';
 import { Box, Center, SegmentedControl } from '@mantine/core';

@@ -6,7 +6,7 @@ export const useStorageClasses = () => {
   const getStorageClasses = async () => {
     try {
       return await getData({ url: '/v1/k8s/storage-classes' });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

@@ -11,7 +11,7 @@ export const useBackupLocation = () => {
         cache: true,
         force: forced,
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

@@ -31,9 +31,6 @@ export default function AppShellRuntime({ children }: AppShellBootProps) {
     } else {
       // If it becomes available again, reset immediately
       setShowAlert(false);
-      if (timeout) {
-        clearTimeout(timeout);
-      }
     }
 
     return () => {

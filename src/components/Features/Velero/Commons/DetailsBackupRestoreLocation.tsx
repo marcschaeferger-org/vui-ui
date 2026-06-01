@@ -1,6 +1,5 @@
 import { Anchor, Box, Card, Group, Text } from '@mantine/core';
 import { IconCamera, IconServer } from '@tabler/icons-react';
-import React from 'react';
 import { useRouter } from 'next/navigation';
 import classes from '@/styles/veleroResourceDetails.module.css';
 

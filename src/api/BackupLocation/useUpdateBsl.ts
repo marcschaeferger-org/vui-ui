@@ -6,7 +6,7 @@ export const useUpdateBsl = () => {
   const handleUpdateBsl = async (values: any) => {
     try {
       return await putData('/v1/bsl', { ...values });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

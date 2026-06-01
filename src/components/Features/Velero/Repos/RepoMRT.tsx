@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { ActionIcon, Anchor, CopyButton, Group, Menu, rem, Text, Tooltip } from '@mantine/core';
 import { IconCheck, IconCopy, IconDots, IconServer } from '@tabler/icons-react';
 import { type MRT_ColumnDef, MRT_Row } from 'mantine-react-table';
@@ -20,7 +20,7 @@ export function RepoMRT({ fetching, setReload, items }: any) {
   const router = useRouter();
 
   /* repo operations*/
-  const { data: _locks, getRepositoryLocks } = useRepositoryLocks();
+  const { getRepositoryLocks } = useRepositoryLocks();
   const { data: unlock, getRepositoryUnlock } = useRepositoryUnlock();
   const { getRepositoryCheck } = useRepositoryCheck();
 

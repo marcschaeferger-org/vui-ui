@@ -1,5 +1,4 @@
 import { Anchor, Box, Card, Group, Text } from '@mantine/core';
-import React from 'react';
 import { useRouter } from 'next/navigation';
 
 import classes from '@/styles/veleroResourceDetails.module.css';

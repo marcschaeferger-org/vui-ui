@@ -6,7 +6,7 @@ export const useLocationDefaultCredentials = () => {
   const getK8sDefaultCredential = async () => {
     try {
       return await getData({ url: '/v1/location/cloud-credentials' });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

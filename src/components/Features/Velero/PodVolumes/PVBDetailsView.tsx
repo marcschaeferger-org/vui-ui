@@ -6,8 +6,6 @@ import {
   IconDeviceFloppy,
   IconServer,
 } from '@tabler/icons-react';
-
-import React from 'react';
 import VeleroResourceStatusBadge from '@/components/Features/Velero/Commons/Display/VeleroResourceStatusBadge';
 import classes from '@/styles/veleroResourceDetails.module.css';
 

@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { Group } from '@mantine/core';
 
 import { MaskedConfiguration } from '@/components/Features/Settings/Watchdog/Display/MaskedConfiguration';

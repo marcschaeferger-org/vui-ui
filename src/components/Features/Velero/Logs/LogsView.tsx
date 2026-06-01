@@ -114,14 +114,6 @@ export function LogsView({
     );
   }
 
-  if (fetching) {
-    return (
-      <Center mt={50}>
-        <Loader/>
-      </Center>
-    );
-  }
-
   return (
     <>
       <Group mb={5} align="flex-end">

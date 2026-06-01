@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { ActionIcon, Anchor, CopyButton, Group, Tooltip } from '@mantine/core';
 import { IconCalendarEvent, IconCheck, IconCopy, IconDeviceFloppy } from '@tabler/icons-react';
 

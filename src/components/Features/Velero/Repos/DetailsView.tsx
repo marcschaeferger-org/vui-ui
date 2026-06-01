@@ -2,7 +2,6 @@ import { Anchor, Box, Card, Group, Space, Text, Title } from '@mantine/core';
 import { IconServer, IconStack } from '@tabler/icons-react';
 import { useRouter } from 'next/navigation';
 import VeleroResourceStatusBadge from '@/components/Features/Velero/Commons/Display/VeleroResourceStatusBadge';
-import React from 'react';
 import classes from '@/styles/veleroResourceDetails.module.css';
 
 export function DetailsView({ data, ...rest }: any) {

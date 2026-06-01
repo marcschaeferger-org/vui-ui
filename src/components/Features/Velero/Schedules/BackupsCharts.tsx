@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { Box, Paper, useComputedColorScheme, useMantineTheme } from '@mantine/core';
 import { DateTime, Duration } from 'luxon';
 import {

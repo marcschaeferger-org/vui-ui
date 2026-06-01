@@ -9,7 +9,7 @@ export const useVeleroSecretKey = () => {
         url: '/v1/k8s/velero/secret/key',
         params: `secret_name=${secretName}`,
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

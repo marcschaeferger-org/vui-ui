@@ -9,7 +9,7 @@ export const useCoreAgents = () => {
         url: '/v1/agents',
         target: 'core',
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

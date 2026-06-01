@@ -6,7 +6,7 @@ export const useSchedulesStart = () => {
   const scheduleStart = async (resourceName: string) => {
     try {
       return await patchData('/v1/schedule/unpause', { name: resourceName });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

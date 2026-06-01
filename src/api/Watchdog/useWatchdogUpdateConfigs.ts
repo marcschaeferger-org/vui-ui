@@ -6,7 +6,7 @@ export const useWatchdogUpdateConfigs = () => {
   const handleUpdateSchedule = async (values: any) => {
     try {
       return await putData('/v1/watchdog/user/configs', { ...values });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

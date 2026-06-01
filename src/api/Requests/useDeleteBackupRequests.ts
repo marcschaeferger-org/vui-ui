@@ -8,7 +8,7 @@ export const useDeleteBackupRequests = () => {
       return await getData({
         url: '/v1/delete-backup-requests',
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

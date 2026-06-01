@@ -1,8 +1,6 @@
 import { Box, Card, Group, Space, Text, Title } from '@mantine/core';
 
 import { IconDeviceFloppy } from '@tabler/icons-react';
-
-import React from 'react';
 import { DetailsBackupRestoreContent } from '@/components/Features/Velero/Commons/DetailsBackupRestoreContent';
 import { DetailsBackupRestoreLocation } from '@/components/Features/Velero/Commons/DetailsBackupRestoreLocation';
 import { DetailsBackupRestoreStatus } from '@/components/Features/Velero/Commons/DetailsBackupRestoreStatus';

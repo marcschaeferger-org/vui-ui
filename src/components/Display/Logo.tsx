@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-
 import { usePathname, useRouter } from 'next/navigation';
 
 import { Anchor, Box, Group, Text } from '@mantine/core';

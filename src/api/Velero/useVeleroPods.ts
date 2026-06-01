@@ -8,7 +8,7 @@ export const useVeleroPods = () => {
       return await getData({
         url: '/v1/velero/pods',
       });
-    } catch (e) {
+    } catch (_e) {
       // console.error('Error:', e);
     } finally {
       // This code will always be executed

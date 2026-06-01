@@ -9,7 +9,7 @@ export const useClusterHealth = () => {
         url: '/health/k8s',
         target: 'agent',
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

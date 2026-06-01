@@ -1,12 +1,11 @@
 import { Box, Card, Group, Space, Text, Title } from '@mantine/core';
 
 import { IconRestore } from '@tabler/icons-react';
-import React from 'react';
 
 import { DetailsBackupRestoreContent } from '@/components/Features/Velero/Commons/DetailsBackupRestoreContent';
 import { DetailsBackupRestoreStatus } from '@/components/Features/Velero/Commons/DetailsBackupRestoreStatus';
 
-export function RestoreDetailsView({ data, ..._rest }: any) {
+export function RestoreDetailsView({ data }: any) {
   return (
     <Card shadow="sm" radius="md" withBorder h="100%">
       <Card.Section p="md">

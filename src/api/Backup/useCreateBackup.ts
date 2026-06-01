@@ -6,7 +6,7 @@ export const useCreateBackup = () => {
   const handleCreateBackup = async (values: any) => {
     try {
       return await postData('/v1/backup', values);
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

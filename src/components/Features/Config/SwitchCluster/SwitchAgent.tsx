@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Menu, Group, rem, Button, Image } from '@mantine/core';
 
 import { IconPlug, IconRefresh } from '@tabler/icons-react';

@@ -21,7 +21,7 @@ export const useRepositoryUnlock = () => {
         repositoryUrl,
         removeAll: true,
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

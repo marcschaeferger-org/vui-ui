@@ -10,7 +10,7 @@ export const usePodVolumeDetails = () => {
         params:
           type === 'PodVolumeBackup' ? `backup_name=${backup_name}` : `restore_name=${backup_name}`,
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

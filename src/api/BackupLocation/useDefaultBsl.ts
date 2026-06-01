@@ -6,7 +6,7 @@ export const useDefaultBsl = () => {
   const handleDefaultBsl = async (values: any) => {
     try {
       return await postData('/v1/bsl/default', values);
-    } catch (e) {
+    } catch (_e) {
       // Error handling
     } finally {
       // This code will always be executed

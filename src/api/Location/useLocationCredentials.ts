@@ -9,7 +9,7 @@ export const useLocationCredentials = () => {
         url: '/v1/location/credentials',
         params: `secret_name=${secretName}&secret_key=${secretKey}`,
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

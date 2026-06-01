@@ -9,7 +9,7 @@ export const useAgentInfo = () => {
         url: '/info/app',
         target: 'agent',
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

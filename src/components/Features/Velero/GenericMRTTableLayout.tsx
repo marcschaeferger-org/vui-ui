@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { ActionIcon, Center, Divider, Flex, Indicator, Title, Tooltip } from '@mantine/core';
 import { IconFilterOff, IconRefresh, IconSettingsX } from '@tabler/icons-react';
 import {

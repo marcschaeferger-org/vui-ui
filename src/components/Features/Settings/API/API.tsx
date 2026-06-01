@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useAgentStatus } from '@/contexts/AgentContext';
 import { MainStack } from '@/components/Commons/MainStack';

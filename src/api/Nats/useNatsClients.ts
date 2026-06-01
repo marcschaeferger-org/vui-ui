@@ -9,7 +9,7 @@ export const useNatsClients = () => {
         url: '/v1/nats/clients',
         target: 'core',
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

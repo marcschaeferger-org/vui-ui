@@ -9,7 +9,7 @@ export const useServerStatusRequests = () => {
         url: '/v1/server-status-requests',
         target: 'agent',
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

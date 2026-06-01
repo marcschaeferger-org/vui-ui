@@ -9,7 +9,7 @@ export const useDownloadBackup = () => {
         url: '/v1/backup/download',
         params: `backup_name=${resourceName}`,
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

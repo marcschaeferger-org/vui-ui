@@ -6,7 +6,7 @@ export const useCreateVsl = () => {
   const handleCreateVsl = async (values: any) => {
     try {
       return await postData('/v1/vsl', values);
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

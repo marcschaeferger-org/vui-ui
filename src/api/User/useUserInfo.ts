@@ -9,7 +9,7 @@ export const useUserInfo = () => {
         url: '/v1/users/me/info',
         target: 'static',
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

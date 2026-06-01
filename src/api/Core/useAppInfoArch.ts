@@ -9,7 +9,7 @@ export const useAppInfoArch = () => {
         url: '/info/arch',
         target: 'static',
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

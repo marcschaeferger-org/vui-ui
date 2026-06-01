@@ -8,7 +8,7 @@ export const useDownloadRequests = () => {
       return await getData({
         url: '/v1/download-requests',
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

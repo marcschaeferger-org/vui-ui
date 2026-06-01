@@ -6,7 +6,7 @@ export const useUpdateVsl = () => {
   const handleUpdateVsl = async (values: any) => {
     try {
       return await putData('/v1/vsl', { ...values });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {
