@@ -17,7 +17,7 @@ import { MainStack } from '@/components/Commons/MainStack';
 
 export function Agents() {
   const agentValues = useAgentStatus();
-  const { height: vpHeight, width: vpWidth } = useViewportSize();
+  const { height: _vpHeight, width: _vpWidth } = useViewportSize();
   const { data, getAgentStats, fetching } = useAgentStats();
   const [reload, setReload] = useState(1);
 

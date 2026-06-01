@@ -17,7 +17,7 @@ const InspectAction: React.FC<RestoreActionIconProps> = ({ record, buttonType = 
   const isDisabled = ['inprogress', 'new'].includes(record?.status?.phase.toLowerCase() ?? '');
 
   const backupName = record?.metadata?.name || 'Unknown';
-  const { data, inspectBackup } = useInspectBackup();
+  const { data: _data, inspectBackup } = useInspectBackup();
 
   const handleOpenModal = (e: React.MouseEvent) => {
     e.stopPropagation();

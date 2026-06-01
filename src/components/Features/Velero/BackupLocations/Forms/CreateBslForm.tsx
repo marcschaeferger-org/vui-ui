@@ -13,8 +13,8 @@ interface CreateBslProps {
 
 const ttlRegex = /^(\d+h)?(\d+m)?(\d+s)?$/;
 
-export function CreateBslForm({ reload, setReload }: CreateBslProps) {
-  const appValues = useAppStatus();
+export function CreateBslForm({ reload: _reload, setReload: _setReload }: CreateBslProps) {
+  const _appValues = useAppStatus();
 
   const { handleCreateBsl } = useCreateBsl();
 

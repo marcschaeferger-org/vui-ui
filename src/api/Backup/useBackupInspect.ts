@@ -3,7 +3,7 @@ import { useApiGet } from '@/hooks/utils/useApiGet';
 export const useInspectBackup = () => {
   const { data, getData, fetching, error } = useApiGet();
 
-  const inspectBackup = async (resourceName: String) => {
+  const inspectBackup = async (resourceName: string) => {
     try {
       return await getData({
         url: '/v1/backup/inspect-download',

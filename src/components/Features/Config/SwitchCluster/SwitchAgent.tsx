@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { Menu, Group, rem, Button, Image } from '@mantine/core';
 
-import { IconPlug, IconRefresh, IconSpy } from '@tabler/icons-react';
+import { IconPlug, IconRefresh } from '@tabler/icons-react';
 
 import { useAgentStatus } from '@/contexts/AgentContext';
 import { useServerStatus } from '@/contexts/ServerContext';

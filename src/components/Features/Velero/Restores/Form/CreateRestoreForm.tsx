@@ -17,9 +17,9 @@ interface RestoreBackupProps {
 
 const timeoutRegex = /^\d+[smh]$/;
 
-export function CreateRestoreForm({ backupName, setReload }: RestoreBackupProps) {
+export function CreateRestoreForm({ backupName, setReload: _setReload }: RestoreBackupProps) {
   const { handleCreateRestore } = useCreateRestore();
-  const appValues = useAppStatus();
+  const _appValues = useAppStatus();
 
   // const { data: manifest, getResourceDescribe } = useResourceDescribe();
 

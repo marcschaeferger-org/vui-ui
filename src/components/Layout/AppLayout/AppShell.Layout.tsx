@@ -38,8 +38,8 @@ export default function AppShellLayout({ children }: AppShellLayoutProps) {
   const [opened, { toggle }] = useDisclosure();
   const [collapsed, { toggle: toggleCollapsed, open }] = useDisclosure();
 
-  const { height: vpHeight, width: vpWidth } = useViewportSize();
-  const { ref, width, height } = useElementSize();
+  const { height: _vpHeight, width: vpWidth } = useViewportSize();
+  const { ref, width: _width, height: _height } = useElementSize();
   const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
 
   const [openedAside, { toggle: toggleAside }] = useDisclosure();

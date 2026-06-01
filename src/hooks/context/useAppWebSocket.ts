@@ -15,7 +15,9 @@ type UseAppWebSocketParams = {
   addSocketHistory: any;
 };
 
-export const useAppWebSocket = ({ addSocketHistory = null }: UseAppWebSocketParams) => {
+export const useAppWebSocket = ({
+  addSocketHistory: _addSocketHistory = null,
+}: UseAppWebSocketParams) => {
   const appValues = useAppStatus();
   const serverValues = useServerStatus();
   const agentValues = useAgentStatus();
@@ -61,7 +63,7 @@ export const useAppWebSocket = ({ addSocketHistory = null }: UseAppWebSocketPara
               JSON.stringify({
                 type: 'ping',
                 kind: 'request',
-                request_id: 'req-' + Date.now(),
+                request_id: `req-${Date.now()}`,
                 timestamp: new Date().toISOString(),
               }),
             );
@@ -69,7 +71,9 @@ export const useAppWebSocket = ({ addSocketHistory = null }: UseAppWebSocketPara
         }, 30000);
       },
       onMessage: (event) => {
-        if (NEXT_PUBLIC_AUTH_ENABLED && !isAuthenticated) return;
+        if (NEXT_PUBLIC_AUTH_ENABLED && !isAuthenticated) {
+          return;
+        }
         try {
           const response = JSON.parse(event.data);
           if (response.type === 'user_watch' || response.type === 'global_watch') {

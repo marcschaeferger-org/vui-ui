@@ -6,7 +6,7 @@ import { DetailsBackupRestoreContent } from '@/components/Features/Velero/Common
 import { DetailsBackupRestoreLocation } from '@/components/Features/Velero/Commons/DetailsBackupRestoreLocation';
 import classes from '@/styles/veleroResourceDetails.module.css';
 
-export function ScheduleDetailsView({ data, ...rest }: any) {
+export function ScheduleDetailsView({ data, ..._rest }: any) {
   return (
     <Card shadow="sm" radius="md" withBorder h="100%">
       <Card.Section p="md" className={classes.section}>

@@ -22,7 +22,7 @@ export const useApiPatch = () => {
   const { addNotificationHistory } = useUserNotificationHistory();
   const { addApiRequestHistory, addApiResponseHistory } = useApiLogger();
 
-  const [fetchedTime, setFetchedTime] = useState<string | undefined>(undefined);
+  const [_fetchedTime, setFetchedTime] = useState<string | undefined>(undefined);
   const [fetching, setFetching] = useState(false);
   const [data, setData] = useState<Record<string, any> | undefined>(undefined);
   const [error, setError] = useState(false);

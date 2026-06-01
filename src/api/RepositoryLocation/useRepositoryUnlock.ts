@@ -15,13 +15,12 @@ export const useRepositoryUnlock = () => {
           repositoryUrl,
           removeAll: false,
         });
-      } else {
-        return await postData('/v1/repo/unlock', {
-          bsl,
-          repositoryUrl,
-          removeAll: true,
-        });
       }
+      return await postData('/v1/repo/unlock', {
+        bsl,
+        repositoryUrl,
+        removeAll: true,
+      });
     } catch (e) {
       // Error handling
       // console.error('Error during call:', error);

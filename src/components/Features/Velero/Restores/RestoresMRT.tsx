@@ -106,7 +106,9 @@ export function RestoresMRT({ fetching, setReload, items }: any) {
           const columnFilter = column.getFilterValue() ?? '';
           const highlights = [globalFilter, columnFilter].filter(Boolean);
 
-          if (!scheduleName) return null;
+          if (!scheduleName) {
+            return null;
+          }
 
           return (
             <Anchor

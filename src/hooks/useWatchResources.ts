@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSocketStatus } from '@/contexts/SocketContext';
 import { useAgentStatus } from '@/contexts/AgentContext';
-import { hasWatched, setWatched } from '@/lib/WatchedResources';
+import { setWatched } from '@/lib/WatchedResources';
 
 export function useWatchResources(plural: string) {
   const socketValues = useSocketStatus();
@@ -10,7 +10,9 @@ export function useWatchResources(plural: string) {
   useEffect(() => {
     const agentName = agentValues.currentAgent?.name;
 
-    if (!agentName) return;
+    if (!agentName) {
+      return;
+    }
 
     //if (hasWatched(agentName, plural)) return;
 

@@ -104,7 +104,7 @@ export class AgentStateManager {
 
   private maskDomain(url: string): string {
     // use regex to identify domain in URL
-    const urlPattern = /^(https?:\/\/)([^\/]+)(.*)$/;
+    const urlPattern = /^(https?:\/\/)([^/]+)(.*)$/;
     const maskedDomain = '###.###.###';
 
     // regex apply

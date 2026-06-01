@@ -31,11 +31,15 @@ export default function AppShellRuntime({ children }: AppShellBootProps) {
     } else {
       // If it becomes available again, reset immediately
       setShowAlert(false);
-      if (timeout) clearTimeout(timeout);
+      if (timeout) {
+        clearTimeout(timeout);
+      }
     }
 
     return () => {
-      if (timeout) clearTimeout(timeout);
+      if (timeout) {
+        clearTimeout(timeout);
+      }
     };
   }, [serverValues.isServerAvailable, appValues.isAuthenticated]);
 

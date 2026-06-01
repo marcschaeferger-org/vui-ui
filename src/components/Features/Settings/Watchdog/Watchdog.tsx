@@ -32,11 +32,7 @@ function hasDifferentValues<T extends Record<string, any>>(obj1: T, obj2: T): Di
   let hasDifferences = false;
 
   for (const key in obj2) {
-    if (
-      key !== 'K8S_INCLUSTER_MODE' &&
-      Object.prototype.hasOwnProperty.call(obj1, key) &&
-      obj1[key] !== obj2[key]
-    ) {
+    if (key !== 'K8S_INCLUSTER_MODE' && Object.hasOwn(obj1, key) && obj1[key] !== obj2[key]) {
       differences[key] = {
         obj1: obj1[key],
         obj2: obj2[key],
@@ -101,7 +97,7 @@ export function Watchdog() {
 
   useEffect(() => {
     if (deployConfiguration && userConfiguration) {
-      const { hasDifferences: hDiff, differences: diffs } = hasDifferentValues(
+      const { hasDifferences: hDiff, differences: _diffs } = hasDifferentValues(
         deployConfiguration,
         userConfiguration,
       );

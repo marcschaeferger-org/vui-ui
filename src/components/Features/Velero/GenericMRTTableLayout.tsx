@@ -80,16 +80,16 @@ export function GenericMRTTableLayout({
     enableSorting: true,
     enableColumnOrdering: true,
     enableDensityToggle: true,
-    enableRowActions: enableRowActions,
+    enableRowActions,
     positionActionsColumn: 'last',
-    enablePagination: enablePagination,
+    enablePagination,
     enableColumnResizing: true,
-    enableTopToolbar: enableTopToolbar,
-    enableBottomToolbar: enableBottomToolbar,
+    enableTopToolbar,
+    enableBottomToolbar,
     enableColumnPinning: true,
     enableRowVirtualization: true,
 
-    initialState: initialState,
+    initialState,
 
     state: {
       grouping,
@@ -124,7 +124,7 @@ export function GenericMRTTableLayout({
     enableGlobalFilter: true,
     enableFilterMatchHighlighting: true,
     enableGlobalFilterModes: true,
-    enableGrouping: enableGrouping,
+    enableGrouping,
 
     renderRowActions,
     renderRowActionMenuItems,

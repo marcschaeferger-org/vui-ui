@@ -4,9 +4,18 @@ import { Text, Group, Card, Button, CardSection, Anchor } from '@mantine/core';
 import { useRouter } from 'next/navigation';
 import { IconChevronRight } from '@tabler/icons-react';
 
+type SegmentColorKey =
+  | 'Completed'
+  | 'Failed'
+  | 'Partial Failed'
+  | 'Failed Validation'
+  | 'Deleting'
+  | 'Unpaused'
+  | 'Paused';
+
 interface Segment {
   value: number;
-  label: keyof typeof segmentColors;
+  label: SegmentColorKey;
 }
 
 interface StatsSegmentsProps {
@@ -20,7 +29,7 @@ interface StatsSegmentsProps {
   icon: any;
 }
 
-const segmentColors = {
+const _segmentColors: Record<SegmentColorKey, string> = {
   Completed: 'green.6',
   Failed: 'red.9',
   'Partial Failed': 'red.7',

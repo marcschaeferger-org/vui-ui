@@ -110,7 +110,7 @@ export default function ConfigurationOptions({
               <Table.Th w={600}>
                 <Text size="sm">{labelValue}</Text>
               </Table.Th>
-              <Table.Th w={30}></Table.Th>
+              <Table.Th w={30} />
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>{rows}</Table.Tbody>

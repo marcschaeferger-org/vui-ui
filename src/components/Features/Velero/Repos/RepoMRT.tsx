@@ -20,7 +20,7 @@ export function RepoMRT({ fetching, setReload, items }: any) {
   const router = useRouter();
 
   /* repo operations*/
-  const { data: locks, getRepositoryLocks } = useRepositoryLocks();
+  const { data: _locks, getRepositoryLocks } = useRepositoryLocks();
   const { data: unlock, getRepositoryUnlock } = useRepositoryUnlock();
   const { getRepositoryCheck } = useRepositoryCheck();
 
@@ -201,7 +201,9 @@ export function RepoMRT({ fetching, setReload, items }: any) {
             .map((h) => h.toString().trim())
             .filter(Boolean);
 
-          if (!resticId) return null;
+          if (!resticId) {
+            return null;
+          }
 
           return (
             <Group gap={5}>

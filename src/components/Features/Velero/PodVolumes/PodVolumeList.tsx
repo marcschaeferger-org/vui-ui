@@ -12,7 +12,7 @@ import { eventEmitter } from '@/lib/EventEmitter.js';
 
 import { PodVolumesMRT } from '@/components/Features/Velero/PodVolumes/PodVolumesMRT';
 
-export function PodVolumeList({ podVolumeName, type, ...rest }: any) {
+export function PodVolumeList({ podVolumeName, type, ..._rest }: any) {
   const { data, fetching, getPodVolumeDetails } = usePodVolumeDetails();
   const [records, setRecords] = useState<Array<any>>([]);
   const agentValues = useAgentStatus();

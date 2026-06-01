@@ -110,6 +110,7 @@ export default [
           caughtErrors: 'none',
           caughtErrorsIgnorePattern: '^_',
           destructuredArrayIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
           ignoreRestSiblings: true,
         },
       ],

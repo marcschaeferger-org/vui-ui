@@ -19,11 +19,13 @@ function formatDate(isoDate: string): string {
 }
 
 function formatBytes(bytes: number): string {
-  if (bytes === 0) return '0 B';
+  if (bytes === 0) {
+    return '0 B';
+  }
   const k = 1024;
   const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  return `${parseFloat((bytes / k ** i).toFixed(2))} ${sizes[i]}`;
 }
 
 export function BackupsCharts({ data, pvbBackup, show }: any) {
@@ -148,7 +150,9 @@ export function BackupsCharts({ data, pvbBackup, show }: any) {
   );
 
   const CustomTooltip = ({ active, payload }: any) => {
-    if (!active || !payload || !payload.length) return null;
+    if (!active || !payload || !payload.length) {
+      return null;
+    }
 
     const point = payload[0].payload;
 

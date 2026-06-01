@@ -37,7 +37,7 @@ export function WatchdogDeployConfigs({
     return maskedKeys.includes(key) ? <MaskedConfiguration service={value} /> : String(value);
   }
 
-  const array = Object.entries(deployConfiguration).map(([key, value]) => ({
+  const array = Object.entries(deployConfiguration).map(([key, _value]) => ({
     hasChanged: hasChanged(key),
     name: key,
     value: maskValue(key, deployConfiguration[key]),

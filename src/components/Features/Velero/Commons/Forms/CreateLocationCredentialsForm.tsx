@@ -11,8 +11,12 @@ interface CreateBslProps {
   close: any;
 }
 
-export function CreateLocationCredentialsForm({ reload, setReload, close }: CreateBslProps) {
-  const appValues = useAppStatus();
+export function CreateLocationCredentialsForm({
+  reload: _reload,
+  setReload: _setReload,
+  close,
+}: CreateBslProps) {
+  const _appValues = useAppStatus();
 
   const { handleCreateCredentials } = useCreateLocationCredentials();
 

@@ -6,6 +6,4 @@ export default function useAppBootstrap() {
   useUIConfig();
   useAppConfig();
   useServerConfig();
-
-  return;
 }

@@ -11,8 +11,8 @@ interface CreateVslProps {
   setReload: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export function CreateVslForm({ reload, setReload }: CreateVslProps) {
-  const appValues = useAppStatus();
+export function CreateVslForm({ reload: _reload, setReload: _setReload }: CreateVslProps) {
+  const _appValues = useAppStatus();
 
   const { handleCreateVsl } = useCreateVsl();
 

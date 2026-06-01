@@ -2,7 +2,6 @@ import { Code, Group, Text } from '@mantine/core';
 
 import { useAppStatus } from '@/contexts/AppContext';
 import { useServerStatus } from '@/contexts/ServerContext';
-import { useAgentStatus } from '@/contexts/AgentContext';
 
 import { ProcessTime } from '@/components/Display/ProcessTime';
 import { DiagnosticAgentInfo } from '@/components/Features/Diagnostic/DiagnosticAgentInfo';

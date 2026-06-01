@@ -101,7 +101,9 @@ export function LatestBackupMRT({ setReload, latest = [] }: BackupLatestProps) {
           const columnFilter = column.getFilterValue() ?? '';
           const highlights = [globalFilter, columnFilter].filter(Boolean);
 
-          if (!scheduleName) return null;
+          if (!scheduleName) {
+            return null;
+          }
 
           const highlighted = highlightMultiple(scheduleName, highlights);
 

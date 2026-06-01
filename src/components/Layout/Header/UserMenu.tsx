@@ -28,7 +28,7 @@ export default function UserMenu() {
   const uiValues = useUIStatus();
   const appValues = useAppStatus();
   const userValues = useUserStatus();
-  const agentValues = useAgentStatus();
+  const _agentValues = useAgentStatus();
   const serverValues = useServerStatus();
 
   const { logout } = useAuthLogout();
