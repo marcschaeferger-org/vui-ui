@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-***
+---
 
 ## [0.3.1] - 2025-07-30
 
@@ -69,43 +69,43 @@ All notable changes to this project will be documented in this file.
 
 - **In-memory caching for GET requests**  
   Added support for optional in-memory caching in `useApiGet` with:
-    - TTL per endpoint
-    - `force` parameter to bypass cache
-    - Configurable default TTL via `CACHE_TTL` environment variable  
-      _(PRs: `feat(api): add in-memory cache...`, `feat(api): make cache TTL configurable...`)_
+  - TTL per endpoint
+  - `force` parameter to bypass cache
+  - Configurable default TTL via `CACHE_TTL` environment variable  
+    _(PRs: `feat(api): add in-memory cache...`, `feat(api): make cache TTL configurable...`)_
 
 ### 🔧 Refactoring & Enhancements
 
 - **Core architecture improvements**
-    - Introduced `AuthGuard` component for route protection
-    - Enhanced API async handling and startup flow
-    - Cleaned up legacy/commented code
-    - Enabled watchdog in Docker (non cluster mode)
-    - Improved context provider variable usage
-    - Added support for `next` redirect after login  
-      _(PR: `refactor(core): improve auth, API...`)_
+  - Introduced `AuthGuard` component for route protection
+  - Enhanced API async handling and startup flow
+  - Cleaned up legacy/commented code
+  - Enabled watchdog in Docker (non cluster mode)
+  - Improved context provider variable usage
+  - Added support for `next` redirect after login  
+    _(PR: `refactor(core): improve auth, API...`)_
 
 - **Improved redirect behavior**
-    - Refined redirect logic for `/` path and agent state resets
-    - Ensured `watch_clear` is triggered properly on agent switch  
-      _(PRs: `refactor(authgate)...`, `fix: trigger watch_clear...`)_
+  - Refined redirect logic for `/` path and agent state resets
+  - Ensured `watch_clear` is triggered properly on agent switch  
+    _(PRs: `refactor(authgate)...`, `fix: trigger watch_clear...`)_
 
 - **API cache key optimization**
-    - Introduced `cacheKeyUrl` to exclude `forced` param from cache keys  
-      _(PR: `refactor(api): extract cacheKeyUrl...`)_
+  - Introduced `cacheKeyUrl` to exclude `forced` param from cache keys  
+    _(PR: `refactor(api): extract cacheKeyUrl...`)_
 
 ### 🐛 Bug Fixes
 
 - **Watch state reset**
-    - Ensured `watch_clear` triggers on agent name changes  
-      _(PR: `fix: trigger watch_clear...`)_
+  - Ensured `watch_clear` triggers on agent name changes  
+    _(PR: `fix: trigger watch_clear...`)_
 
 ### 🧹 Code Quality
 
 - **Code linting and formatting**
-    - Reformatted all JavaScript and TypeScript files to follow ESLint rules
-    - No functional changes  
-      _(PR: `style(js,tsx): apply linting rules...`)_
+  - Reformatted all JavaScript and TypeScript files to follow ESLint rules
+  - No functional changes  
+    _(PR: `style(js,tsx): apply linting rules...`)_
 
 ## [v0.2.6] - 2025-05-08
 
@@ -329,7 +329,7 @@ Improvements
 
 - 🎉 first release!
 
-***
+---
 
 ## Tags
 
