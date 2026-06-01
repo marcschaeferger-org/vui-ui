@@ -53,7 +53,7 @@ function hasDifferentValues<T extends Record<string, any>>(obj1: T, obj2: T): Di
 
 export function Watchdog() {
   const uiValues = useUIStatus();
-  const appValues = useAppStatus()
+  const appValues = useAppStatus();
   const stackRef = useRef<HTMLDivElement>(null);
   const [scrollHeight, setScrollHeight] = useState<number>(800);
 
@@ -68,28 +68,15 @@ export function Watchdog() {
     }
   }, [activeTab]);
 
-  const {
-    data: deployConfiguration,
-    getWatchdogConfig,
-    fetching
-  } = useWatchdogEnvironment();
-  const {
-    data: userConfiguration,
-    getWatchdogAppConfigs
-  } = useWatchdogAppConfigs();
+  const { data: deployConfiguration, getWatchdogConfig, fetching } = useWatchdogEnvironment();
+  const { data: userConfiguration, getWatchdogAppConfigs } = useWatchdogAppConfigs();
 
   const [hasDiff, setHasDiff] = useState(false);
 
-  const {
-    watchdogSendReport,
-    fetching: reportFetching
-  } = useWatchdogSendReport();
+  const { watchdogSendReport, fetching: reportFetching } = useWatchdogSendReport();
   const { watchdogRestart } = useWatchdogRestart();
 
-  const {
-    data: cron,
-    getWatchdogCron
-  } = useWatchdogCron();
+  const { data: cron, getWatchdogCron } = useWatchdogCron();
   const [reload, setReload] = useState(1);
 
   //const agentValues = useAgentStatus();
@@ -114,19 +101,15 @@ export function Watchdog() {
 
   useEffect(() => {
     if (deployConfiguration && userConfiguration) {
-      const {
-        hasDifferences: hDiff,
-        differences: diffs
-      } = hasDifferentValues(
+      const { hasDifferences: hDiff, differences: diffs } = hasDifferentValues(
         deployConfiguration,
-        userConfiguration
+        userConfiguration,
       );
       setHasDiff(hDiff);
     }
   }, [deployConfiguration, userConfiguration]);
 
-  useEffect(() => {
-  }, [hasDiff]);
+  useEffect(() => {}, [hasDiff]);
 
   useEffect(() => {
     const updateHeight = () => {
@@ -158,8 +141,8 @@ export function Watchdog() {
   return (
     <MainStack>
       <Toolbar title="Watchdog" breadcrumbItem={[{ name: 'Watchdog' }]}>
-        <ReloadData setReload={setReload} reload={reload}/>
-        <SendReport fetching={reportFetching} requestSendReport={watchdogSendReport}/>
+        <ReloadData setReload={setReload} reload={reload} />
+        <SendReport fetching={reportFetching} requestSendReport={watchdogSendReport} />
         {appValues?.appInfo?.helm_version && (
           <ReloadConfig
             watchdogReloadConfig={watchdogRestart}
@@ -168,13 +151,21 @@ export function Watchdog() {
           />
         )}
       </Toolbar>
-      <Tabs defaultValue="Environment" h="calc(100% - 70px)" value={activeTab} onChange={setActiveTab}>
+      <Tabs
+        defaultValue="Environment"
+        h="calc(100% - 70px)"
+        value={activeTab}
+        onChange={setActiveTab}
+      >
         <Tabs.List>
-          <Tabs.Tab value="Environment" leftSection={<IconVariable size={20}/>}>
+          <Tabs.Tab value="Environment" leftSection={<IconVariable size={20} />}>
             Current Environment
           </Tabs.Tab>
-          <Tabs.Tab value="Settings" leftSection={<IconSettings size={20}/>}
-                    disabled={!appValues?.appInfo?.helm_version}>
+          <Tabs.Tab
+            value="Settings"
+            leftSection={<IconSettings size={20} />}
+            disabled={!appValues?.appInfo?.helm_version}
+          >
             Configuration
           </Tabs.Tab>
         </Tabs.List>
@@ -194,8 +185,8 @@ export function Watchdog() {
           <Tabs.Panel value="Settings" h="calc(100% - 40px)" p={0}>
             <Stack ref={stackRef} h="100%" p={0}>
               <ScrollArea h={scrollHeight} p={0}>
-                <WatchdogUserConfigs userConfiguration={userConfiguration} setReload={setReload}/>
-                <WatchdogService reload={reload}/>
+                <WatchdogUserConfigs userConfiguration={userConfiguration} setReload={setReload} />
+                <WatchdogService reload={reload} />
               </ScrollArea>
             </Stack>
           </Tabs.Panel>

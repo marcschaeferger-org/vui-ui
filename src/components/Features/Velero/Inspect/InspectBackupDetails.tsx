@@ -21,24 +21,15 @@ interface BackupProps {
 }
 
 export function InspectBackupDetails({ params }: BackupProps) {
-  const {
-    data,
-    getInspectFolderContent
-  } = useInspectFolderContent();
+  const { data, getInspectFolderContent } = useInspectFolderContent();
   const [reload, setReload] = useState(1);
   const inspectBackupEnabled =
     env('NEXT_PUBLIC_INSPECT_BACKUP_ENABLED')?.toLocaleLowerCase() === 'true';
   const [currentFilePath, setCurrentFilePath] = useState('');
   const [backupTreeData, setBackupTreeData] = useState({});
 
-  const {
-    data: manifestData,
-    getManifest
-  } = useK8sManifest();
-  const {
-    data: file,
-    getInspectFile
-  } = useInspectFile();
+  const { data: manifestData, getManifest } = useK8sManifest();
+  const { data: file, getInspectFile } = useInspectFile();
 
   const [oldValue, setOldValue] = useState<Record<string, any>>({});
   const [currentValue, setCurrentValue] = useState<Record<string, any>>({});
@@ -64,7 +55,7 @@ export function InspectBackupDetails({ params }: BackupProps) {
           file?.apiVersion,
           file?.metadata?.namespace === undefined || file?.kind === 'namespaces',
           file?.metadata?.namespace,
-          false
+          false,
         );
       }
     } else {
@@ -96,7 +87,7 @@ export function InspectBackupDetails({ params }: BackupProps) {
           { name: `📦 Backup ${params?.backup} --- 📄 ${currentFilePath}` },
         ]}
       >
-        <ReloadData setReload={setReload} reload={reload}/>
+        <ReloadData setReload={setReload} reload={reload} />
       </Toolbar>
 
       <Paper withBorder h="calc(100% - 68px)" p={0}>

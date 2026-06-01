@@ -12,10 +12,7 @@ interface DescribeActionIconProps {
   record: any;
 }
 
-export default function DescribeActionIcon({
-                                             resourceType,
-                                             record
-                                           }: DescribeActionIconProps) {
+export default function DescribeActionIcon({ resourceType, record }: DescribeActionIconProps) {
   /*<ResourceDescribe resourceType={resourceType} resourceName={record.metadata.name} />*/
 
   return (
@@ -35,10 +32,7 @@ export default function DescribeActionIcon({
             children: (
               <>
                 <Box h="70vh">
-                  <Manifest
-                    resourceType={resourceType}
-                    resourceName={record.metadata.name}
-                  />
+                  <Manifest resourceType={resourceType} resourceName={record.metadata.name} />
                 </Box>
                 <Group justify="flex-end" mt="md">
                   <Button onClick={() => closeAllModals()}>Close</Button>
@@ -48,7 +42,7 @@ export default function DescribeActionIcon({
           });
         }}
       >
-        <IconClipboard/>
+        <IconClipboard />
       </ActionIcon>
     </Tooltip>
   );

@@ -13,12 +13,7 @@ import { MainStack } from '@/components/Commons/MainStack';
 import { PVBMRT } from '@/components/Features/Velero/PodVolumes/PVBMRT';
 
 export function PVBDatatable({ type }: any) {
-  const {
-    data,
-    getPodVolumes,
-    fetching,
-    fetchedTime
-  } = usePodVolumes();
+  const { data, getPodVolumes, fetching, fetchedTime } = usePodVolumes();
 
   const [items, setItems] = useState<Record<string, any>>([]);
   const [reload, setReload] = useState(1);
@@ -71,12 +66,8 @@ export function PVBDatatable({ type }: any) {
         <></>
       </Toolbar>
 
-      <PVBMRT
-        fetching={fetching}
-        setReload={setReload}
-        items={items}
-      />
-      <DataFetchedInfo fetchedTime={fetchedTime}/>
+      <PVBMRT fetching={fetching} setReload={setReload} items={items} />
+      <DataFetchedInfo fetchedTime={fetchedTime} />
     </MainStack>
   );
 }

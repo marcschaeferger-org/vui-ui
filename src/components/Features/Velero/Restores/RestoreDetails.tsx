@@ -24,10 +24,7 @@ interface RestoreProps {
 }
 
 export function RestoreDetails({ params }: RestoreProps) {
-  const {
-    data,
-    getManifest
-  } = useVeleroManifest();
+  const { data, getManifest } = useVeleroManifest();
   const [reload, setReload] = useState(1);
   const agentValues = useAgentStatus();
   const [manifest, setManifest] = useState<Record<string, any>>([]);
@@ -35,7 +32,10 @@ export function RestoreDetails({ params }: RestoreProps) {
   /* watch */
   // useWatchResources('backups');
   const handleWatchResources = debounce((message) => {
-    if (message?.payload?.resources === 'restores' && message?.payload?.resource?.metadata?.name === params.restore) {
+    if (
+      message?.payload?.resources === 'restores' &&
+      message?.payload?.resource?.metadata?.name === params.restore
+    ) {
       setManifest(message?.payload?.resource);
     }
   }, 150);
@@ -76,7 +76,7 @@ export function RestoreDetails({ params }: RestoreProps) {
             },
           ]}
         >
-          <ReloadData setReload={setReload} reload={reload}/>
+          <ReloadData setReload={setReload} reload={reload} />
           <DeleteAction
             resourceType="restore"
             record={manifest}
@@ -86,28 +86,32 @@ export function RestoreDetails({ params }: RestoreProps) {
           />
         </Toolbar>
       }
-      details={<RestoreDetailsView data={manifest}/>}
-      manifest={<Manifest resourceType="Restore" resourceName={params.restore} reload={reload}/>}
+      details={<RestoreDetailsView data={manifest} />}
+      manifest={<Manifest resourceType="Restore" resourceName={params.restore} reload={reload} />}
       tabs={(height) => (
         <Tabs defaultValue="PodVolumes" h="100%">
           <Tabs.List>
-            <Tabs.Tab value="PodVolumes" leftSection={<IconDatabaseExport size={12}/>}>
+            <Tabs.Tab value="PodVolumes" leftSection={<IconDatabaseExport size={12} />}>
               Pod volumes
             </Tabs.Tab>
-            <Tabs.Tab value="Logs" leftSection={<IconFileText size={12}/>}>
+            <Tabs.Tab value="Logs" leftSection={<IconFileText size={12} />}>
               Logs
             </Tabs.Tab>
           </Tabs.List>
 
           <Tabs.Panel value="PodVolumes" h="100%">
             <Box p={5} h="100%">
-              <PodVolumeList podVolumeName={params.backup} type="podvolumerestores"/>
+              <PodVolumeList podVolumeName={params.backup} type="podvolumerestores" />
             </Box>
           </Tabs.Panel>
 
           <Tabs.Panel value="Logs" h="100%">
             <Box p={5} h="100%">
-              <ResourceLogs resourceType="restore" resourceName={data?.metadata?.name} h={height - 50}/>
+              <ResourceLogs
+                resourceType="restore"
+                resourceName={data?.metadata?.name}
+                h={height - 50}
+              />
             </Box>
           </Tabs.Panel>
         </Tabs>

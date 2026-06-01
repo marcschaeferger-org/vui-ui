@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react';
 
-import { Group, } from '@mantine/core';
+import { Group } from '@mantine/core';
 
 import { type MRT_ColumnDef, MRT_Row } from 'mantine-react-table';
 
@@ -15,21 +15,15 @@ import InspectAction from '@/components/Features/Velero/Backups/Actions/InspectA
 
 import { GenericMRTTableLayout } from '@/components/Features/Velero/GenericMRTTableLayout';
 
-export function NatsMRT({
-                          fetching,
-                          setReload,
-                          items,
-                          customActions
-                        }: any) {
-
+export function NatsMRT({ fetching, setReload, items, customActions }: any) {
   const renderActions = (record: any) => (
     <Group gap={2} wrap="nowrap">
-      <DescribeActionIcon resourceType="backup" record={record}/>
-      <UpdateExpirationAction record={record} setReload={setReload}/>
-      <DownloadAction record={record}/>
-      <InspectAction record={record}/>
-      <RestoreAction record={record} setReload={setReload}/>
-      <DeleteAction resourceType="backup" record={record} setReload={setReload}/>
+      <DescribeActionIcon resourceType="backup" record={record} />
+      <UpdateExpirationAction record={record} setReload={setReload} />
+      <DownloadAction record={record} />
+      <InspectAction record={record} />
+      <RestoreAction record={record} setReload={setReload} />
+      <DeleteAction resourceType="backup" record={record} setReload={setReload} />
     </Group>
   );
 
@@ -37,7 +31,7 @@ export function NatsMRT({
     () => [
       {
         accessorKey: 'cid',
-        header: 'cid'
+        header: 'cid',
       },
       {
         accessorKey: 'name',
@@ -57,11 +51,11 @@ export function NatsMRT({
       },
       {
         accessorKey: 'port',
-        header: 'port'
+        header: 'port',
       },
       {
         accessorKey: 'start',
-        header: 'start'
+        header: 'start',
       },
       {
         accessorKey: 'last_activity',
@@ -69,15 +63,15 @@ export function NatsMRT({
       },
       {
         accessorKey: 'rtt',
-        header: 'rtt'
+        header: 'rtt',
       },
       {
         accessorKey: 'uptime',
-        header: 'uptime'
+        header: 'uptime',
       },
       {
         accessorKey: 'idle',
-        header: 'idle'
+        header: 'idle',
       },
       {
         accessorKey: 'pending_bytes',
@@ -115,13 +109,15 @@ export function NatsMRT({
     [],
   );
 
-  return <GenericMRTTableLayout
-    name='nats'
-    fetching={fetching}
-    items={items || []}
-    setReload={setReload}
-    columns={columns}
-    renderRowActions={({ row }: { row: MRT_Row<any> }) => <>{renderActions(row?.original)}</>}
-    customActions={customActions}
-  />
+  return (
+    <GenericMRTTableLayout
+      name="nats"
+      fetching={fetching}
+      items={items || []}
+      setReload={setReload}
+      columns={columns}
+      renderRowActions={({ row }: { row: MRT_Row<any> }) => <>{renderActions(row?.original)}</>}
+      customActions={customActions}
+    />
+  );
 }

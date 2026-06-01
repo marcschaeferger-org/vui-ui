@@ -11,10 +11,7 @@ interface EditBslProps {
   setReload: any;
 }
 
-export function EditVslForm({
-                              record,
-                              setReload
-                            }: EditBslProps) {
+export function EditVslForm({ record, setReload }: EditBslProps) {
   const appValues = useAppStatus();
 
   const { handleUpdateVsl } = useUpdateVsl();
@@ -55,5 +52,5 @@ export function EditVslForm({
     }, appValues.refreshDatatableAfter);*/
   }
 
-  return <VslFormView mode="edit" form={form} onDone={updateBsl}/>;
+  return <VslFormView mode="edit" form={form} onDone={updateBsl} />;
 }

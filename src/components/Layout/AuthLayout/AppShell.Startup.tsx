@@ -7,7 +7,7 @@ import { useAppStatus } from '@/contexts/AppContext';
 import { SocketProvider } from '@/contexts/SocketContext';
 
 import AppShellLoader from '../AppShell.Loader';
-import AppShellRuntime from "./AppShell.Runtime";
+import AppShellRuntime from './AppShell.Runtime';
 
 interface AppShellBootProps {
   children: any;
@@ -26,7 +26,7 @@ export default function AppShellStartup({ children }: AppShellBootProps) {
   return (
     <>
       {!serverValues.currentServer && (
-        <AppShellLoader description="Loading server configuration..."/>
+        <AppShellLoader description="Loading server configuration..." />
       )}
       {serverValues.currentServer && (
         <SocketProvider>

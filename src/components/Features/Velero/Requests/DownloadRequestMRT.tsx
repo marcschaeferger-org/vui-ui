@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useMemo } from 'react';
-import { ActionIcon, Box, CopyButton, Group, rem, Tooltip, } from '@mantine/core';
+import { ActionIcon, Box, CopyButton, Group, rem, Tooltip } from '@mantine/core';
 import { type MRT_ColumnDef, MRT_Row } from 'mantine-react-table';
 import { IconCheck, IconCopy } from '@tabler/icons-react';
 
@@ -13,20 +13,11 @@ import DownloadAction from '@/components/Features/Velero/Requests/Actions/Downlo
 import DeleteAction from '@/components/Features/Velero/Commons/Actions/DeleteAction';
 import VeleroResourceStatusBadge from '@/components/Features/Velero/Commons/Display/VeleroResourceStatusBadge';
 
-export function DownloadRequestMRT({
-                                     fetching,
-                                     setReload,
-                                     items,
-                                     enableTopToolbar = false,
-                                   }: any) {
-
+export function DownloadRequestMRT({ fetching, setReload, items, enableTopToolbar = false }: any) {
   const renderActions = (record: any) => (
     <Group gap={2} wrap="nowrap">
       <CopyButton value={record?.status?.downloadURL} timeout={2000}>
-        {({
-            copied,
-            copy
-          }) => (
+        {({ copied, copy }) => (
           <Tooltip label={copied ? 'Copied' : 'Copy URL'} withArrow position="right">
             <ActionIcon color={copied ? 'teal' : ''} variant="transparent" onClick={copy}>
               {copied ? (
@@ -48,9 +39,9 @@ export function DownloadRequestMRT({
           </Tooltip>
         )}
       </CopyButton>
-      <DescribeActionIcon resourceType={record.kind} record={record}/>
-      <DownloadAction url={record?.status?.downloadURL || undefined}/>
-      <DeleteAction resourceType="download-request" record={record} setReload={setReload}/>
+      <DescribeActionIcon resourceType={record.kind} record={record} />
+      <DownloadAction url={record?.status?.downloadURL || undefined} />
+      <DeleteAction resourceType="download-request" record={record} setReload={setReload} />
     </Group>
   );
 
@@ -60,19 +51,18 @@ export function DownloadRequestMRT({
         accessorKey: 'metadata.name',
         accessorFn: (row) => row?.metadata?.name ?? '',
         header: 'Name',
-        Cell: ({
-                 row,
-               }) => {
+        Cell: ({ row }) => {
           const name = row?.original?.metadata?.name ?? '';
 
           return (
             <Group gap={5}>
               <CopyButton value={name} timeout={2000}>
-                {({
-                    copied,
-                    copy
-                  }) => (
-                  <Tooltip label={copied ? 'Copied' : 'Copy backup name'} withArrow position="right">
+                {({ copied, copy }) => (
+                  <Tooltip
+                    label={copied ? 'Copied' : 'Copy backup name'}
+                    withArrow
+                    position="right"
+                  >
                     <ActionIcon
                       color={copied ? 'teal' : 'var(--mantine-primary-color-filled)'}
                       variant="light"
@@ -81,7 +71,7 @@ export function DownloadRequestMRT({
                       p={0}
                       m={0}
                     >
-                      {copied ? <IconCheck size={14}/> : <IconCopy size={16}/>}
+                      {copied ? <IconCheck size={14} /> : <IconCopy size={16} />}
                     </ActionIcon>
                   </Tooltip>
                 )}
@@ -106,7 +96,7 @@ export function DownloadRequestMRT({
         accessorFn: (row) => row?.status?.phase ?? '',
         header: 'Status',
         Cell: ({ row }: any) => (
-          <VeleroResourceStatusBadge status={row.original?.status?.phase || undefined}/>
+          <VeleroResourceStatusBadge status={row.original?.status?.phase || undefined} />
         ),
       },
       {
@@ -119,39 +109,41 @@ export function DownloadRequestMRT({
     [],
   );
 
-  return <Box
-    style={{
-      height: 253,
-      transition: 'height 0.2s ease',
-      boxShadow: '0 -2px 6px rgba(0, 0, 0, 0.1)',
-      zIndex: 999,
-    }}
-  >
-    <GenericMRTTableLayout
-      name='download-requests'
-      fetching={fetching}
-      items={items || []}
-      setReload={setReload}
-      columns={columns}
-      enablePagination={false}
-      showLoading={false}
-      initialState={{
-        columnVisibility: {
-          'status.expire_in': false
-        },
-        density: 'xs',
+  return (
+    <Box
+      style={{
+        height: 253,
+        transition: 'height 0.2s ease',
+        boxShadow: '0 -2px 6px rgba(0, 0, 0, 0.1)',
+        zIndex: 999,
       }}
-      renderRowActions={({ row }: { row: MRT_Row<any> }) => <>{renderActions(row?.original)}</>}
-      mantinePaperPropsContent={{
-        'style': {
-          'border': 'None',
-        }
-      }
-      }
-      mantineTableContainerPropsContent={{ style: { height: enableTopToolbar ? "196px" : "253px" } }}
-      enableBottomToolbar={false}
-      enableTopToolbar={enableTopToolbar}
-    />
-  </Box>
-
+    >
+      <GenericMRTTableLayout
+        name="download-requests"
+        fetching={fetching}
+        items={items || []}
+        setReload={setReload}
+        columns={columns}
+        enablePagination={false}
+        showLoading={false}
+        initialState={{
+          columnVisibility: {
+            'status.expire_in': false,
+          },
+          density: 'xs',
+        }}
+        renderRowActions={({ row }: { row: MRT_Row<any> }) => <>{renderActions(row?.original)}</>}
+        mantinePaperPropsContent={{
+          style: {
+            border: 'None',
+          },
+        }}
+        mantineTableContainerPropsContent={{
+          style: { height: enableTopToolbar ? '196px' : '253px' },
+        }}
+        enableBottomToolbar={false}
+        enableTopToolbar={enableTopToolbar}
+      />
+    </Box>
+  );
 }

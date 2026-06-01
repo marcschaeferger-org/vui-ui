@@ -6,7 +6,7 @@ import { useServerStatus } from '@/contexts/ServerContext';
 import { useAppStatus } from '@/contexts/AppContext';
 
 import AuthShellLayout from './AuthShell.Layout';
-import { Alert } from "@mantine/core";
+import { Alert } from '@mantine/core';
 
 interface AppShellBootProps {
   children: any;
@@ -37,7 +37,6 @@ export default function AppShellRuntime({ children }: AppShellBootProps) {
     return () => {
       if (timeout) clearTimeout(timeout);
     };
-
   }, [serverValues.isServerAvailable, appValues.isAuthenticated]);
 
   return (

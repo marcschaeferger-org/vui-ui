@@ -183,12 +183,7 @@ interface NavItem {
   tooltip?: string;
 }
 
-export function AppShellNavbar({
-                                 opened,
-                                 toggle,
-                                 collapsed,
-                                 toggleCollapsed
-                               }: any) {
+export function AppShellNavbar({ opened, toggle, collapsed, toggleCollapsed }: any) {
   const serverValues = useServerStatus();
   const uiValues = useUIStatus();
   const isNavbarHidden = useMediaQuery('(max-width: 576px)');
@@ -267,7 +262,7 @@ export function AppShellNavbar({
         >
           <Box p={0}>
             <Group justify="space-between" h={60} p={5}>
-              {!collapsed && <Logo/>}
+              {!collapsed && <Logo />}
               {!isNavbarHidden && (
                 <Tooltip label={collapsed ? 'Expand' : 'Collapse'}>
                   <ActionIcon
@@ -286,8 +281,8 @@ export function AppShellNavbar({
                     }
                     size="xl"
                   >
-                    {!collapsed && <IconArrowBarLeft/>}
-                    {collapsed && <IconArrowBarRight/>}
+                    {!collapsed && <IconArrowBarLeft />}
+                    {collapsed && <IconArrowBarRight />}
                   </ActionIcon>
                 </Tooltip>
               )}
@@ -330,7 +325,7 @@ export function AppShellNavbar({
                   Cluster
                 </Text>
                 <Box p={5}>
-                  <SwitchAgent/>
+                  <SwitchAgent />
                 </Box>
               </Box>
             )}
@@ -397,7 +392,8 @@ export function AppShellNavbar({
                 </Text>
               )}
               <Box p={5} mt={0}>
-                {serverValues.isCurrentServerControlPlane && generateNavLinks(natsLink, serverValues.isCurrentServerControlPlane !== true)}
+                {serverValues.isCurrentServerControlPlane &&
+                  generateNavLinks(natsLink, serverValues.isCurrentServerControlPlane !== true)}
                 {generateNavLinks(settingsLink)}
               </Box>
 
@@ -428,7 +424,7 @@ export function AppShellNavbar({
 
           {(!collapsed || isNavbarHidden) && (
             <Box>
-              <Version/>
+              <Version />
             </Box>
           )}
         </Stack>

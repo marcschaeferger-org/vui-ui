@@ -15,22 +15,15 @@ import { isRecordStringAny } from '@/utils/isRecordStringIsType';
 import { PVBDetailsView } from '@/components/Features/Velero/PodVolumes/PVBDetailsView';
 import { useWatchResources } from '@/hooks/useWatchResources';
 import { eventEmitter } from '@/lib/EventEmitter.js';
-import { VeleroDetailsLayout } from "@/components/Commons/VeleroDetailsLayout";
+import { VeleroDetailsLayout } from '@/components/Commons/VeleroDetailsLayout';
 
 interface BackupProps {
   params: any;
   type: string;
 }
 
-export function PVBDetails({
-                             params,
-                             type
-                           }: BackupProps) {
-  const {
-    data,
-    getManifest,
-    fetching
-  } = useVeleroManifest();
+export function PVBDetails({ params, type }: BackupProps) {
+  const { data, getManifest, fetching } = useVeleroManifest();
   const [reload, setReload] = useState(1);
   const agentValues = useAgentStatus();
 
@@ -84,11 +77,11 @@ export function PVBDetails({
             },
           ]}
         >
-          <ReloadData setReload={setReload} reload={reload}/>
+          <ReloadData setReload={setReload} reload={reload} />
         </Toolbar>
       }
-      details={<PVBDetailsView manifest={manifest} fetching={fetching}/>}
-      manifest={<Manifest resourceType={type} resourceName={params.pv} reload={reload}/>}
+      details={<PVBDetailsView manifest={manifest} fetching={fetching} />}
+      manifest={<Manifest resourceType={type} resourceName={params.pv} reload={reload} />}
     />
   );
 }

@@ -10,26 +10,21 @@ import { useVeleroManifest } from '@/api/Velero/useVeleroManifest';
 import Toolbar from '@/components/Display/Toolbar';
 import ReloadData from '@/components/Inputs/ReloadData';
 
-import {
-  SnapshotLocationDetailsView
-} from '@/components/Features/Velero/SnapshotLocations/SnapshotLocationDetailsView';
+import { SnapshotLocationDetailsView } from '@/components/Features/Velero/SnapshotLocations/SnapshotLocationDetailsView';
 import { Manifest } from '@/components/Features/Velero/Commons/Display/Manifest';
 import DeleteAction from '@/components/Features/Velero/Commons/Actions/DeleteAction';
 import { isRecordStringAny } from '@/utils/isRecordStringIsType';
 import EditVslAction from '@/components/Features/Velero/SnapshotLocations/Actions/EditVSLAction';
 import { useWatchResources } from '@/hooks/useWatchResources';
 import { eventEmitter } from '@/lib/EventEmitter.js';
-import { VeleroDetailsLayout } from "@/components/Commons/VeleroDetailsLayout";
+import { VeleroDetailsLayout } from '@/components/Commons/VeleroDetailsLayout';
 
 interface BackupProps {
   params: any;
 }
 
 export function SnapshotLocationDetails({ params }: BackupProps) {
-  const {
-    data,
-    getManifest
-  } = useVeleroManifest();
+  const { data, getManifest } = useVeleroManifest();
   const [reload, setReload] = useState(1);
   const agentValues = useAgentStatus();
 
@@ -84,8 +79,8 @@ export function SnapshotLocationDetails({ params }: BackupProps) {
             },
           ]}
         >
-          <ReloadData setReload={setReload} reload={reload}/>
-          <EditVslAction record={manifest} setReload={setReload} buttonType="button"/>
+          <ReloadData setReload={setReload} reload={reload} />
+          <EditVslAction record={manifest} setReload={setReload} buttonType="button" />
           <DeleteAction
             resourceType="vsl"
             record={manifest}
@@ -95,12 +90,10 @@ export function SnapshotLocationDetails({ params }: BackupProps) {
           />
         </Toolbar>
       }
-      details={<SnapshotLocationDetailsView data={manifest}/>}
-      manifest={<Manifest
-        resourceType="VolumeSnapshotLocation"
-        resourceName={params.vsl}
-        reload={reload}
-      />}
+      details={<SnapshotLocationDetailsView data={manifest} />}
+      manifest={
+        <Manifest resourceType="VolumeSnapshotLocation" resourceName={params.vsl} reload={reload} />
+      }
     />
   );
 }

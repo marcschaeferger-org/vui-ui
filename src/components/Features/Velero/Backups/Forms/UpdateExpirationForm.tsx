@@ -11,14 +11,8 @@ interface UpdateExpirationProps {
   setReload: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export function UpdateExpirationForm({
-                                       record,
-                                       setReload
-                                     }: UpdateExpirationProps) {
-  const {
-    data,
-    getBackupExpiration
-  } = useBackupExpiration();
+export function UpdateExpirationForm({ record, setReload }: UpdateExpirationProps) {
+  const { data, getBackupExpiration } = useBackupExpiration();
   const { backupUpdateExpiration } = useBackupUpdateExpiration();
 
   const form = useForm({
@@ -43,14 +37,14 @@ export function UpdateExpirationForm({
   if (record === undefined) {
     return (
       <Center>
-        <Loader/>
+        <Loader />
       </Center>
     );
   }
 
   function onDone(values: any) {
     backupUpdateExpiration(record?.metadata?.name, values?.expiration).finally(() =>
-      setReload((prev: number) => prev + 1)
+      setReload((prev: number) => prev + 1),
     );
     closeAllModals();
   }

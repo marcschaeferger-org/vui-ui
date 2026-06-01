@@ -1,6 +1,6 @@
 import { ActionIcon, Group, Modal, Text, Tooltip } from '@mantine/core';
 
-import { IconCheck, IconInfoSquare, IconServer, } from '@tabler/icons-react';
+import { IconCheck, IconInfoSquare, IconServer } from '@tabler/icons-react';
 
 import { useDisclosure } from '@mantine/hooks';
 
@@ -12,10 +12,7 @@ import { DiagnosticMRT } from '@/components/Features/Diagnostic/DiagnosticMRT';
 export const DiagnosticCoreInfo = () => {
   const stateManager = useDiagnosticCore();
 
-  const [opened, {
-    open,
-    close
-  }] = useDisclosure(false);
+  const [opened, { open, close }] = useDisclosure(false);
 
   const serverValues = useServerStatus();
 
@@ -24,8 +21,8 @@ export const DiagnosticCoreInfo = () => {
       <Group gap={2}>
         <Tooltip label="Vui Core">
           <Group gap={0}>
-            {!serverValues.isServerAvailable && <IconServer size={20} color="red"/>}
-            {serverValues.isServerAvailable && <IconServer size={20} color="green"/>}
+            {!serverValues.isServerAvailable && <IconServer size={20} color="red" />}
+            {serverValues.isServerAvailable && <IconServer size={20} color="green" />}
             <Text size="sm" fw={600}>
               {serverValues?.currentServer?.name}
             </Text>
@@ -34,13 +31,13 @@ export const DiagnosticCoreInfo = () => {
 
         {stateManager?.allTrue && !stateManager?.hasWarnings && (
           <Tooltip label="Core Check Passed!">
-            <IconCheck color="green"/>
+            <IconCheck color="green" />
           </Tooltip>
         )}
 
         {stateManager?.allTrue && stateManager?.hasWarnings && (
           <Group gap={0}>
-            <IconCheck color="orange"/>
+            <IconCheck color="orange" />
             <Text c="orange" size="sm">
               Check warning
             </Text>
@@ -49,7 +46,7 @@ export const DiagnosticCoreInfo = () => {
 
         {!stateManager?.allTrue && (
           <Group gap={0}>
-            <IconCheck color="red" size={20}/>
+            <IconCheck color="red" size={20} />
             <Text c="red" size="sm">
               Error
             </Text>
@@ -57,12 +54,8 @@ export const DiagnosticCoreInfo = () => {
         )}
 
         <Tooltip label="Core info">
-          <ActionIcon
-            size={20}
-            variant="transparent"
-            onClick={open}
-          >
-            <IconInfoSquare size={20}/>
+          <ActionIcon size={20} variant="transparent" onClick={open}>
+            <IconInfoSquare size={20} />
           </ActionIcon>
         </Tooltip>
       </Group>

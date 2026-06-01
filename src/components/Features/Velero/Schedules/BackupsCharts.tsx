@@ -11,7 +11,7 @@ import {
   ResponsiveContainer,
   Tooltip,
   XAxis,
-  YAxis
+  YAxis,
 } from 'recharts';
 
 function formatDate(isoDate: string): string {
@@ -26,11 +26,7 @@ function formatBytes(bytes: number): string {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 }
 
-export function BackupsCharts({
-                                data,
-                                pvbBackup,
-                                show
-                              }: any) {
+export function BackupsCharts({ data, pvbBackup, show }: any) {
   const computedColorScheme = useComputedColorScheme();
   const theme = useMantineTheme();
 
@@ -40,9 +36,10 @@ export function BackupsCharts({
         const startTimestamp = item?.status?.startTimestamp;
         const completion = item?.status?.completionTimestamp;
 
-        const duration = startTimestamp && completion
-          ? DateTime.fromISO(completion).diff(DateTime.fromISO(startTimestamp), 'seconds').seconds
-          : null;
+        const duration =
+          startTimestamp && completion
+            ? DateTime.fromISO(completion).diff(DateTime.fromISO(startTimestamp), 'seconds').seconds
+            : null;
 
         /*console.log({
           name: item?.metadata?.name,
@@ -53,20 +50,21 @@ export function BackupsCharts({
 
         const backupName = item?.metadata?.name;
 
-        const relatedPvbs = pvbBackup?.filter((pvb: any) =>
-          pvb?.spec?.tags?.backup === backupName
-        ).map((pvb: any) => ({
-          volume: pvb?.spec?.volume,
-          bytesDone: pvb?.status?.progress?.bytesDone || 0,
-          totalBytes: pvb?.status?.progress?.totalBytes || 0,
-          pod: pvb?.spec?.pod?.name,
-          namespace: pvb?.spec?.pod?.namespace,
-          phase: pvb?.status?.phase,
-        })) || [];
+        const relatedPvbs =
+          pvbBackup
+            ?.filter((pvb: any) => pvb?.spec?.tags?.backup === backupName)
+            .map((pvb: any) => ({
+              volume: pvb?.spec?.volume,
+              bytesDone: pvb?.status?.progress?.bytesDone || 0,
+              totalBytes: pvb?.status?.progress?.totalBytes || 0,
+              pod: pvb?.spec?.pod?.name,
+              namespace: pvb?.spec?.pod?.namespace,
+              phase: pvb?.status?.phase,
+            })) || [];
 
         const totalVolumeSize = relatedPvbs.reduce(
           (acc: any, cur: any) => acc + (cur.bytesDone || 0),
-          0
+          0,
         );
 
         const stackedVolumes: Record<string, number> = {};
@@ -104,11 +102,11 @@ export function BackupsCharts({
     series = [
       {
         key: 'errors',
-        color: '#e03131'
+        color: '#e03131',
       },
       {
         key: 'warnings',
-        color: '#f08c00'
+        color: '#f08c00',
       },
     ];
   }
@@ -117,11 +115,11 @@ export function BackupsCharts({
     series = [
       {
         key: 'totalItems',
-        color: '#228be6'
+        color: '#228be6',
       },
       {
         key: 'itemsBackedUp',
-        color: '#40c057'
+        color: '#40c057',
       },
     ];
   }
@@ -130,24 +128,26 @@ export function BackupsCharts({
     series = [
       {
         key: 'duration',
-        color: '#228be6'
+        color: '#228be6',
       },
     ];
   }
 
-  const volumeKeys = Object.keys(transformedItems.reduce((acc: any, item: any) => {
-    if (item.pvbs) {
-      item.pvbs.forEach((v: any) => {
-        acc[`volume_${v.volume}`] = true;
-      });
-    }
-    return acc;
-  }, {} as Record<string, boolean>));
+  const volumeKeys = Object.keys(
+    transformedItems.reduce(
+      (acc: any, item: any) => {
+        if (item.pvbs) {
+          item.pvbs.forEach((v: any) => {
+            acc[`volume_${v.volume}`] = true;
+          });
+        }
+        return acc;
+      },
+      {} as Record<string, boolean>,
+    ),
+  );
 
-  const CustomTooltip = ({
-                           active,
-                           payload
-                         }: any) => {
+  const CustomTooltip = ({ active, payload }: any) => {
     if (!active || !payload || !payload.length) return null;
 
     const point = payload[0].payload;
@@ -159,15 +159,16 @@ export function BackupsCharts({
         style={{
           backgroundColor:
             computedColorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
-          color:
-            computedColorScheme === 'dark' ? theme.colors.gray[0] : theme.black,
+          color: computedColorScheme === 'dark' ? theme.colors.gray[0] : theme.black,
           borderRadius: 4,
           maxWidth: 1000,
           whiteSpace: 'pre-wrap',
           wordBreak: 'break-word',
         }}
       >
-        <div><strong>{formatDate(point.creationRaw)}</strong></div>
+        <div>
+          <strong>{formatDate(point.creationRaw)}</strong>
+        </div>
         <div>Backup: {point.name}</div>
         {series.map((s) => (
           <div key={s.key}>
@@ -180,12 +181,16 @@ export function BackupsCharts({
           <>
             <div>Total Volume Size: {formatBytes(point.totalVolumeSize)}</div>
             <div>Volume Breakdown:</div>
-            <ul style={{
-              margin: 0,
-              paddingLeft: 16
-            }}>
+            <ul
+              style={{
+                margin: 0,
+                paddingLeft: 16,
+              }}
+            >
               {volumeKeys.map((k) => (
-                <li key={k}>{k.replace('volume_', '')}: {formatBytes(point[k] || 0)}</li>
+                <li key={k}>
+                  {k.replace('volume_', '')}: {formatBytes(point[k] || 0)}
+                </li>
               ))}
             </ul>
           </>
@@ -200,17 +205,20 @@ export function BackupsCharts({
     <Box h="calc(100% - 35px)">
       <ResponsiveContainer width="100%" height={300}>
         {show === 'Size' ? (
-          <BarChart data={transformedItems} margin={{
-            top: 20,
-            right: 30,
-            left: 10,
-            bottom: 5
-          }}>
-            <CartesianGrid strokeDasharray="3 3"/>
-            <XAxis dataKey="creation"/>
-            <YAxis tickFormatter={(value) => formatBytes(value)}/>
-            <Tooltip content={<CustomTooltip/>}/>
-            <Legend/>
+          <BarChart
+            data={transformedItems}
+            margin={{
+              top: 20,
+              right: 30,
+              left: 10,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="creation" />
+            <YAxis tickFormatter={(value) => formatBytes(value)} />
+            <Tooltip content={<CustomTooltip />} />
+            <Legend />
             {volumeKeys.map((key, index) => (
               <Bar
                 key={key}
@@ -222,17 +230,20 @@ export function BackupsCharts({
             ))}
           </BarChart>
         ) : (
-          <LineChart data={transformedItems} margin={{
-            top: 20,
-            right: 30,
-            left: 10,
-            bottom: 5
-          }}>
-            <CartesianGrid strokeDasharray="3 3"/>
-            <XAxis dataKey="creation"/>
-            <YAxis/>
-            <Tooltip content={<CustomTooltip/>}/>
-            <Legend/>
+          <LineChart
+            data={transformedItems}
+            margin={{
+              top: 20,
+              right: 30,
+              left: 10,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="creation" />
+            <YAxis />
+            <Tooltip content={<CustomTooltip />} />
+            <Legend />
             {series.map((s) => (
               <Line
                 key={s.key}

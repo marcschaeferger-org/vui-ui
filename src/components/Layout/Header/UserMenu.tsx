@@ -21,7 +21,7 @@ import { useAgentStatus } from '@/contexts/AgentContext';
 
 import { useAuthLogout } from '@/hooks/user/useAuthLogout';
 import { useServerStatus } from '@/contexts/ServerContext';
-import { useAppStatus } from "@/contexts/AppContext";
+import { useAppStatus } from '@/contexts/AppContext';
 
 export default function UserMenu() {
   const NEXT_PUBLIC_AUTH_ENABLED = env('NEXT_PUBLIC_AUTH_ENABLED')?.toLowerCase() !== 'false';
@@ -41,13 +41,7 @@ export default function UserMenu() {
   }
 
   const UserButton = forwardRef<HTMLButtonElement, UserButtonProps>(
-    ({
-       image,
-       name,
-       email,
-       icon,
-       ...others
-     }: UserButtonProps, ref) => (
+    ({ image, name, email, icon, ...others }: UserButtonProps, ref) => (
       <UnstyledButton
         ref={ref}
         style={{
@@ -59,11 +53,11 @@ export default function UserMenu() {
       >
         <Group>
           <Avatar color="var(--mantine-primary-color-filled)" radius="xl">
-            <IconUser/>
+            <IconUser />
           </Avatar>
         </Group>
       </UnstyledButton>
-    )
+    ),
   );
 
   return (
@@ -89,26 +83,30 @@ export default function UserMenu() {
               <Text fw={500} c="primary">
                 {`${userValues.user?.username}`}
               </Text>
-              {NEXT_PUBLIC_AUTH_ENABLED && serverValues.isCurrentServerControlPlane && appValues.appInfo?.auth_type === 'LDAP' && (
-                <Group justify="flex-end">
-                  <Badge p={2} color="var(--mantine-primary-color-filled)" radius="xs">
-                    LDAP
-                  </Badge>
-                </Group>
-              )}
-              {NEXT_PUBLIC_AUTH_ENABLED && !serverValues.isCurrentServerControlPlane && appValues.appInfo?.auth_type === 'LDAP' && (
-                <Group justify="flex-end">
-                  <Badge p={2} color="var(--mantine-primary-color-filled)" radius="xs">
-                    LDAP
-                  </Badge>
-                </Group>
-              )}
+              {NEXT_PUBLIC_AUTH_ENABLED &&
+                serverValues.isCurrentServerControlPlane &&
+                appValues.appInfo?.auth_type === 'LDAP' && (
+                  <Group justify="flex-end">
+                    <Badge p={2} color="var(--mantine-primary-color-filled)" radius="xs">
+                      LDAP
+                    </Badge>
+                  </Group>
+                )}
+              {NEXT_PUBLIC_AUTH_ENABLED &&
+                !serverValues.isCurrentServerControlPlane &&
+                appValues.appInfo?.auth_type === 'LDAP' && (
+                  <Group justify="flex-end">
+                    <Badge p={2} color="var(--mantine-primary-color-filled)" radius="xs">
+                      LDAP
+                    </Badge>
+                  </Group>
+                )}
             </Group>
             <Text size="xs" c="dimmed">
               {userValues.user?.email}
             </Text>
           </Menu.Label>
-          <Menu.Divider/>
+          <Menu.Divider />
           <Menu.Label>Settings</Menu.Label>
 
           <Menu.Item
@@ -129,7 +127,7 @@ export default function UserMenu() {
               event.preventDefault();
               openModal({
                 title: 'Change Password',
-                children: <UpdatePasswordForm/>,
+                children: <UpdatePasswordForm />,
               });
             }}
           >
@@ -154,7 +152,7 @@ export default function UserMenu() {
             UI Config
           </Menu.Item>
 
-          <Menu.Divider/>
+          <Menu.Divider />
 
           <Menu.Label>Debug</Menu.Label>
           <Menu.Item
@@ -175,7 +173,7 @@ export default function UserMenu() {
           >
             <Group w="100%" justify="space-between">
               Context Debug
-              <Switch checked={uiValues.showDebugAside}/>
+              <Switch checked={uiValues.showDebugAside} />
             </Group>
           </Menu.Item>
           {process.env.NODE_ENV === 'development' && (
@@ -197,11 +195,11 @@ export default function UserMenu() {
             >
               <Group w="100%" justify="space-between">
                 Debug Bar
-                <Switch checked={uiValues.showBottomDebugBar}/>
+                <Switch checked={uiValues.showBottomDebugBar} />
               </Group>
             </Menu.Item>
           )}
-          <Menu.Divider/>
+          <Menu.Divider />
 
           <Menu.Item
             disabled={!NEXT_PUBLIC_AUTH_ENABLED}

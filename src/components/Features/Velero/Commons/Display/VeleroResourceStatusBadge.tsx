@@ -45,36 +45,36 @@ type StatusIconConfig = {
 const statusConfig: Record<VeleroResourceStatus, StatusIconConfig> = {
   Available: {
     color: 'green.9',
-    icon: IconCheck
+    icon: IconCheck,
   },
   Unavailable: {
     color: 'red.9',
-    icon: IconX
+    icon: IconX,
   },
 
   Ready: {
     color: 'green.9',
-    icon: IconCheck
+    icon: IconCheck,
   },
   Completed: {
     color: 'green.9',
-    icon: IconCheck
+    icon: IconCheck,
   },
   Failed: {
     color: 'red.9',
-    icon: IconX
+    icon: IconX,
   },
   FailedValidation: {
     color: 'red.9',
-    icon: IconAlertTriangle
+    icon: IconAlertTriangle,
   },
   PartiallyFailed: {
     color: 'red.9',
-    icon: IconAlertTriangle
+    icon: IconAlertTriangle,
   },
   Deleting: {
     color: 'red.9',
-    icon: IconTrash
+    icon: IconTrash,
   },
   InProgress: {
     color: 'yellow.7',
@@ -85,39 +85,39 @@ const statusConfig: Record<VeleroResourceStatus, StatusIconConfig> = {
 
   Running: {
     color: 'green.9',
-    icon: IconPlayerPlay
+    icon: IconPlayerPlay,
   },
   Paused: {
     color: 'red.9',
-    icon: IconPlayerPause
+    icon: IconPlayerPause,
   },
 
   restic: {
     color: 'yellow.9',
-    icon: IconCloud
+    icon: IconCloud,
   },
   kopia: {
     color: 'blue.9',
-    icon: IconCloudCog
+    icon: IconCloudCog,
   },
 
   true: {
     color: 'var(--mantine-primary-color-9)',
-    icon: IconCheck
+    icon: IconCheck,
   },
 
   false: {
     color: 'var(--mantine-color-red-9)',
-    icon: IconX
+    icon: IconX,
   },
 
   Enabled: {
     color: 'green.9',
-    icon: IconCheck
+    icon: IconCheck,
   },
   Disabled: {
     color: 'red.9',
-    icon: IconX
+    icon: IconX,
   },
 };
 
@@ -138,9 +138,7 @@ export default function VeleroResourceStatusBadge({ status }: VeleroResourceStat
   const config = statusConfig[status] ?? fallback;
   const IconComponent = config.icon;
 
-  const iconElement = (
-    <IconComponent size={18} className={config.className || ''}/>
-  );
+  const iconElement = <IconComponent size={18} className={config.className || ''} />;
 
   const badge = (
     <Badge
@@ -164,5 +162,4 @@ export default function VeleroResourceStatusBadge({ status }: VeleroResourceStat
   ) : (
     badge
   );
-
 }

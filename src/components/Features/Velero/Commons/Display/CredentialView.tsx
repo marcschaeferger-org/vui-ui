@@ -16,19 +16,13 @@ interface CredentialProps {
 }
 
 export function CredentialView({
-                                 record = '',
-                                 secretName = '',
-                                 secretKey = '',
-                                 cloudCredential = false,
-                               }: CredentialProps) {
-  const {
-    data,
-    getK8sCredential
-  } = useLocationCredentials();
-  const {
-    data: defaultData,
-    getK8sDefaultCredential
-  } = useLocationDefaultCredentials();
+  record = '',
+  secretName = '',
+  secretKey = '',
+  cloudCredential = false,
+}: CredentialProps) {
+  const { data, getK8sCredential } = useLocationCredentials();
+  const { data: defaultData, getK8sDefaultCredential } = useLocationDefaultCredentials();
   const form = useForm({
     initialValues: {
       aws_access_key_id: '',
@@ -62,7 +56,7 @@ export function CredentialView({
   if (record === undefined) {
     return (
       <Center>
-        <Loader/>
+        <Loader />
       </Center>
     );
   }

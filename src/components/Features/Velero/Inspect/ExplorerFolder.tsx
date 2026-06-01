@@ -12,11 +12,11 @@ interface ExploreFolderProps {
 }
 
 export function ExplorerFolder({
-                                 backupName,
-                                 content,
-                                 getInspectFile,
-                                 setCurrentFile,
-                               }: ExploreFolderProps) {
+  backupName,
+  content,
+  getInspectFile,
+  setCurrentFile,
+}: ExploreFolderProps) {
   return (
     <>
       <ScrollArea
@@ -30,28 +30,23 @@ export function ExplorerFolder({
           <Tree
             p={5}
             data={content}
-            renderNode={({
-                           node,
-                           expanded,
-                           hasChildren,
-                           elementProps
-                         }) => (
+            renderNode={({ node, expanded, hasChildren, elementProps }) => (
               <Group gap={2} {...elementProps}>
                 {hasChildren && (
-                  <Group gap={0} w={370} style={{ 'flex': 'none' }}>
+                  <Group gap={0} w={370} style={{ flex: 'none' }}>
                     <IconChevronDown
                       size={18}
                       style={{ transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)' }}
                     />
-                    <IconFolder size="16"/>
+                    <IconFolder size="16" />
                     <Text size="sm" w={330} truncate inline>
                       {node.label}
                     </Text>
                   </Group>
                 )}
                 {!hasChildren && (
-                  <Group gap={0} w={360} style={{ 'flex': 'none' }}>
-                    <IconFileText size="16"/>
+                  <Group gap={0} w={360} style={{ flex: 'none' }}>
+                    <IconFileText size="16" />
                     <Text
                       size="sm"
                       truncate

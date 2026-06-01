@@ -4,7 +4,13 @@ import React, { useEffect, useState } from 'react';
 
 import { Box, Center, Grid, Loader, ScrollArea, SimpleGrid, Stack } from '@mantine/core';
 
-import { IconCalendarEvent, IconCalendarTime, IconDeviceFloppy, IconHistory, IconRestore } from '@tabler/icons-react';
+import {
+  IconCalendarEvent,
+  IconCalendarTime,
+  IconDeviceFloppy,
+  IconHistory,
+  IconRestore,
+} from '@tabler/icons-react';
 
 import { useStats } from '@/api/Stats/useStats';
 
@@ -20,12 +26,7 @@ import { UnscheduledNamespaces } from './items/UnscheduledNamspaces';
 import { StatsSegmentsDonuts } from './items/StatsSegmentsDonuts';
 
 export function Dashboard() {
-  const {
-    data,
-    getStats,
-    fetching,
-    fetchedTime
-  } = useStats();
+  const { data, getStats, fetching, fetchedTime } = useStats();
   const [reload, setReload] = useState(1);
 
   const agentValues = useAgentStatus();
@@ -46,7 +47,7 @@ export function Dashboard() {
     return (
       <Stack h="100%" justify="center">
         <Center>
-          <Loader/>
+          <Loader />
         </Center>
       </Stack>
     );
@@ -58,7 +59,7 @@ export function Dashboard() {
         <Stack p={10} gap="md">
           <Box>
             <Toolbar title="Dashboard" fetching={fetching}>
-              <ReloadData setReload={setReload} reload={reload} fetching={fetching}/>
+              <ReloadData setReload={setReload} reload={reload} fetching={fetching} />
             </Toolbar>
           </Box>
 
@@ -74,19 +75,19 @@ export function Dashboard() {
             <StatsSegments
               data={data.backups.stats.all}
               title="Backups"
-              icon={<IconDeviceFloppy/>}
+              icon={<IconDeviceFloppy />}
               path="/backups"
             />
             <StatsSegments
               data={data.restores.all}
               title="Restores"
-              icon={<IconRestore/>}
+              icon={<IconRestore />}
               path="/restores"
             />
             <StatsSegments
               data={data.schedules.all}
               title="Schedules"
-              icon={<IconCalendarEvent/>}
+              icon={<IconCalendarEvent />}
               path="/schedules"
             />
           </SimpleGrid>
@@ -102,26 +103,26 @@ export function Dashboard() {
             <StatsSegmentsDonuts
               data={data.backups.stats.all}
               title="Backups"
-              icon={<IconDeviceFloppy/>}
+              icon={<IconDeviceFloppy />}
               path="/backups"
             />
 
             <StatsSegmentsDonuts
               data={data.backups.stats.latest}
               title="Last Backups"
-              icon={<IconHistory/>}
+              icon={<IconHistory />}
               path="/backups"
             />
             <StatsSegmentsDonuts
               data={data.restores.all}
               title="Restores"
-              icon={<IconRestore/>}
+              icon={<IconRestore />}
               path="/restores"
             />
             <StatsSegmentsDonuts
               data={data.schedules.all}
               title="Schedules"
-              icon={<IconCalendarTime/>}
+              icon={<IconCalendarTime />}
               path="/schedules"
             />
           </SimpleGrid>
@@ -135,7 +136,7 @@ export function Dashboard() {
                 lg: 9,
               }}
             >
-              <LatestBackupMRT latest={data.backups.latest} setReload={setReload}/>
+              <LatestBackupMRT latest={data.backups.latest} setReload={setReload} />
             </Grid.Col>
             <Grid.Col
               span={{
@@ -150,7 +151,7 @@ export function Dashboard() {
               />
             </Grid.Col>
           </Grid>
-          <DataFetchedInfo fetchedTime={fetchedTime}/>
+          <DataFetchedInfo fetchedTime={fetchedTime} />
         </Stack>
       </ScrollArea>
     </>

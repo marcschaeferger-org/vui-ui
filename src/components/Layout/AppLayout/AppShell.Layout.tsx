@@ -26,7 +26,7 @@ import DebugAside from '@/components/Features/Debug/DebugAside';
 import TaskInProgressAccordion from '@/components/Display/TaskInProgressAccordion';
 import UIConfig from '@/components/Features/Config/UI/UIConfig';
 import RouteChangeHandler from '@/components/RouteChageHandler';
-import { useAgentStatus } from "@/contexts/AgentContext";
+import { useAgentStatus } from '@/contexts/AgentContext';
 
 interface AppShellLayoutProps {
   children: any;
@@ -36,20 +36,10 @@ export default function AppShellLayout({ children }: AppShellLayoutProps) {
   const uiValues = useUIStatus();
   const agentValues = useAgentStatus();
   const [opened, { toggle }] = useDisclosure();
-  const [collapsed, {
-    toggle: toggleCollapsed,
-    open
-  }] = useDisclosure();
+  const [collapsed, { toggle: toggleCollapsed, open }] = useDisclosure();
 
-  const {
-    height: vpHeight,
-    width: vpWidth
-  } = useViewportSize();
-  const {
-    ref,
-    width,
-    height
-  } = useElementSize();
+  const { height: vpHeight, width: vpWidth } = useViewportSize();
+  const { ref, width, height } = useElementSize();
   const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
 
   const [openedAside, { toggle: toggleAside }] = useDisclosure();
@@ -64,11 +54,11 @@ export default function AppShellLayout({ children }: AppShellLayoutProps) {
     localStorage.setItem('navbarCollapsed', collapsed ? 'true' : 'false');
   }, [collapsed]);
 
-  const agentKey = agentValues?.currentAgent?.name || "no-agent-selected";
+  const agentKey = agentValues?.currentAgent?.name || 'no-agent-selected';
 
   return (
     <>
-      <RouteChangeHandler/>
+      <RouteChangeHandler />
       <AppShell
         header={{ height: 60 }}
         navbar={{
@@ -85,7 +75,7 @@ export default function AppShellLayout({ children }: AppShellLayoutProps) {
         layout="alt"
       >
         <AppShell.Header>
-          <AppShellHeader opened={opened} toggle={toggle} collapsed={collapsed}/>
+          <AppShellHeader opened={opened} toggle={toggle} collapsed={collapsed} />
         </AppShell.Header>
         <AppShell.Navbar
           style={{ transition: 'width 0.2s ease' }}
@@ -130,9 +120,9 @@ export default function AppShellLayout({ children }: AppShellLayoutProps) {
               {children}
             </Box>
             <Box ref={ref} p={0}>
-              <AgentError/>
-              <TaskInProgressAccordion/>
-              {process.env.NODE_ENV === 'development' && <AppShellMainFooter/>}
+              <AgentError />
+              <TaskInProgressAccordion />
+              {process.env.NODE_ENV === 'development' && <AppShellMainFooter />}
             </Box>
           </Flex>
 
@@ -174,7 +164,7 @@ export default function AppShellLayout({ children }: AppShellLayoutProps) {
           position="right"
           closeOnEscape={false}
         >
-          <DebugAside/>
+          <DebugAside />
         </Drawer>
 
         <Drawer
@@ -184,11 +174,11 @@ export default function AppShellLayout({ children }: AppShellLayoutProps) {
           position="right"
           closeOnEscape={false}
         >
-          <UIConfig/>
+          <UIConfig />
         </Drawer>
 
         <AppShell.Footer visibleFrom="sm">
-          <AppShellFooter/>
+          <AppShellFooter />
         </AppShell.Footer>
       </AppShell>
     </>

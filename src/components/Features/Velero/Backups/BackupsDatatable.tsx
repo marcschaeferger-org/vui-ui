@@ -19,16 +19,8 @@ interface BackupDataProps {
   onlyTable?: boolean;
 }
 
-export function BackupsDatatable({
-                                   scheduleName,
-                                   onlyTable
-                                 }: BackupDataProps) {
-  const {
-    data,
-    getBackups,
-    fetchedTime,
-    fetching
-  } = useBackups();
+export function BackupsDatatable({ scheduleName, onlyTable }: BackupDataProps) {
+  const { data, getBackups, fetchedTime, fetching } = useBackups();
 
   const [items = [], setItems] = useState<Record<string, any>>([]);
   const [onlyLast4Schedule, setOnlyLast4Schedule] = useState(false);
@@ -37,7 +29,10 @@ export function BackupsDatatable({
   // useWatchResources('backups');
   /* watch */
   const handleWatchResources = debounce((message) => {
-    if (message?.payload?.resources === 'backups' || message?.payload?.resources === 'deletebackuprequests') {
+    if (
+      message?.payload?.resources === 'backups' ||
+      message?.payload?.resources === 'deletebackuprequests'
+    ) {
       setReload((prev) => prev + 1);
     }
   }, 150);
@@ -59,7 +54,6 @@ export function BackupsDatatable({
         forced: true,
       });
     }
-
   }, [reload]);
 
   useEffect(() => {
@@ -82,35 +76,32 @@ export function BackupsDatatable({
     <BackupsMRT
       customActions={
         <>
-          <CreateBackupAction/>
-          <LastBackupsFilter setOnlyLast4Schedule={setOnlyLast4Schedule}/>
+          <CreateBackupAction />
+          <LastBackupsFilter setOnlyLast4Schedule={setOnlyLast4Schedule} />
         </>
       }
       fetching={fetching}
       setReload={setReload}
       items={items}
     />
-  )
-  
+  );
+
   if (onlyTable) {
-    return (
-      <Box h="calc(100% - 35px)">
-        {datatable()}
-      </Box>
-    )
+    return <Box h="calc(100% - 35px)">{datatable()}</Box>;
   }
 
   return (
     <MainStack>
       <Toolbar
         title="Backup"
-        breadcrumbItem={scheduleName ? [{ 'name': scheduleName }, { 'name': 'Backups' }] : [{ name: 'Backups' }]}
+        breadcrumbItem={
+          scheduleName ? [{ name: scheduleName }, { name: 'Backups' }] : [{ name: 'Backups' }]
+        }
       >
         <></>
       </Toolbar>
       {datatable()}
-      <DataFetchedInfo fetchedTime={fetchedTime}/>
+      <DataFetchedInfo fetchedTime={fetchedTime} />
     </MainStack>
   );
 }
-

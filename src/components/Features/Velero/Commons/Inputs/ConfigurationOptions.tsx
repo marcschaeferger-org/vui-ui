@@ -1,6 +1,16 @@
 import { useState } from 'react';
 import { IconPlus } from '@tabler/icons-react';
-import { ActionIcon, Button, Card, Flex, Input, Space, Table, Text, TextInput, } from '@mantine/core';
+import {
+  ActionIcon,
+  Button,
+  Card,
+  Flex,
+  Input,
+  Space,
+  Table,
+  Text,
+  TextInput,
+} from '@mantine/core';
 
 interface ConfigurationOptionsProps {
   label: string;
@@ -12,13 +22,13 @@ interface ConfigurationOptionsProps {
 }
 
 export default function ConfigurationOptions({
-                                               label = '',
-                                               config,
-                                               setConfig,
-                                               labelKey = 'key',
-                                               labelValue = 'value',
-                                               description = '',
-                                             }: ConfigurationOptionsProps) {
+  label = '',
+  config,
+  setConfig,
+  labelKey = 'key',
+  labelValue = 'value',
+  description = '',
+}: ConfigurationOptionsProps) {
   const [key_, setKey] = useState<string>('');
   const [value, setValue] = useState<string>('');
 
@@ -84,12 +94,12 @@ export default function ConfigurationOptions({
               setValue('');
             }}
           >
-            <IconPlus size={18}/>
+            <IconPlus size={18} />
           </ActionIcon>
         </Flex>
       </Input.Wrapper>
 
-      <Space my={4}/>
+      <Space my={4} />
       {Object.keys(config).length > 0 && (
         <Table withTableBorder bg="var(--mantine-color-body)">
           <Table.Thead>

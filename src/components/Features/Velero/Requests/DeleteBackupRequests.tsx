@@ -9,17 +9,13 @@ import { eventEmitter } from '@/lib/EventEmitter.js';
 import { DeleteBackupRequestMRT } from '@/components/Features/Velero/Requests/DeleteBackupRequestMRT';
 
 export default function DeleteBackupRequests({
-                                               reload,
-                                               setReload,
-                                               active,
-                                               setFetchingData,
-                                               enableTopToolbar
-                                             }: any) {
-  const {
-    data,
-    getDeleteBackupRequests,
-    fetching
-  } = useDeleteBackupRequests();
+  reload,
+  setReload,
+  active,
+  setFetchingData,
+  enableTopToolbar,
+}: any) {
+  const { data, getDeleteBackupRequests, fetching } = useDeleteBackupRequests();
 
   const [records, setRecords] = useState<Array<any>>([]);
 
@@ -65,7 +61,7 @@ export default function DeleteBackupRequests({
   useEffect(() => {
     if (!active) return undefined;
     getDeleteBackupRequests();
-    return undefined
+    return undefined;
     /*const interval = setInterval(() => {
       getDownloadBackupRequests();
     }, appValues.refreshRecent);

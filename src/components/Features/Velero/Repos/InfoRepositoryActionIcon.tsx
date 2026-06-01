@@ -20,23 +20,20 @@ interface InfoRepositoryProps {
 }
 
 export default function InfoRepositoryActionIcon({
-                                                   repositoryURL,
-                                                   backupStorageLocation,
-                                                   repositoryName,
-                                                   repositoryType,
-                                                   volumeNamespace,
-                                                 }: InfoRepositoryProps) {
-  const {
-    data: dataRepository,
-    checkRepository
-  } = useCheckRepository();
+  repositoryURL,
+  backupStorageLocation,
+  repositoryName,
+  repositoryType,
+  volumeNamespace,
+}: InfoRepositoryProps) {
+  const { data: dataRepository, checkRepository } = useCheckRepository();
   useEffect(() => {
     if (dataRepository !== undefined) {
       openModal({
         title: `Stats ${repositoryName}`,
         size: '80%',
         children: (
-          <JsonView data={dataRepository} shouldExpandNode={allExpanded} style={defaultStyles}/>
+          <JsonView data={dataRepository} shouldExpandNode={allExpanded} style={defaultStyles} />
         ),
       });
     }
@@ -54,11 +51,11 @@ export default function InfoRepositoryActionIcon({
             backupStorageLocation,
             repositoryName,
             repositoryType,
-            volumeNamespace
+            volumeNamespace,
           );
         }}
       >
-        <IconCalculator color="green"/>
+        <IconCalculator color="green" />
       </ActionIcon>
     </Tooltip>
   );

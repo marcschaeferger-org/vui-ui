@@ -9,10 +9,10 @@ import { useResourceDescribe } from '@/api/Velero/useResourceDescribe';
 const getNewStorageClass = (
   storageClass: string,
   veleroMapping: any,
-  clusterStorageClasses: any
+  clusterStorageClasses: any,
 ) => {
   let newStorageClass = veleroMapping?.find(
-    (obj: { [x: string]: any }) => obj?.oldStorageClass === storageClass
+    (obj: { [x: string]: any }) => obj?.oldStorageClass === storageClass,
   )?.newStorageClass;
 
   if (!newStorageClass && storageClass in veleroMapping) {
@@ -31,10 +31,7 @@ interface AlertComponentProps {
   visible: boolean;
 }
 
-export default function RestoreAlert({
-                                       backupName,
-                                       visible
-                                     }: AlertComponentProps) {
+export default function RestoreAlert({ backupName, visible }: AlertComponentProps) {
   const {
     data: clusterStorageClasses,
     getStorageClasses,
@@ -42,16 +39,9 @@ export default function RestoreAlert({
   } = useStorageClasses();
 
   const [loader, setLoader] = useState(false);
-  const {
-    data: manifest,
-    getResourceDescribe
-  } = useResourceDescribe();
+  const { data: manifest, getResourceDescribe } = useResourceDescribe();
 
-  const {
-    data: pvc,
-    getPvc,
-    fetching: fetchingPvc
-  } = usePvcBackupSC();
+  const { data: pvc, getPvc, fetching: fetchingPvc } = usePvcBackupSC();
   const {
     data: veleroMapping,
     getStorageClassesMap,
@@ -71,7 +61,7 @@ export default function RestoreAlert({
   if (!loader || fetchingStorgaclass || fetchingVeleroMapping || fetchingPvc) {
     return (
       <Center>
-        <Loader/>
+        <Loader />
         Getting data...
       </Center>
     );
@@ -83,7 +73,7 @@ export default function RestoreAlert({
       variant="light"
       color="blue"
       title="Backup Storage info"
-      icon={<IconInfoCircle/>}
+      icon={<IconInfoCircle />}
     >
       <SimpleGrid cols={3}>
         <Box>

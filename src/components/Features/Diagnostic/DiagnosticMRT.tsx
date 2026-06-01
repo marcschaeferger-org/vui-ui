@@ -7,13 +7,13 @@ import type { MRT_ColumnDef } from 'mantine-react-table';
 import { GenericMRTTableLayout } from '@/components/Features/Velero/GenericMRTTableLayout';
 
 export const DiagnosticMRT = ({
-                                uiURL,
-                                apiURL,
-                                apiArch,
-                                origins,
-                                k8sHealth,
-                                stateManager,
-                              }: any) => {
+  uiURL,
+  apiURL,
+  apiArch,
+  origins,
+  k8sHealth,
+  stateManager,
+}: any) => {
   const data = [
     {
       label: 'Get UI URL',
@@ -43,7 +43,9 @@ export const DiagnosticMRT = ({
     {
       label: 'Validate Origins',
       status: stateManager.getVariable('validateOrigins') ? 'ok' : 'error',
-      warning: [origins?.length > 0 && origins?.includes('*') ? 'Warning: ORIGINS contains "*"' : ''],
+      warning: [
+        origins?.length > 0 && origins?.includes('*') ? 'Warning: ORIGINS contains "*"' : '',
+      ],
       error: [
         origins?.length === 0 || (origins?.length > 0 && !origins?.includes(uiURL))
           ? `Error: Origins must contain ${uiURL}`
@@ -72,7 +74,7 @@ export const DiagnosticMRT = ({
       label: 'Check Watchdog',
       status: stateManager.getVariable('getWatchdogInfo') ? 'ok' : 'error',
       value: '',
-    })
+    });
   }
 
   const columns = useMemo<MRT_ColumnDef<any>[]>(
@@ -84,22 +86,20 @@ export const DiagnosticMRT = ({
       {
         accessorKey: 'value',
         header: 'Value',
-        Cell: ({ row }) => <>
-          {Array.isArray(row.original.value) && row.original.value.length > 0 && (
-            <List>
-              {row.original.value.map((item: any) => (
-                <List.Item key={item}>
-                  <Text size="sm">{item}</Text>
-                </List.Item>
-              ))}
-            </List>
-          )}
-          {!Array.isArray(row.original.value) && (
-            <Text size="sm">
-              {row.original.value}
-            </Text>
-          )}
-        </>,
+        Cell: ({ row }) => (
+          <>
+            {Array.isArray(row.original.value) && row.original.value.length > 0 && (
+              <List>
+                {row.original.value.map((item: any) => (
+                  <List.Item key={item}>
+                    <Text size="sm">{item}</Text>
+                  </List.Item>
+                ))}
+              </List>
+            )}
+            {!Array.isArray(row.original.value) && <Text size="sm">{row.original.value}</Text>}
+          </>
+        ),
       },
       {
         accessorKey: 'status',
@@ -122,7 +122,7 @@ export const DiagnosticMRT = ({
 
   return (
     <GenericMRTTableLayout
-      name='diagnostic'
+      name="diagnostic"
       items={data || []}
       columns={columns}
       initialState={{

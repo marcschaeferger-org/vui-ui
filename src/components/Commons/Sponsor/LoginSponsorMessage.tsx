@@ -8,7 +8,9 @@ import {
   Button,
   Image,
   Title,
-  useComputedColorScheme, Group, Anchor,
+  useComputedColorScheme,
+  Group,
+  Anchor,
 } from '@mantine/core';
 
 import { IconHeart } from '@tabler/icons-react';
@@ -50,22 +52,26 @@ export function LoginSponsorMessage() {
             >
               Learn More
             </Button>
-            <Space h={50}/>
+            <Space h={50} />
 
             <Text fw={500} fz="sm" mb={5}>
-              🚀 If VUI has been helpful in your work, please consider supporting us to unlock exclusive <Anchor
-              size="sm"
-              fw={700}
-              href="https://vui.seriohub.com/docs/guide/features/core" target="_blank">
-              Core
-            </Anchor> features and
-              help drive future development.
+              🚀 If VUI has been helpful in your work, please consider supporting us to unlock
+              exclusive{' '}
+              <Anchor
+                size="sm"
+                fw={700}
+                href="https://vui.seriohub.com/docs/guide/features/core"
+                target="_blank"
+              >
+                Core
+              </Anchor>{' '}
+              features and help drive future development.
             </Text>
 
             <Button
               component="a"
               color="red"
-              leftSection={<IconHeart/>}
+              leftSection={<IconHeart />}
               href="https://github.com/sponsors/davideserio"
               target="_blank"
               // radius={8}
@@ -74,7 +80,7 @@ export function LoginSponsorMessage() {
             </Button>
           </Grid.Col>
           <Grid.Col span={2}>
-            <Image h={120} w={120} src={image.src}/>
+            <Image h={120} w={120} src={image.src} />
           </Grid.Col>
         </Grid>
         <Group justify="flex-end">

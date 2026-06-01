@@ -15,13 +15,7 @@ import CreateScheduleAction from '@/components/Features/Velero/Schedules/Action/
 import { SchedulesMRT } from '@/components/Features/Velero/Schedules/SchedulesMRT';
 
 export function SchedulesDatatable() {
-
-  const {
-    data,
-    getSchedules,
-    fetching,
-    fetchedTime
-  } = useSchedules();
+  const { data, getSchedules, fetching, fetchedTime } = useSchedules();
 
   const [items = [], setItems] = useState<Array<any>>([]);
   const [reload, setReload] = useState(1);
@@ -73,12 +67,12 @@ export function SchedulesDatatable() {
         items={items}
         customActions={
           <>
-            <CreateScheduleAction/>
-            <SchedulesHeatmapToolbarIcon/>
+            <CreateScheduleAction />
+            <SchedulesHeatmapToolbarIcon />
           </>
         }
       />
-      <DataFetchedInfo fetchedTime={fetchedTime}/>
+      <DataFetchedInfo fetchedTime={fetchedTime} />
     </MainStack>
   );
 }

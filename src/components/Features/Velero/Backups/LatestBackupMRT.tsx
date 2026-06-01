@@ -31,20 +31,17 @@ interface BackupLatestProps {
   setReload: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export function LatestBackupMRT({
-                                  setReload,
-                                  latest = []
-                                }: BackupLatestProps) {
+export function LatestBackupMRT({ setReload, latest = [] }: BackupLatestProps) {
   const router = useRouter();
 
   const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
 
   const renderActions = (record: any) => (
     <Group gap={4} justify="right" wrap="nowrap">
-      <DescribeActionIcon resourceType="backup" record={record}/>
+      <DescribeActionIcon resourceType="backup" record={record} />
       {/*<LogsActionIcon resourceType="backup" record={record} />*/}
-      <RestoreAction record={record} setReload={setReload}/>
-      <DeleteAction resourceType="backup" record={record} setReload={setReload}/>
+      <RestoreAction record={record} setReload={setReload} />
+      <DeleteAction resourceType="backup" record={record} setReload={setReload} />
     </Group>
   );
 
@@ -54,11 +51,7 @@ export function LatestBackupMRT({
         id: 'metadata.name',
         accessorFn: (row) => row.metadata?.name ?? '',
         header: 'Name',
-        Cell: ({
-                 row,
-                 column,
-                 table
-               }) => {
+        Cell: ({ row, column, table }) => {
           const globalFilter = table.getState().globalFilter ?? '';
           const columnFilter = column.getFilterValue() ?? '';
           const highlights = [globalFilter, columnFilter].filter(Boolean);
@@ -67,11 +60,12 @@ export function LatestBackupMRT({
           return (
             <Group gap={5}>
               <CopyButton value={name} timeout={2000}>
-                {({
-                    copied,
-                    copy
-                  }) => (
-                  <Tooltip label={copied ? 'Copied' : 'Copy backup name'} withArrow position="right">
+                {({ copied, copy }) => (
+                  <Tooltip
+                    label={copied ? 'Copied' : 'Copy backup name'}
+                    withArrow
+                    position="right"
+                  >
                     <ActionIcon
                       color={copied ? 'teal' : 'var(--mantine-primary-color-filled)'}
                       variant="light"
@@ -80,7 +74,7 @@ export function LatestBackupMRT({
                       p={0}
                       m={0}
                     >
-                      {copied ? <IconCheck size={14}/> : <IconCopy size={16}/>}
+                      {copied ? <IconCheck size={14} /> : <IconCopy size={16} />}
                     </ActionIcon>
                   </Tooltip>
                 )}
@@ -96,17 +90,12 @@ export function LatestBackupMRT({
             </Group>
           );
         },
-
       },
       {
         id: 'scheduleName',
         accessorFn: (row) => row.metadata?.labels?.['velero.io/schedule-name'] ?? '',
         header: 'Schedule',
-        Cell: ({
-                 row,
-                 column,
-                 table
-               }) => {
+        Cell: ({ row, column, table }) => {
           const scheduleName = row.original.metadata.labels?.['velero.io/schedule-name'];
           const globalFilter = table.getState().globalFilter ?? '';
           const columnFilter = column.getFilterValue() ?? '';
@@ -117,25 +106,20 @@ export function LatestBackupMRT({
           const highlighted = highlightMultiple(scheduleName, highlights);
 
           return (
-            <Anchor
-              size="sm"
-              onClick={() => router.push(`/schedules/${scheduleName}`)}
-            >
+            <Anchor size="sm" onClick={() => router.push(`/schedules/${scheduleName}`)}>
               <Group gap={5}>
-                <IconCalendarTime size={16}/>
+                <IconCalendarTime size={16} />
                 {highlighted}
               </Group>
             </Anchor>
-          )
+          );
         },
       },
       {
         accessorKey: 'status.phase',
         header: 'Status',
-        Cell: ({
-                 row
-               }) => (
-          <VeleroResourceStatusBadge status={row.original.status?.phase || undefined}/>
+        Cell: ({ row }) => (
+          <VeleroResourceStatusBadge status={row.original.status?.phase || undefined} />
         ),
       },
       {
@@ -160,26 +144,20 @@ export function LatestBackupMRT({
       },
       {
         id: 'duration',
-        accessorFn: (row) => Number(getDurationInMilliseconds(row.status?.startTimestamp, row.status?.completionTimestamp)),
+        accessorFn: (row) =>
+          Number(
+            getDurationInMilliseconds(row.status?.startTimestamp, row.status?.completionTimestamp),
+          ),
         header: 'Duration',
         enableColumnFilter: false,
-        Cell: ({
-                 row
-               }) => (
-          <>
-            {get_duration(row.original.status)}
-          </>
-        ),
-
+        Cell: ({ row }) => <>{get_duration(row.original.status)}</>,
       },
       {
         id: 'status.expiration',
         accessorFn: (row) => row?.status?.expiration ?? '',
         header: 'Expires in',
         enableColumnFilter: false,
-        Cell: ({
-                 row
-               }) => (
+        Cell: ({ row }) => (
           <>
             <Tooltip label={row.original.status?.expiration} offset={5}>
               <Text size="sm">{getExpirationString(row.original.status?.expiration)}</Text>
@@ -191,11 +169,7 @@ export function LatestBackupMRT({
         id: 'spec.storageLocation',
         accessorFn: (row) => row?.spec?.storageLocation ?? '',
         header: 'Storage Location',
-        Cell: ({
-                 row,
-                 column,
-                 table
-               }) => {
+        Cell: ({ row, column, table }) => {
           const globalFilter = table.getState().globalFilter ?? '';
           const columnFilter = column.getFilterValue() ?? '';
           const storageLocation = row.original?.spec?.storageLocation ?? '';
@@ -210,10 +184,8 @@ export function LatestBackupMRT({
               }}
             >
               <Group gap={5}>
-                <IconServer size={16}/>
-                <Text truncate="end">
-                  {highlightMultiple(storageLocation, highlights)}
-                </Text>
+                <IconServer size={16} />
+                <Text truncate="end">{highlightMultiple(storageLocation, highlights)}</Text>
               </Group>
             </Anchor>
           );
@@ -246,8 +218,8 @@ export function LatestBackupMRT({
           }}
         >
           <GenericMRTTableLayout
-            name='latest'
-            title='Recent Backups – last 24 hours or top 10'
+            name="latest"
+            title="Recent Backups – last 24 hours or top 10"
             items={latest || []}
             setReload={setReload}
             columns={columns}
@@ -257,19 +229,21 @@ export function LatestBackupMRT({
             initialState={{
               columnVisibility: {
                 'metadata.creationTimestamp': false,
-                'duration': false,
+                duration: false,
                 'status.errors': false,
                 'status.warnings': false,
               },
               density: 'xs',
             }}
-            mantineTableContainerPropsContent={{ style: { height: "252px" } }}
+            mantineTableContainerPropsContent={{ style: { height: '252px' } }}
             mantinePaperPropsContent={{
               style: {
                 border: 'None',
-              }
+              },
             }}
-            renderRowActions={({ row }: { row: MRT_Row<any> }) => <>{renderActions(row?.original)}</>}
+            renderRowActions={({ row }: { row: MRT_Row<any> }) => (
+              <>{renderActions(row?.original)}</>
+            )}
           />
         </Box>
       </Card.Section>

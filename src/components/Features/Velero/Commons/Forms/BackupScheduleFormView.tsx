@@ -38,16 +38,16 @@ interface CreateBackupScheduleFormProps {
 }
 
 export default function BackupScheduleFormView({
-                                                 resource,
-                                                 form,
-                                                 namespaces,
-                                                 backupLocation = [],
-                                                 snapshotLocation = [],
-                                                 resources = [],
-                                                 resourcePolicy = [],
-                                                 onDone,
-                                                 mode,
-                                               }: CreateBackupScheduleFormProps) {
+  resource,
+  form,
+  namespaces,
+  backupLocation = [],
+  snapshotLocation = [],
+  resources = [],
+  resourcePolicy = [],
+  onDone,
+  mode,
+}: CreateBackupScheduleFormProps) {
   const [active, setActive] = useState(0);
   const nextStep = () => {
     form.validate();
@@ -219,7 +219,7 @@ export default function BackupScheduleFormView({
                       onChange={(val) =>
                         form.setFieldValue(
                           'snapshotVolumes',
-                          val === 'true' ? true : val === 'false' ? false : null
+                          val === 'true' ? true : val === 'false' ? false : null,
                         )
                       }
                       data={[
@@ -354,7 +354,7 @@ export default function BackupScheduleFormView({
                     onChange={(val) =>
                       form.setFieldValue(
                         'includeClusterResources',
-                        val === 'true' ? true : val === 'false' ? false : null
+                        val === 'true' ? true : val === 'false' ? false : null,
                       )
                     }
                     data={[
@@ -375,7 +375,7 @@ export default function BackupScheduleFormView({
                 </Group>
               </Card>
 
-              <Space h={20}/>
+              <Space h={20} />
               <ConfigurationOptions
                 label="Label Selector"
                 description="Objects must match this label selector to be included in the backup"
@@ -423,7 +423,7 @@ export default function BackupScheduleFormView({
             </Stepper.Step>
 
             <Stepper.Completed>
-              <JsonViewer record={form?.values}/>
+              <JsonViewer record={form?.values} />
               <Text size="sm" mt={10}>
                 Completed! click create button to create a {resource}
               </Text>

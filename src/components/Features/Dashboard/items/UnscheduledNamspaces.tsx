@@ -1,7 +1,18 @@
 'use client';
 
 import React from 'react';
-import { Button, Card, Group, List, rem, ScrollArea, Stack, Table, Text, ThemeIcon } from '@mantine/core';
+import {
+  Button,
+  Card,
+  Group,
+  List,
+  rem,
+  ScrollArea,
+  Stack,
+  Table,
+  Text,
+  ThemeIcon,
+} from '@mantine/core';
 import { IconAlertTriangle, IconCheck, IconMoodSad2 } from '@tabler/icons-react';
 import { openModal } from '@mantine/modals';
 import { CreateScheduleForm } from '@/components/Features/Velero/Schedules/Forms/CreateScheduleForm';
@@ -11,20 +22,12 @@ interface UnscheduledNamespacesProps {
   total: number;
 }
 
-export function UnscheduledNamespaces({
-                                        namespaces,
-                                        total
-                                      }: UnscheduledNamespacesProps) {
-
+export function UnscheduledNamespaces({ namespaces, total }: UnscheduledNamespacesProps) {
   const handleCreateSchedule = (namespace: string) => {
     openModal({
       title: 'Create New Schedule',
       size: '60rem',
-      children: (
-        <CreateScheduleForm
-          ns={[namespace]}
-        />
-      ),
+      children: <CreateScheduleForm ns={[namespace]} />,
       padding: 'md',
       radius: 'md',
       centered: true,
@@ -36,7 +39,12 @@ export function UnscheduledNamespaces({
       .sort(([, valueA], [, valueB]) => valueA.localeCompare(valueB))
       .map(([key, value]) => (
         <Table.Tr key={key}>
-          <Table.Td><Group gap={5}><IconMoodSad2 color="orange"/>{value}</Group></Table.Td>
+          <Table.Td>
+            <Group gap={5}>
+              <IconMoodSad2 color="orange" />
+              {value}
+            </Group>
+          </Table.Td>
           <Table.Td>
             <Group justify="right" px={5}>
               <Button size="compact-sm" onClick={() => handleCreateSchedule(value)}>
@@ -44,7 +52,6 @@ export function UnscheduledNamespaces({
               </Button>
             </Group>
           </Table.Td>
-
         </Table.Tr>
       ));
 
@@ -60,10 +67,7 @@ export function UnscheduledNamespaces({
               / {total}
             </Text>
           </Group>
-          <IconAlertTriangle
-            size="4rem"
-            color="var(--mantine-primary-color-light-color)"
-          />
+          <IconAlertTriangle size="4rem" color="var(--mantine-primary-color-light-color)" />
         </Group>
         <Text size="md" c="dimmed">
           Unscheduled namespace
@@ -94,9 +98,7 @@ export function UnscheduledNamespaces({
         {namespaces.length > 0 && (
           <ScrollArea h={180} mt={10} type="auto" bg="var(--mantine-color-body)">
             <Table striped highlightOnHover>
-              <Table.Tbody>
-                {rows()}
-              </Table.Tbody>
+              <Table.Tbody>{rows()}</Table.Tbody>
             </Table>
           </ScrollArea>
         )}

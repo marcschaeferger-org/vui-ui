@@ -9,18 +9,13 @@ import { eventEmitter } from '@/lib/EventEmitter.js';
 import { BackupRestoreStreamMRT } from '@/components/Features/Velero/EventStream/BackupsRestoresMRT';
 
 export default function BackupRestoreStream({
-                                              reload,
-                                              setReload,
-                                              active,
-                                              setFetchingData,
-                                              enableTopToolbar,
-                                            }: any) {
-
-  const {
-    data,
-    getStatsInProgress,
-    fetching
-  } = useStatsInProgress();
+  reload,
+  setReload,
+  active,
+  setFetchingData,
+  enableTopToolbar,
+}: any) {
+  const { data, getStatsInProgress, fetching } = useStatsInProgress();
 
   const [records, setRecords] = useState<Array<any>>([]);
 

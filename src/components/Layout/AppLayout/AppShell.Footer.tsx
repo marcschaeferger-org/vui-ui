@@ -12,18 +12,18 @@ export function AppShellFooter() {
   const appValues = useAppStatus();
   const serverValues = useServerStatus();
 
-    return (
+  return (
     <>
       <Group justify="space-between" gap={5} grow>
         <Group gap={30}>
-          {serverValues.isCurrentServerControlPlane && <DiagnosticCoreInfo/>}
+          {serverValues.isCurrentServerControlPlane && <DiagnosticCoreInfo />}
           {(appValues.isAuthenticated || serverValues.isCurrentServerControlPlane === false) && (
-            <DiagnosticAgentInfo/>
+            <DiagnosticAgentInfo />
           )}
         </Group>
 
         <Group visibleFrom="lg" gap={5} justify="center">
-          <ProcessTime/>
+          <ProcessTime />
         </Group>
 
         <Group gap={10} justify="right">

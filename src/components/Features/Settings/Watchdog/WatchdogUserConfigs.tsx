@@ -17,10 +17,7 @@ import { useEffect, useState } from 'react';
 
 import { useWatchdogUpdateConfigs } from '@/api/Watchdog/useWatchdogUpdateConfigs';
 
-export function WatchdogUserConfigs({
-                                      userConfiguration,
-                                      setReload
-                                    }: any) {
+export function WatchdogUserConfigs({ userConfiguration, setReload }: any) {
   const { handleUpdateSchedule } = useWatchdogUpdateConfigs();
   const [isModified, setIsModified] = useState(false);
   const computedColorScheme = useComputedColorScheme();
@@ -71,18 +68,18 @@ export function WatchdogUserConfigs({
     form.setFieldValue('notificationSkipDeleting', userConfiguration?.NOTIFICATION_SKIP_DELETING);
     form.setFieldValue(
       'notificationSkipInProgress',
-      userConfiguration?.NOTIFICATION_SKIP_INPROGRESS
+      userConfiguration?.NOTIFICATION_SKIP_INPROGRESS,
     );
     form.setFieldValue('notificationSkipRemoved', userConfiguration?.NOTIFICATION_SKIP_REMOVED);
     form.setFieldValue('processCycleSeconds', Number(userConfiguration?.PROCESS_CYCLE_SEC));
     form.setFieldValue('expireDaysWarning', Number(userConfiguration?.EXPIRES_DAYS_WARNING));
     form.setFieldValue(
       'reportBackupItemPrefix',
-      userConfiguration?.REPORT_BACKUP_ITEM_PREFIX || ''
+      userConfiguration?.REPORT_BACKUP_ITEM_PREFIX || '',
     );
     form.setFieldValue(
       'reportScheduleItemPrefix',
-      userConfiguration?.REPORT_SCHEDULE_ITEM_PREFIX || ''
+      userConfiguration?.REPORT_SCHEDULE_ITEM_PREFIX || '',
     );
     form.resetDirty();
   }, [userConfiguration]);
@@ -102,7 +99,7 @@ export function WatchdogUserConfigs({
   }
 
   if (!userConfiguration) {
-    return <Loader/>;
+    return <Loader />;
   }
   return (
     <form
@@ -145,37 +142,37 @@ export function WatchdogUserConfigs({
               'Backups Enabled',
               'Detects and notifies changes in backups',
               'BACKUP_ENABLED',
-              form.getInputProps('backupEnabled')
+              form.getInputProps('backupEnabled'),
             )}
             {userSwitch(
               'Schedules Enabled',
               'Detects and notifies changes in schedules',
               'SCHEDULE_ENABLED',
-              form.getInputProps('scheduleEnabled')
+              form.getInputProps('scheduleEnabled'),
             )}
             {userSwitch(
               'Notification: skip completed',
               'Do not send notifications when a backup ends with “COMPLETED” status',
               'NOTIFICATION_SKIP_COMPLETED',
-              form.getInputProps('notificationSkipCompleted')
+              form.getInputProps('notificationSkipCompleted'),
             )}
             {userSwitch(
               'Notification: skip deleting',
               'Do not send notifications when a backup has “DELETING” status',
               'NOTIFICATION_SKIP_DELETING',
-              form.getInputProps('notificationSkipDeleting')
+              form.getInputProps('notificationSkipDeleting'),
             )}
             {userSwitch(
               'Notification: skip in progress',
               'Do not send notifications when a backup has “IN PROGRESS” status',
               'NOTIFICATION_SKIP_INPROGRESS',
-              form.getInputProps('notificationSkipInProgress')
+              form.getInputProps('notificationSkipInProgress'),
             )}
             {userSwitch(
               'Notification: skip removed',
               'Do not send notifications when a backup has “REMOVED”',
               'NOTIFICATION_SKIP_REMOVED',
-              form.getInputProps('notificationSkipRemoved')
+              form.getInputProps('notificationSkipRemoved'),
             )}
           </div>
           <div>
@@ -197,7 +194,7 @@ export function WatchdogUserConfigs({
               mt={10}
               error={form.errors.processCycleSeconds}
             >
-              <NumberInput {...form.getInputProps('processCycleSeconds')} min={5} max={3600}/>
+              <NumberInput {...form.getInputProps('processCycleSeconds')} min={5} max={3600} />
             </Input.Wrapper>
 
             <Input.Wrapper
@@ -206,7 +203,7 @@ export function WatchdogUserConfigs({
               mt={10}
               error={form.errors.expireDaysWarning}
             >
-              <NumberInput {...form.getInputProps('expireDaysWarning')} min={1} max={100}/>
+              <NumberInput {...form.getInputProps('expireDaysWarning')} min={1} max={100} />
             </Input.Wrapper>
           </div>
         </SimpleGrid>

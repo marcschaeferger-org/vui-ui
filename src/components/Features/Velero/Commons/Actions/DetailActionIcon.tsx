@@ -12,10 +12,7 @@ interface DetailActionIconProps {
   record: any;
 }
 
-export default function DetailActionIcon({
-                                           name,
-                                           record
-                                         }: DetailActionIconProps) {
+export default function DetailActionIcon({ name, record }: DetailActionIconProps) {
   return (
     <Tooltip label="Describe">
       <ActionIcon
@@ -26,11 +23,11 @@ export default function DetailActionIcon({
           openModal({
             title: `Detail ${name}`,
             size: '80%',
-            children: <JsonViewer record={record}/>,
+            children: <JsonViewer record={record} />,
           });
         }}
       >
-        <IconClipboard/>
+        <IconClipboard />
       </ActionIcon>
     </Tooltip>
   );

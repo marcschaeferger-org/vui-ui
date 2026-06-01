@@ -16,13 +16,13 @@ export default function CreateScheduleAction() {
           openModal({
             title: 'Create New Schedules',
             size: '60rem',
-            children: <CreateScheduleForm/>,
+            children: <CreateScheduleForm />,
             padding: 'md',
             radius: 'md',
             centered: true,
           });
         }}
-        leftSection={<IconPlus/>}
+        leftSection={<IconPlus />}
       >
         New
       </Button>

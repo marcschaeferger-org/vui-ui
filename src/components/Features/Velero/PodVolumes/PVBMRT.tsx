@@ -1,8 +1,8 @@
 'use client';
 
 import { useMemo } from 'react';
-import { ActionIcon, Anchor, CopyButton, Group, Text, Tooltip, } from '@mantine/core';
-import { IconCheck, IconCopy, IconDeviceFloppy, IconServer, } from '@tabler/icons-react';
+import { ActionIcon, Anchor, CopyButton, Group, Text, Tooltip } from '@mantine/core';
+import { IconCheck, IconCopy, IconDeviceFloppy, IconServer } from '@tabler/icons-react';
 import { type MRT_ColumnDef, MRT_Row } from 'mantine-react-table';
 import { useRouter } from 'next/navigation';
 
@@ -11,17 +11,12 @@ import { GenericMRTTableLayout } from '@/components/Features/Velero/GenericMRTTa
 import VeleroResourceStatusBadge from '@/components/Features/Velero/Commons/Display/VeleroResourceStatusBadge';
 import { highlightMultiple } from '@/utils/highlightMultiple';
 
-export function PVBMRT({
-                         fetching,
-                         setReload,
-                         items,
-                       }: any) {
-
+export function PVBMRT({ fetching, setReload, items }: any) {
   const router = useRouter();
 
   const renderActions = (record: any) => (
     <Group gap={2} wrap="nowrap">
-      <DescribeActionIcon resourceType="PodVolumeBackup" record={record}/>
+      <DescribeActionIcon resourceType="PodVolumeBackup" record={record} />
     </Group>
   );
 
@@ -31,26 +26,23 @@ export function PVBMRT({
         id: 'metadata.name',
         accessorFn: (row) => row?.metadata?.name ?? '',
         header: 'Name',
-        Cell: ({
-                 row,
-                 column,
-                 table
-               }) => {
+        Cell: ({ row, column, table }) => {
           const name = row?.original?.metadata?.name ?? '';
           const globalFilter = table.getState().globalFilter ?? '';
           const columnFilter = column.getFilterValue() ?? '';
           const highlights = [globalFilter, columnFilter]
-            .map(h => h.toString().trim())
+            .map((h) => h.toString().trim())
             .filter(Boolean);
 
           return (
             <Group gap={5}>
               <CopyButton value={name} timeout={2000}>
-                {({
-                    copied,
-                    copy
-                  }) => (
-                  <Tooltip label={copied ? 'Copied' : 'Copy backup name'} withArrow position="right">
+                {({ copied, copy }) => (
+                  <Tooltip
+                    label={copied ? 'Copied' : 'Copy backup name'}
+                    withArrow
+                    position="right"
+                  >
                     <ActionIcon
                       color={copied ? 'teal' : 'var(--mantine-primary-color-filled)'}
                       variant="light"
@@ -59,7 +51,7 @@ export function PVBMRT({
                       p={0}
                       m={0}
                     >
-                      {copied ? <IconCheck size={14}/> : <IconCopy size={16}/>}
+                      {copied ? <IconCheck size={14} /> : <IconCopy size={16} />}
                     </ActionIcon>
                   </Tooltip>
                 )}
@@ -80,16 +72,12 @@ export function PVBMRT({
         id: 'spec.tags.backup',
         accessorFn: (row) => row?.spec?.tags?.backup ?? '',
         header: 'From Backup',
-        Cell: ({
-                 row,
-                 column,
-                 table
-               }) => {
+        Cell: ({ row, column, table }) => {
           const backup = row?.original?.spec?.tags?.backup ?? '';
           const globalFilter = table.getState().globalFilter ?? '';
           const columnFilter = column.getFilterValue() ?? '';
           const highlights = [globalFilter, columnFilter]
-            .map(h => h.toString().trim())
+            .map((h) => h.toString().trim())
             .filter(Boolean);
 
           return (
@@ -100,7 +88,7 @@ export function PVBMRT({
               }}
             >
               <Group gap={5}>
-                <IconDeviceFloppy size={16}/>
+                <IconDeviceFloppy size={16} />
                 <Text truncate="end">{highlightMultiple(backup, highlights)}</Text>
               </Group>
             </Anchor>
@@ -111,26 +99,20 @@ export function PVBMRT({
         id: 'status.phase',
         accessorFn: (row) => row?.status?.phase ?? '',
         header: 'Status',
-        Cell: ({
-                 row
-               }) => (
-          <VeleroResourceStatusBadge status={row?.original?.status?.phase || undefined}/>
+        Cell: ({ row }) => (
+          <VeleroResourceStatusBadge status={row?.original?.status?.phase || undefined} />
         ),
       },
       {
         id: 'spec.backupStorageLocation',
         accessorFn: (row) => row?.spec?.backupStorageLocation ?? '',
         header: 'Storage Location',
-        Cell: ({
-                 row,
-                 column,
-                 table
-               }) => {
+        Cell: ({ row, column, table }) => {
           const location = row?.original?.spec?.backupStorageLocation ?? '';
           const globalFilter = table.getState().globalFilter ?? '';
           const columnFilter = column.getFilterValue() ?? '';
           const highlights = [globalFilter, columnFilter]
-            .map(h => h.toString().trim())
+            .map((h) => h.toString().trim())
             .filter(Boolean);
 
           return (
@@ -141,7 +123,7 @@ export function PVBMRT({
               }}
             >
               <Group gap={5}>
-                <IconServer size={16}/>
+                <IconServer size={16} />
                 <Text truncate="end">{highlightMultiple(location, highlights)}</Text>
               </Group>
             </Anchor>
@@ -156,24 +138,25 @@ export function PVBMRT({
       {
         id: 'spec.tags.volume',
         accessorFn: (row) => row?.spec?.tags?.volume ?? '',
-        header: 'Volume'
+        header: 'Volume',
       },
-
     ],
     [],
   );
 
-  return <GenericMRTTableLayout
-    name='pvb'
-    fetching={fetching}
-    items={items || []}
-    setReload={setReload}
-    columns={columns}
-    initialState={{
-      columnVisibility: {
-        'spec.tags.pod': false,
-      },
-    }}
-    renderRowActions={({ row }: { row: MRT_Row<any> }) => <>{renderActions(row?.original)}</>}
-  />
+  return (
+    <GenericMRTTableLayout
+      name="pvb"
+      fetching={fetching}
+      items={items || []}
+      setReload={setReload}
+      columns={columns}
+      initialState={{
+        columnVisibility: {
+          'spec.tags.pod': false,
+        },
+      }}
+      renderRowActions={({ row }: { row: MRT_Row<any> }) => <>{renderActions(row?.original)}</>}
+    />
+  );
 }

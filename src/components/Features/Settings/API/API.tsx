@@ -27,12 +27,7 @@ export function API() {
         <></>
       </Toolbar>
 
-      <PodEnvMRT
-        name="api"
-        fetching={false}
-        setReload={setReload}
-        items={rowApiConfiguration}
-      />
+      <PodEnvMRT name="api" fetching={false} setReload={setReload} items={rowApiConfiguration} />
     </MainStack>
   );
 }

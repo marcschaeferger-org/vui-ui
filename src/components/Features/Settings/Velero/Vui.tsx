@@ -4,22 +4,17 @@ import React, { useEffect, useState } from 'react';
 
 import { MainStack } from '@/components/Commons/MainStack';
 import Toolbar from '@/components/Display/Toolbar';
-import { useVuiPods } from "@/api/Velero/useVuiPods";
+import { useVuiPods } from '@/api/Velero/useVuiPods';
 import { VuiMRT } from '@/components/Features/Settings/Velero/Display/VuiMRT';
 
 export function Vui() {
-
-  const {
-    data,
-    getVuiPods,
-    fetching
-  } = useVuiPods();
+  const { data, getVuiPods, fetching } = useVuiPods();
 
   const [reload, setReload] = useState(1);
   const [rowLogs, setRowLogs] = useState<any>([]);
 
   useEffect(() => {
-    getVuiPods()
+    getVuiPods();
   }, [reload]);
 
   useEffect(() => {
@@ -34,11 +29,7 @@ export function Vui() {
         <></>
       </Toolbar>
 
-      <VuiMRT
-        fetching={fetching}
-        setReload={setReload}
-        items={rowLogs}
-      />
+      <VuiMRT fetching={fetching} setReload={setReload} items={rowLogs} />
     </MainStack>
   );
 }

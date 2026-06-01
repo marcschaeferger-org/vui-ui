@@ -23,11 +23,13 @@ export default function LastBackupsFilter({ setOnlyLast4Schedule }: LastBackup4S
             setChecked(!checked);
           }}
           h={38}
-          variant={!checked ? "default" : 'light'}
-          leftSection={<>
-            {!checked && <IconHistory/>}
-            {checked && <IconHistoryOff/>}
-          </>}
+          variant={!checked ? 'default' : 'light'}
+          leftSection={
+            <>
+              {!checked && <IconHistory />}
+              {checked && <IconHistoryOff />}
+            </>
+          }
         >
           Latest
         </Button>

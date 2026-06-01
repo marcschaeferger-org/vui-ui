@@ -4,11 +4,11 @@ import { Combobox, InputBase, useCombobox } from '@mantine/core';
 const suggested = ['Region', 's3Url'];
 
 export function ConfigurationOptionsField({
-                                            setKey: setValue,
-                                            key1: value,
-                                            search,
-                                            setSearch
-                                          }: any) {
+  setKey: setValue,
+  key1: value,
+  search,
+  setSearch,
+}: any) {
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
   });
@@ -44,7 +44,7 @@ export function ConfigurationOptionsField({
       <Combobox.Target>
         <InputBase
           //w={350}
-          rightSection={<Combobox.Chevron/>}
+          rightSection={<Combobox.Chevron />}
           value={search}
           onChange={(event) => {
             combobox.openDropdown();

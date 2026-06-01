@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useEffect, useMemo } from 'react';
-import { ActionIcon, Anchor, CopyButton, Group, Menu, rem, Text, Tooltip, } from '@mantine/core';
-import { IconCheck, IconCopy, IconDots, IconServer, } from '@tabler/icons-react';
+import { ActionIcon, Anchor, CopyButton, Group, Menu, rem, Text, Tooltip } from '@mantine/core';
+import { IconCheck, IconCopy, IconDots, IconServer } from '@tabler/icons-react';
 import { type MRT_ColumnDef, MRT_Row } from 'mantine-react-table';
 import { useRouter } from 'next/navigation';
 
@@ -16,23 +16,12 @@ import InfoRepositoryActionIcon from '@/components/Features/Velero/Repos/InfoRep
 import VeleroResourceStatusBadge from '@/components/Features/Velero/Commons/Display/VeleroResourceStatusBadge';
 import { highlightMultiple } from '@/utils/highlightMultiple';
 
-export function RepoMRT({
-                          fetching,
-                          setReload,
-                          items,
-                        }: any) {
-
+export function RepoMRT({ fetching, setReload, items }: any) {
   const router = useRouter();
 
   /* repo operations*/
-  const {
-    data: locks,
-    getRepositoryLocks
-  } = useRepositoryLocks();
-  const {
-    data: unlock,
-    getRepositoryUnlock
-  } = useRepositoryUnlock();
+  const { data: locks, getRepositoryLocks } = useRepositoryLocks();
+  const { data: unlock, getRepositoryUnlock } = useRepositoryUnlock();
   const { getRepositoryCheck } = useRepositoryCheck();
 
   useEffect(() => {
@@ -44,44 +33,54 @@ export function RepoMRT({
 
   const renderActions = (row: any) => (
     <Group gap={2} wrap="nowrap">
-
       <Menu shadow="md" width={200}>
         <Menu.Target>
-          <ActionIcon variant="light"><IconDots/></ActionIcon>
+          <ActionIcon variant="light">
+            <IconDots />
+          </ActionIcon>
         </Menu.Target>
         <Menu.Dropdown>
           <Menu.Label>Restic Repository</Menu.Label>
           <Menu.Item
-            onClick={() => getRepositoryCheck(row?.spec?.backupStorageLocation, row?.spec?.resticIdentifier)}
-            disabled={row?.spec?.repositoryType !== 'restic'}>
+            onClick={() =>
+              getRepositoryCheck(row?.spec?.backupStorageLocation, row?.spec?.resticIdentifier)
+            }
+            disabled={row?.spec?.repositoryType !== 'restic'}
+          >
             Check
           </Menu.Item>
           <Menu.Item
-            onClick={() => getRepositoryLocks(row?.spec?.backupStorageLocation, row?.spec?.resticIdentifier)}
-            disabled={row?.spec?.repositoryType !== 'restic'}>
+            onClick={() =>
+              getRepositoryLocks(row?.spec?.backupStorageLocation, row?.spec?.resticIdentifier)
+            }
+            disabled={row?.spec?.repositoryType !== 'restic'}
+          >
             Check if locked
           </Menu.Item>
           <Menu.Item
-            onClick={() => getRepositoryUnlock(
-              row?.spec?.backupStorageLocation,
-              row?.spec?.resticIdentifier
-            )}
-            disabled={row?.spec?.repositoryType !== 'restic'}>
+            onClick={() =>
+              getRepositoryUnlock(row?.spec?.backupStorageLocation, row?.spec?.resticIdentifier)
+            }
+            disabled={row?.spec?.repositoryType !== 'restic'}
+          >
             Unlock
           </Menu.Item>
           <Menu.Item
-            onClick={() => getRepositoryUnlock(
-              row?.spec?.backupStorageLocation,
-              row?.spec?.resticIdentifier,
-              true
-            )}
-            disabled={row?.spec?.repositoryType !== 'restic'}>
+            onClick={() =>
+              getRepositoryUnlock(
+                row?.spec?.backupStorageLocation,
+                row?.spec?.resticIdentifier,
+                true,
+              )
+            }
+            disabled={row?.spec?.repositoryType !== 'restic'}
+          >
             Unlock--remove-all
           </Menu.Item>
         </Menu.Dropdown>
       </Menu>
 
-      <DescribeActionIcon resourceType={row?.kind} record={row}/>
+      <DescribeActionIcon resourceType={row?.kind} record={row} />
       <InfoRepositoryActionIcon
         repositoryURL={row?.spec?.resticIdentifier}
         backupStorageLocation={row?.spec?.backupStorageLocation}
@@ -98,26 +97,23 @@ export function RepoMRT({
         id: 'metadata.name',
         accessorFn: (row) => row?.metadata?.name ?? '',
         header: 'Name',
-        Cell: ({
-                 row,
-                 column,
-                 table
-               }) => {
+        Cell: ({ row, column, table }) => {
           const name = row?.original?.metadata?.name ?? '';
           const globalFilter = table.getState().globalFilter ?? '';
           const columnFilter = column.getFilterValue() ?? '';
           const highlights = [globalFilter, columnFilter]
-            .map(h => h.toString().trim())
+            .map((h) => h.toString().trim())
             .filter(Boolean);
 
           return (
             <Group gap={5}>
               <CopyButton value={name} timeout={2000}>
-                {({
-                    copied,
-                    copy
-                  }) => (
-                  <Tooltip label={copied ? 'Copied' : 'Copy backup name'} withArrow position="right">
+                {({ copied, copy }) => (
+                  <Tooltip
+                    label={copied ? 'Copied' : 'Copy backup name'}
+                    withArrow
+                    position="right"
+                  >
                     <ActionIcon
                       color={copied ? 'teal' : 'var(--mantine-primary-color-filled)'}
                       variant="light"
@@ -126,7 +122,7 @@ export function RepoMRT({
                       p={0}
                       m={0}
                     >
-                      {copied ? <IconCheck size={14}/> : <IconCopy size={16}/>}
+                      {copied ? <IconCheck size={14} /> : <IconCopy size={16} />}
                     </ActionIcon>
                   </Tooltip>
                 )}
@@ -138,9 +134,7 @@ export function RepoMRT({
                 }}
               >
                 <Group gap={5}>
-                  <Text truncate="end">
-                    {highlightMultiple(name, highlights)}
-                  </Text>
+                  <Text truncate="end">{highlightMultiple(name, highlights)}</Text>
                 </Group>
               </Anchor>
             </Group>
@@ -152,7 +146,7 @@ export function RepoMRT({
         accessorFn: (row) => row?.status?.phase ?? '',
         header: 'Status',
         Cell: ({ row }) => (
-          <VeleroResourceStatusBadge status={row?.original?.status?.phase || undefined}/>
+          <VeleroResourceStatusBadge status={row?.original?.status?.phase || undefined} />
         ),
       },
       {
@@ -164,16 +158,12 @@ export function RepoMRT({
         id: 'spec.backupStorageLocation',
         accessorFn: (row) => row?.spec?.backupStorageLocation ?? '',
         header: 'Backups Storage Location',
-        Cell: ({
-                 row,
-                 column,
-                 table
-               }) => {
+        Cell: ({ row, column, table }) => {
           const location = row?.original?.spec?.backupStorageLocation ?? '';
           const globalFilter = table.getState().globalFilter ?? '';
           const columnFilter = column.getFilterValue() ?? '';
           const highlights = [globalFilter, columnFilter]
-            .map(h => h.toString().trim())
+            .map((h) => h.toString().trim())
             .filter(Boolean);
 
           return (
@@ -184,10 +174,8 @@ export function RepoMRT({
               }}
             >
               <Group gap={5}>
-                <IconServer size={16}/>
-                <Text truncate="end">
-                  {highlightMultiple(location, highlights)}
-                </Text>
+                <IconServer size={16} />
+                <Text truncate="end">{highlightMultiple(location, highlights)}</Text>
               </Group>
             </Anchor>
           );
@@ -197,22 +185,20 @@ export function RepoMRT({
         id: 'spec.repositoryType',
         accessorFn: (row) => row?.spec?.repositoryType ?? '',
         header: 'Repository Type',
-        Cell: ({ row }) => <VeleroResourceStatusBadge status={row?.original?.spec?.repositoryType}/>,
+        Cell: ({ row }) => (
+          <VeleroResourceStatusBadge status={row?.original?.spec?.repositoryType} />
+        ),
       },
       {
         id: 'spec.resticIdentifier',
         accessorFn: (row) => row?.spec?.resticIdentifier ?? '',
         header: 'Identifier',
-        Cell: ({
-                 row,
-                 column,
-                 table
-               }) => {
+        Cell: ({ row, column, table }) => {
           const resticId = row?.original?.spec?.resticIdentifier ?? '';
           const globalFilter = table.getState().globalFilter ?? '';
           const columnFilter = column.getFilterValue() ?? '';
           const highlights = [globalFilter, columnFilter]
-            .map(h => h.toString().trim())
+            .map((h) => h.toString().trim())
             .filter(Boolean);
 
           if (!resticId) return null;
@@ -220,10 +206,7 @@ export function RepoMRT({
           return (
             <Group gap={5}>
               <CopyButton value={resticId} timeout={2000}>
-                {({
-                    copied,
-                    copy
-                  }) => (
+                {({ copied, copy }) => (
                   <Tooltip label={copied ? 'Copied' : 'Copy'} withArrow position="right">
                     <ActionIcon
                       color={copied ? 'teal' : 'gray'}
@@ -231,9 +214,9 @@ export function RepoMRT({
                       onClick={copy}
                     >
                       {copied ? (
-                        <IconCheck style={{ width: rem(16) }}/>
+                        <IconCheck style={{ width: rem(16) }} />
                       ) : (
-                        <IconCopy style={{ width: rem(16) }}/>
+                        <IconCopy style={{ width: rem(16) }} />
                       )}
                     </ActionIcon>
                   </Tooltip>
@@ -248,17 +231,19 @@ export function RepoMRT({
     [],
   );
 
-  return <GenericMRTTableLayout
-    name='repos'
-    fetching={fetching}
-    items={items || []}
-    setReload={setReload}
-    columns={columns}
-    initialState={{
-      columnVisibility: {
-        'spec.resticIdentifier': false,
-      }
-    }}
-    renderRowActions={({ row }: { row: MRT_Row<any> }) => <>{renderActions(row?.original)}</>}
-  />
+  return (
+    <GenericMRTTableLayout
+      name="repos"
+      fetching={fetching}
+      items={items || []}
+      setReload={setReload}
+      columns={columns}
+      initialState={{
+        columnVisibility: {
+          'spec.resticIdentifier': false,
+        },
+      }}
+      renderRowActions={({ row }: { row: MRT_Row<any> }) => <>{renderActions(row?.original)}</>}
+    />
+  );
 }

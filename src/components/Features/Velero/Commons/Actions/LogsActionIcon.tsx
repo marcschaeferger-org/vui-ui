@@ -12,10 +12,7 @@ interface LogsActionIconProps {
   record: any;
 }
 
-export default function LogsActionIcon({
-                                         resourceType,
-                                         record
-                                       }: LogsActionIconProps) {
+export default function LogsActionIcon({ resourceType, record }: LogsActionIconProps) {
   return (
     <Tooltip label="Logs">
       <ActionIcon
@@ -30,12 +27,12 @@ export default function LogsActionIcon({
             fullScreen: true,
             title: `${resourceType} logs ${record.metadata.name}`,
             children: (
-              <ResourceLogs resourceType={resourceType} resourceName={record.metadata.name}/>
+              <ResourceLogs resourceType={resourceType} resourceName={record.metadata.name} />
             ),
           });
         }}
       >
-        <IconFileDescription/>
+        <IconFileDescription />
       </ActionIcon>
     </Tooltip>
   );

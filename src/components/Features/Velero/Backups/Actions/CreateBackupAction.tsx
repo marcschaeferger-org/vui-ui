@@ -16,13 +16,13 @@ export default function CreateBackupAction() {
           openModal({
             title: 'Create New Backup',
             size: '60rem',
-            children: <CreateBackupForm/>,
+            children: <CreateBackupForm />,
             padding: 'md',
             radius: 'md',
             centered: true,
           });
         }}
-        leftSection={<IconPlus/>}
+        leftSection={<IconPlus />}
       >
         New
       </Button>

@@ -13,10 +13,7 @@ interface EditBslProps {
 
 const ttlRegex = /^(\d+h)?(\d+m)?(\d+s)?$/;
 
-export function EditBslForm({
-                              record,
-                              setReload
-                            }: EditBslProps) {
+export function EditBslForm({ record, setReload }: EditBslProps) {
   const appValues = useAppStatus();
 
   const { handleUpdateBsl } = useUpdateBsl();
@@ -46,9 +43,13 @@ export function EditBslForm({
       provider: (value) => (value?.length >= 1 ? null : 'Invalid provider'),
       bucket: (value) => (value?.length >= 1 ? null : 'Invalid bucket'),
       backupSyncPeriod: (value) =>
-        value.replace(/\s+/, '') !== '' && ttlRegex.test(value) ? null : 'Invalid format. Expected a number followed by s, m, or h',
+        value.replace(/\s+/, '') !== '' && ttlRegex.test(value)
+          ? null
+          : 'Invalid format. Expected a number followed by s, m, or h',
       validationFrequency: (value) =>
-        value.replace(/\s+/, '') !== '' && ttlRegex.test(value) ? null : 'Invalid format. Expected a number followed by s, m, or h',
+        value.replace(/\s+/, '') !== '' && ttlRegex.test(value)
+          ? null
+          : 'Invalid format. Expected a number followed by s, m, or h',
       credentialName: (value, values) => {
         if ((value && !values.credentialKey) || (!value && values.credentialKey)) {
           return 'Both Secret Name and Secret Key must be filled or both must be empty';
@@ -62,7 +63,9 @@ export function EditBslForm({
         return null;
       },
       accessMode: (value) =>
-        ['ReadWrite', 'ReadOnly'].includes(value) ? null : 'Access mode must be either "readwrite" or "readonly"',
+        ['ReadWrite', 'ReadOnly'].includes(value)
+          ? null
+          : 'Access mode must be either "readwrite" or "readonly"',
     },
   });
 
@@ -75,5 +78,5 @@ export function EditBslForm({
     }, appValues.refreshDatatableAfter);*/
   }
 
-  return <BslFormView mode="edit" form={form} onDone={updateBsl}/>;
+  return <BslFormView mode="edit" form={form} onDone={updateBsl} />;
 }

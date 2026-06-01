@@ -13,10 +13,10 @@ interface StartStopActionIconProps {
 }
 
 const StartStopActionIcon: React.FC<StartStopActionIconProps> = ({
-                                                                   resourceName,
-                                                                   paused,
-                                                                   buttonType = 'actionIcon',
-                                                                 }) => {
+  resourceName,
+  paused,
+  buttonType = 'actionIcon',
+}) => {
   const { scheduleStart } = useSchedulesStart();
   const { schedulePause } = useSchedulesPause();
 
@@ -36,13 +36,13 @@ const StartStopActionIcon: React.FC<StartStopActionIconProps> = ({
   return buttonType === 'actionIcon' ? (
     <Tooltip label={paused ? 'Start' : 'Pause'}>
       <ActionIcon size="sm" variant="subtle" onClick={handleAction}>
-        {paused ? <IconPlayerPlay color="green"/> : <IconPlayerPause color="orange"/>}
+        {paused ? <IconPlayerPlay color="green" /> : <IconPlayerPause color="orange" />}
       </ActionIcon>
     </Tooltip>
   ) : (
     <Button
       h={38}
-      leftSection={paused ? <IconPlayerPlay/> : <IconPlayerPause/>}
+      leftSection={paused ? <IconPlayerPlay /> : <IconPlayerPause />}
       color={paused ? 'green' : 'orange'}
       onClick={handleAction}
     >

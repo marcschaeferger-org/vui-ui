@@ -8,18 +8,13 @@ import { eventEmitter } from '@/lib/EventEmitter.js';
 import { DownloadRequestMRT } from '@/components/Features/Velero/Requests/DownloadRequestMRT';
 
 export default function DownloadRequests({
-                                           reload,
-                                           setReload,
-                                           active,
-                                           setFetchingData,
-                                           enableTopToolbar
-                                         }: any) {
-
-  const {
-    data,
-    getDownloadRequests,
-    fetching
-  } = useDownloadRequests();
+  reload,
+  setReload,
+  active,
+  setFetchingData,
+  enableTopToolbar,
+}: any) {
+  const { data, getDownloadRequests, fetching } = useDownloadRequests();
 
   const [records, setRecords] = useState<Array<any>>([]);
 
@@ -68,10 +63,12 @@ export default function DownloadRequests({
     return undefined;
   }, [active]);
 
-  return <DownloadRequestMRT
-    enableTopToolbar={enableTopToolbar}
-    fetching={fetching}
-    setReload={setReload}
-    items={records}
-  />;
+  return (
+    <DownloadRequestMRT
+      enableTopToolbar={enableTopToolbar}
+      fetching={fetching}
+      setReload={setReload}
+      items={records}
+    />
+  );
 }

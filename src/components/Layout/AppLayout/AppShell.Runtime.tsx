@@ -3,9 +3,9 @@
 import { useAgentConfig } from '@/hooks/context/useAgentConfig';
 import AppShellUserRuntime from './AppShell.UserRuntime';
 import { useServerStatus } from '@/contexts/ServerContext';
-import AppShellLoader from "@/components/Layout/AppShell.Loader";
-import { useAgentStatus } from "@/contexts/AgentContext";
-import React, { useEffect, useState, useRef } from "react";
+import AppShellLoader from '@/components/Layout/AppShell.Loader';
+import { useAgentStatus } from '@/contexts/AgentContext';
+import React, { useEffect, useState, useRef } from 'react';
 
 interface AppShellBootProps {
   children: any;
@@ -21,7 +21,7 @@ export default function AppShellRuntime({ children }: AppShellBootProps) {
   useEffect(() => {
     // evita il trigger al primo mount
     if (mountedRef.current && agentValues.isAgentAvailable) {
-      setReload(prev => prev + 1);
+      setReload((prev) => prev + 1);
     }
     mountedRef.current = true;
   }, [agentValues.isAgentAvailable]);
@@ -33,9 +33,7 @@ export default function AppShellRuntime({ children }: AppShellBootProps) {
       )}
 
       {serverValues.isServerAvailable && (
-        <AppShellUserRuntime reload={reload}>
-          {children}
-        </AppShellUserRuntime>
+        <AppShellUserRuntime reload={reload}>{children}</AppShellUserRuntime>
       )}
     </>
   );

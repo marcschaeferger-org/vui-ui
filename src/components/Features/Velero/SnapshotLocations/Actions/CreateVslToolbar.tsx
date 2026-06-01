@@ -9,10 +9,7 @@ interface CreateVslToolbarIconProps {
   setReload: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function CreateVslToolbar({
-                                           reload,
-                                           setReload
-                                         }: CreateVslToolbarIconProps) {
+export default function CreateVslToolbar({ reload, setReload }: CreateVslToolbarIconProps) {
   return (
     <Tooltip label="Create VSL">
       <Button
@@ -25,13 +22,13 @@ export default function CreateVslToolbar({
             modalId: 'newVSL',
             title: 'Create New Volume Snapshot Location',
             size: '60rem',
-            children: <CreateVslForm reload={reload} setReload={setReload}/>,
+            children: <CreateVslForm reload={reload} setReload={setReload} />,
             padding: 'md',
             radius: 'md',
             centered: true,
           });
         }}
-        leftSection={<IconPlus/>}
+        leftSection={<IconPlus />}
       >
         New
       </Button>

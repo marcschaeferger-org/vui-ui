@@ -26,7 +26,7 @@ export function DetailsBackupRestoreStatus({ data }: any) {
         <Text w={150} size="sm">
           Phase:
         </Text>
-        {data?.status?.phase && <VeleroResourceStatusBadge status={data?.status?.phase}/>}
+        {data?.status?.phase && <VeleroResourceStatusBadge status={data?.status?.phase} />}
       </Box>
 
       {data?.status?.errors && (
@@ -94,7 +94,8 @@ export function DetailsBackupRestoreStatus({ data }: any) {
               {data?.status?.progress?.itemsBackedUp ||
                 data?.status?.progress?.itemsRestored ||
                 'n.a.'}
-              {` / `}{data?.status?.progress?.totalItems || 'n.a.'}
+              {` / `}
+              {data?.status?.progress?.totalItems || 'n.a.'}
             </>
           )}
           {data?.status?.phase !== 'InProgress' && <>{data?.status?.progress?.totalItems}</>}
@@ -119,7 +120,7 @@ export function DetailsBackupRestoreStatus({ data }: any) {
             }}
           >
             <Group gap={5}>
-              <IconCalendarTime size={16}/>
+              <IconCalendarTime size={16} />
               <Text size="sm">{data?.metadata?.labels['velero.io/schedule-name']}</Text>
             </Group>
           </Anchor>

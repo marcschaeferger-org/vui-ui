@@ -13,11 +13,11 @@ interface VeleroDetailsLayoutProps {
 }
 
 export function VeleroDetailsLayout({
-                                      toolbar,
-                                      details,
-                                      manifest,
-                                      tabs,
-                                    }: VeleroDetailsLayoutProps) {
+  toolbar,
+  details,
+  manifest,
+  tabs,
+}: VeleroDetailsLayoutProps) {
   const tabListRef = useRef<HTMLDivElement>(null);
   const [tabHeaderHeight, setTabHeaderHeight] = useState(0);
   const uiValues = useUIStatus();
@@ -46,31 +46,38 @@ export function VeleroDetailsLayout({
       {toolbar}
 
       <Grid gutter="xs">
-        <Grid.Col span={{
-          base: 12,
-          md: 12,
-          lg: 4
-        }}><Box h={500}>{details}</Box></Grid.Col>
-        <Grid.Col span={{
-          base: 12,
-          md: 12,
-          lg: 8
-        }}>
+        <Grid.Col
+          span={{
+            base: 12,
+            md: 12,
+            lg: 4,
+          }}
+        >
+          <Box h={500}>{details}</Box>
+        </Grid.Col>
+        <Grid.Col
+          span={{
+            base: 12,
+            md: 12,
+            lg: 8,
+          }}
+        >
           <Card shadow="sm" padding="lg" radius="md" withBorder h={500}>
             <Card.Section withBorder inheritPadding p="sm" h={500}>
-              <Box h={480}>
-                {manifest}
-              </Box>
+              <Box h={480}>{manifest}</Box>
             </Card.Section>
           </Card>
         </Grid.Col>
       </Grid>
 
       {tabs && (
-        <Box style={{
-          flex: 1,
-          overflowY: 'auto'
-        }} mt="xs">
+        <Box
+          style={{
+            flex: 1,
+            overflowY: 'auto',
+          }}
+          mt="xs"
+        >
           <Card shadow="sm" radius="md" withBorder p={0} h="100%" ref={tabListRef}>
             {tabs(tabHeaderHeight)}
           </Card>

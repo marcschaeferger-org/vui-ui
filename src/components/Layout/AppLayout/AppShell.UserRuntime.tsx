@@ -30,8 +30,8 @@ import { ModalsProvider } from '@mantine/modals';
 import AppShellLayout from '@/components/Layout/AppLayout/AppShell.Layout';
 import { UserProvider, useUserStatus } from '@/contexts/UserContext';
 import { useAuth } from '@/hooks/user/useAuth';
-import { useEffect } from "react";
-import { env } from "next-runtime-env";
+import { useEffect } from 'react';
+import { env } from 'next-runtime-env';
 
 interface AppShellUserBootProps {
   children: any;
@@ -69,9 +69,9 @@ export default function AppShellUserRuntime({ children }: AppShellUserBootProps)
   const NEXT_PUBLIC_AUTH_ENABLED = env('NEXT_PUBLIC_AUTH_ENABLED')?.toLowerCase() !== 'false';
   return (
     <UserProvider>
-      {NEXT_PUBLIC_AUTH_ENABLED && (<UserInitializer/>)}
-      {!NEXT_PUBLIC_AUTH_ENABLED && (<FakeUserInitializer/>)}
-      <Notifications autoClose={5000}/>
+      {NEXT_PUBLIC_AUTH_ENABLED && <UserInitializer />}
+      {!NEXT_PUBLIC_AUTH_ENABLED && <FakeUserInitializer />}
+      <Notifications autoClose={5000} />
       <ModalsProvider>
         <AppShellLayout>{children}</AppShellLayout>
       </ModalsProvider>

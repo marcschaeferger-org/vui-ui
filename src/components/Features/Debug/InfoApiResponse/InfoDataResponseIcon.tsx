@@ -12,7 +12,6 @@ interface InfoDataResponseIconProps {
 }
 
 export default function InfoDataResponseIcon({ data }: InfoDataResponseIconProps) {
-
   return (
     <Tooltip label="Data">
       <ActionIcon
@@ -23,7 +22,7 @@ export default function InfoDataResponseIcon({ data }: InfoDataResponseIconProps
           openModal({
             title: 'Data',
             size: '80%',
-            children: <InfoDataResponse data={data}/>,
+            children: <InfoDataResponse data={data} />,
           });
         }}
       >

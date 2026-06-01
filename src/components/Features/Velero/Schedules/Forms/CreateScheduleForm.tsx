@@ -14,13 +14,8 @@ interface CreateScheduleProps {
 const ttlRegex = /^(\d+h)?(\d+m)?(\d+s)?$/;
 const timeoutRegex = /^\d+[smh]$/;
 
-export function CreateScheduleForm({
-                                     ns = [],
-                                   }: CreateScheduleProps) {
-  const {
-    data,
-    getCreationScheduleSettings
-  } = useCreationScheduleSettings();
+export function CreateScheduleForm({ ns = [] }: CreateScheduleProps) {
+  const { data, getCreationScheduleSettings } = useCreationScheduleSettings();
 
   const { handleCreateSchedule } = useCreateSchedule();
 

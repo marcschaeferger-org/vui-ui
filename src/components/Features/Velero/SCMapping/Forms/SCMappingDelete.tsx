@@ -9,10 +9,7 @@ interface SCMappingDeleteProps {
   setReload: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export function SCMappingDelete({
-                                  record,
-                                  setReload
-                                }: SCMappingDeleteProps) {
+export function SCMappingDelete({ record, setReload }: SCMappingDeleteProps) {
   const appValues = useAppStatus();
   const { handleDeleteSCMap } = useSCDelete();
 
@@ -23,7 +20,7 @@ export function SCMappingDelete({
     });
 
     const interval = setInterval(() => {
-      setReload(prev => prev + 1);
+      setReload((prev) => prev + 1);
       clearInterval(interval);
     }, appValues.refreshDatatableAfter);
   }

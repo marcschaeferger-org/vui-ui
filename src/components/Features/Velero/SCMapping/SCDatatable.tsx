@@ -12,11 +12,7 @@ import CreateSCMappingIcon from '@/components/Features/Velero/SCMapping/CreateSC
 import { SCMMRT } from '@/components/Features/Velero/SCMapping/SCMMRT';
 
 export function SCDatatable() {
-  const {
-    data: configMap,
-    getStorageClassesMap,
-    fetching
-  } = useStorageClassesMap();
+  const { data: configMap, getStorageClassesMap, fetching } = useStorageClassesMap();
   const [items, setItems] = useState<any>([]);
   const [reload, setReload] = useState(1);
   const agentValues = useAgentStatus();
@@ -42,14 +38,14 @@ export function SCDatatable() {
       <Toolbar title="Storage Class Mapping" breadcrumbItem={[{ name: 'Storage Class Mapping' }]}>
         <></>
       </Toolbar>
-      <DataFetchedInfo metadata={configMap?.metadata}/>
+      <DataFetchedInfo metadata={configMap?.metadata} />
       <SCMMRT
         fetching={fetching}
         setReload={setReload}
         items={items}
         customActions={
           <>
-            <CreateSCMappingIcon setReload={setReload} reload={reload}/>
+            <CreateSCMappingIcon setReload={setReload} reload={reload} />
           </>
         }
       />

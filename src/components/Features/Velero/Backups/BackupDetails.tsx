@@ -27,10 +27,7 @@ interface BackupProps {
 }
 
 export function BackupDetails({ params }: BackupProps) {
-  const {
-    data,
-    getManifest
-  } = useVeleroManifest();
+  const { data, getManifest } = useVeleroManifest();
 
   const [reload, setReload] = useState(1);
 
@@ -39,7 +36,10 @@ export function BackupDetails({ params }: BackupProps) {
   /* watch */
   // useWatchResources('backups');
   const handleWatchResources = debounce((message) => {
-    if (message?.payload?.resources === 'backups' && message?.payload?.resource?.metadata?.name === params.backup) {
+    if (
+      message?.payload?.resources === 'backups' &&
+      message?.payload?.resource?.metadata?.name === params.backup
+    ) {
       setManifest(message?.payload?.resource);
     }
   }, 150);
@@ -75,16 +75,16 @@ export function BackupDetails({ params }: BackupProps) {
           breadcrumbItem={[
             {
               name: 'Backups',
-              href: '/backups/'
+              href: '/backups/',
             },
             { name: `${params.backup}` },
           ]}
         >
-          <ReloadData setReload={setReload} reload={reload}/>
-          <RestoreAction record={manifest} setReload={setReload} buttonType="button"/>
-          <InspectAction record={manifest} buttonType="button"/>
-          <DownloadAction record={manifest} buttonType="button"/>
-          <UpdateExpirationAction record={manifest} setReload={setReload} buttonType="button"/>
+          <ReloadData setReload={setReload} reload={reload} />
+          <RestoreAction record={manifest} setReload={setReload} buttonType="button" />
+          <InspectAction record={manifest} buttonType="button" />
+          <DownloadAction record={manifest} buttonType="button" />
+          <UpdateExpirationAction record={manifest} setReload={setReload} buttonType="button" />
           <DeleteAction
             resourceType="backup"
             record={manifest}
@@ -94,28 +94,32 @@ export function BackupDetails({ params }: BackupProps) {
           />
         </Toolbar>
       }
-      details={<BackupDetailsView data={manifest}/>}
-      manifest={<Manifest resourceType="Backup" resourceName={params.backup} reload={reload}/>}
+      details={<BackupDetailsView data={manifest} />}
+      manifest={<Manifest resourceType="Backup" resourceName={params.backup} reload={reload} />}
       tabs={(height) => (
         <Tabs defaultValue="PodVolumes" h="100%">
           <Tabs.List>
-            <Tabs.Tab value="PodVolumes" leftSection={<IconDatabaseExport size={12}/>}>
+            <Tabs.Tab value="PodVolumes" leftSection={<IconDatabaseExport size={12} />}>
               Pod volumes
             </Tabs.Tab>
-            <Tabs.Tab value="Logs" leftSection={<IconFileText size={12}/>}>
+            <Tabs.Tab value="Logs" leftSection={<IconFileText size={12} />}>
               Logs
             </Tabs.Tab>
           </Tabs.List>
 
           <Tabs.Panel value="PodVolumes" h="100%">
             <Box p={0} h="100%">
-              <PodVolumeList podVolumeName={params.backup} type="podvolumebackups"/>
+              <PodVolumeList podVolumeName={params.backup} type="podvolumebackups" />
             </Box>
           </Tabs.Panel>
 
           <Tabs.Panel value="Logs" h="100%">
             <Box p={5} h="100%">
-              <ResourceLogs resourceType="backup" resourceName={data?.metadata?.name} h={height - 50}/>
+              <ResourceLogs
+                resourceType="backup"
+                resourceName={data?.metadata?.name}
+                h={height - 50}
+              />
             </Box>
           </Tabs.Panel>
         </Tabs>
