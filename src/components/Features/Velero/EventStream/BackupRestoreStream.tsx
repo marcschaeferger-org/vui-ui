@@ -36,19 +36,10 @@ export default function BackupRestoreStream({
   /* end watch */
 
   useEffect(() => {
-    if (active) {
-      return undefined;
-    }
-    getStatsInProgress();
-    return undefined;
-  }, []);
-
-  useEffect(() => {
     if (!active) {
       return undefined;
     }
     getStatsInProgress();
-    return undefined;
   }, [active]);
 
   useEffect(() => {

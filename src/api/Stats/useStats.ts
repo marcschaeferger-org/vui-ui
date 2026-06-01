@@ -4,20 +4,13 @@ export const useStats = () => {
   const { data, getData, fetching, fetchedTime, error } = useApiGet();
 
   const getStats = async (forced: boolean = false) => {
-    try {
-      return await getData({
-        url: '/v1/stats',
-        params: `forced=${forced}`,
-        target: 'agent',
-        cache: true,
-        force: forced,
-      });
-    } catch (_e) {
-      // Error handling
-      // console.error('Error during call:', error);
-    } finally {
-      // This code will always be executed
-    }
+    return getData({
+      url: '/v1/stats',
+      params: `forced=${forced}`,
+      target: 'agent',
+      cache: true,
+      force: forced,
+    });
   };
 
   // Return the function for the call and the necessary data

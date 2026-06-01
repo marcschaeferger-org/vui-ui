@@ -14,6 +14,7 @@ svg.tabler-icon {
   --ai-hover: var(--mantine-color-gray-light-hover);
   --ai-color: var(--mantine-color-gray-light-color);
   --ai-bd: calc(0.0625rem * var(--mantine-scale)) solid transparent;
+
   color: light-dark(var(--mantine-color-gray-light-color), var(--mantine-color-gray));
 }
 

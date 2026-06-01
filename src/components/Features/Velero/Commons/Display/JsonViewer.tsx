@@ -6,11 +6,13 @@ import { allExpanded, defaultStyles, JsonView } from 'react-json-view-lite';
 
 import 'react-json-view-lite/dist/index.css';
 
+type JsonValue = string | number | boolean | null | undefined | JsonValue[] | { [key: string]: JsonValue };
+
 interface DetailProps {
-  record: string;
+  record: JsonValue;
 }
 
-export function JsonViewer({ record = '' }: DetailProps) {
+export function JsonViewer({ record }: DetailProps) {
   if (record === undefined) {
     return (
       <Center>
@@ -21,7 +23,11 @@ export function JsonViewer({ record = '' }: DetailProps) {
 
   return (
     <div style={{ whiteSpace: 'pre-line' }}>
-      <JsonView data={record} shouldExpandNode={allExpanded} style={defaultStyles} />
+      <JsonView
+        data={(record as Object | any[]) ?? {}}
+        shouldExpandNode={allExpanded}
+        style={defaultStyles}
+      />
     </div>
   );
 }

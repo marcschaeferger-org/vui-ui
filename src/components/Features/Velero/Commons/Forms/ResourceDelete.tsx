@@ -2,7 +2,6 @@ import { Button, Center, Group, Text } from '@mantine/core';
 import { closeAllModals } from '@mantine/modals';
 
 import { useRouter } from 'next/navigation';
-import { useAppStatus } from '@/contexts/AppContext';
 import { useResourceDelete } from '@/api/Velero/useResourceDelete';
 
 interface ResourceDeleteProps {
@@ -19,7 +18,6 @@ export function ResourceDelete({
   redirectAfterDelete = '',
 }: ResourceDeleteProps) {
   const router = useRouter();
-  const _appValues = useAppStatus();
   const { handleDeleteResource } = useResourceDelete();
 
   function deleteResource() {

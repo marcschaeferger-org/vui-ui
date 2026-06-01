@@ -27,7 +27,7 @@ export function HeatMapBox() {
   }, []);
 
   useEffect(() => {
-    if (weekday !== undefined && Object.keys(weekday?.week_heatmap).length > 0) {
+    if (weekday && weekday.week_heatmap && Object.keys(weekday.week_heatmap).length > 0) {
       setDay(0);
     }
   }, [weekday]);

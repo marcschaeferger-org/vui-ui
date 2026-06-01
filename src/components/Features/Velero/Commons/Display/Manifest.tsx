@@ -87,13 +87,26 @@ export function Manifest({ resourceType, resourceName, reload }: ManifestProps) 
   // Convert to YAML string
   const yamlString = useMemo(() => convertJsonToYaml(manifest), [manifest]);
 
-  // Compute highlighted YAML with <mark> tags
+  // Compute highlighted YAML with safe React nodes
   const highlightedYaml = useMemo(() => {
     if (!debouncedSearch) {
       return yamlString;
     }
-    const regex = new RegExp(`(${debouncedSearch})`, 'gi');
-    return yamlString.replace(regex, '<mark>$1</mark>');
+    // Escape HTML entities first to prevent XSS
+    const escaped = yamlString
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;');
+    // Escape HTML entities in search term first (same as yamlString)
+    const escapedSearch = debouncedSearch
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll(/[.*+?^${}()|[\]\\]/g, String.raw`\$&`);
+    const regex = new RegExp(`(${escapedSearch})`, 'gi');
+    return escaped.replace(regex, '<mark>$1</mark>');
   }, [yamlString, debouncedSearch]);
 
   // Compute match line indices for minimap

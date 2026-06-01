@@ -4,7 +4,17 @@ import { Button, Tooltip } from '@mantine/core';
 import { IconAlertSquareRounded } from '@tabler/icons-react';
 import { notifications } from '@mantine/notifications';
 
-export default function ReloadConfig({ watchdogReloadConfig, hasDiff, setReload }: any) {
+interface ReloadConfigProps {
+  watchdogReloadConfig: () => Promise<void>;
+  hasDiff: boolean;
+  setReload: (value: number | ((prev: number) => number)) => void;
+}
+
+export default function ReloadConfig({
+  watchdogReloadConfig,
+  hasDiff,
+  setReload,
+}: ReloadConfigProps) {
   if (!hasDiff) {
     return (
       <Button

@@ -36,12 +36,11 @@ export default function ServerStatusRequests({
   /* end watch */
 
   useEffect(() => {
-    if (active) {
+    if (!active) {
       return undefined;
     }
     getServerStatusRequests();
-    return undefined;
-  }, []);
+  }, [active]);
 
   useEffect(() => {
     getServerStatusRequests();

@@ -1,7 +1,5 @@
 import { useForm } from '@mantine/form';
 
-import { useAppStatus } from '@/contexts/AppContext';
-
 import CreateCredentialsLocationFormView from '@/components/Features/Velero/Commons/Forms/CreateCredentialsLocationFormView';
 import { useCreateLocationCredentials } from '@/api/Velero/useCreateLocationCredentials';
 
@@ -16,8 +14,6 @@ export function CreateLocationCredentialsForm({
   setReload: _setReload,
   close,
 }: CreateBslProps) {
-  const _appValues = useAppStatus();
-
   const { handleCreateCredentials } = useCreateLocationCredentials();
 
   const form = useForm({

@@ -23,7 +23,7 @@ export function ResourceDescribe({ resourceType, resourceName }: ResourceDescrib
 
   useEffect(() => {
     getManifest(resourceType, resourceName, false);
-  }, [resourceName]);
+  }, [resourceType, resourceName]);
 
   return (
     <>

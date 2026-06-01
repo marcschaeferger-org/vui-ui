@@ -125,7 +125,7 @@ export function PodVolumesMRT({ fetching, setReload, items, type }: any) {
         ),
       },
     ],
-    [],
+    [type],
   );
 
   return (

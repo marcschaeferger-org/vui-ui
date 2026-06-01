@@ -4,10 +4,14 @@ import { ActionIcon, Tooltip } from '@mantine/core';
 import { IconDownload } from '@tabler/icons-react';
 
 interface DownloadActionIconProps {
-  url: string;
+  url: string | undefined;
 }
 
 const DownloadAction: React.FC<DownloadActionIconProps> = ({ url }) => {
+  if (!url) {
+    return null;
+  }
+
   const handleOpenModal = () => {
     const a = document.createElement('a');
     a.href = url;
