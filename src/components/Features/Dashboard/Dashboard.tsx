@@ -33,13 +33,13 @@ export function Dashboard() {
 
   useEffect(() => {
     if (agentValues.isAgentAvailable && reload > 1) {
-      getStats(true);
+      getStats(true).catch((err) => console.error('Failed to fetch stats:', err));
     }
   }, [reload]);
 
   useEffect(() => {
     if (agentValues.isAgentAvailable) {
-      getStats();
+      getStats().catch((err) => console.error('Failed to fetch stats:', err));
     }
   }, [agentValues.isAgentAvailable]);
 

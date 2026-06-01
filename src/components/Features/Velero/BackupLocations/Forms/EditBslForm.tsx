@@ -44,13 +44,15 @@ export function EditBslForm({ record, setReload: _setReload }: EditBslProps) {
       bucket: (value) => (value?.length >= 1 ? null : 'Invalid bucket'),
       backupSyncPeriod: (value) => {
         const normalized = (value ?? '').replace(/\s+/g, '');
-        return normalized !== '' && ttlRegex.test(normalized)
+        if (normalized === '') return null;
+        return ttlRegex.test(normalized)
           ? null
           : 'Invalid format. Expected a number followed by s, m, or h';
       },
       validationFrequency: (value) => {
         const normalized = (value ?? '').replace(/\s+/g, '');
-        return normalized !== '' && ttlRegex.test(normalized)
+        if (normalized === '') return null;
+        return ttlRegex.test(normalized)
           ? null
           : 'Invalid format. Expected a number followed by s, m, or h';
       },

@@ -16,13 +16,13 @@ export function Nats() {
 
   useEffect(() => {
     if (serverValues.isCurrentServerControlPlane) {
-      getNatsClients();
+      getNatsClients().catch((err) => console.error('Failed to fetch NATS clients:', err));
     }
   }, []);
 
   useEffect(() => {
     if (serverValues.isCurrentServerControlPlane) {
-      getNatsClients();
+      getNatsClients().catch((err) => console.error('Failed to fetch NATS clients:', err));
     }
   }, [reload]);
 

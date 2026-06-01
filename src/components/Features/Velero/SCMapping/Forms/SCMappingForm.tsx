@@ -39,9 +39,9 @@ export function SCMappingForm({ record = null, setReload, mode = 'create' }: SCM
 
   function onDone(values: any) {
     if (mode === 'create') {
-      handleScCreateMap(values);
+      handleScCreateMap(values).catch((err) => console.error('Failed to create SC mapping:', err));
     } else {
-      handleScUpdateMap(values);
+      handleScUpdateMap(values).catch((err) => console.error('Failed to update SC mapping:', err));
     }
 
     closeAllModals();

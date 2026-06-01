@@ -38,9 +38,11 @@ export default function WatchdogServiceConfigTable({
     });
 
   const handleRemoveRow = (element: string) => {
-    watchdogDeleteService({ name: element }).then(() => {
-      setServices((current: any) => current.filter((item: any) => item !== element));
-    });
+    watchdogDeleteService({ name: element })
+      .then(() => {
+        setServices((current: any) => current.filter((item: any) => item !== element));
+      })
+      .catch((err) => console.error('Failed to delete watchdog service:', err));
   };
   const { watchdogTestService } = useWatchdogTestService();
 

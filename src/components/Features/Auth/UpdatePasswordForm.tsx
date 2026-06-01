@@ -27,7 +27,7 @@ export function UpdatePasswordForm() {
   });
 
   function onDone(password: string) {
-    handleUpdatePassword(password);
+    handleUpdatePassword(password).catch((err) => console.error('Failed to update password:', err));
   }
 
   useEffect(() => {
