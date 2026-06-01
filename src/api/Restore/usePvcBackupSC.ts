@@ -9,7 +9,7 @@ export const usePvcBackupSC = () => {
         url: '/v1/backup/storage-classes',
         params: `backup_name=${resourceName}`,
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

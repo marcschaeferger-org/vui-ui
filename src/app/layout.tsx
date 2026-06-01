@@ -21,7 +21,7 @@ import LayoutTheme from '@/app/layoutTheme';
 
 import AppClientWrapper from '@/components/AppClientWrapper';
 
-function ProvidersWrapper({ children }: { children: React.ReactNode }) {
+function ProvidersWrapper({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <UIProvider>
       <AppProvider>
@@ -37,7 +37,7 @@ function ProvidersWrapper({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function RootLayout({ children }: { children: any }) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const loggerEnabled = env('NEXT_PUBLIC_LOGGER_ENABLED')?.toLocaleLowerCase() === 'true';
 
   return (

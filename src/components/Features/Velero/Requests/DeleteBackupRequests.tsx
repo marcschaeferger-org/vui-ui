@@ -28,7 +28,9 @@ export default function DeleteBackupRequests({
   }, 150);
 
   useEffect(() => {
-    if (!active) return undefined;
+    if (!active) {
+      return undefined;
+    }
     getDeleteBackupRequests();
     return undefined;
   }, []);
@@ -59,7 +61,9 @@ export default function DeleteBackupRequests({
   }, [data]);
 
   useEffect(() => {
-    if (!active) return undefined;
+    if (!active) {
+      return undefined;
+    }
     getDeleteBackupRequests();
     return undefined;
     /*const interval = setInterval(() => {

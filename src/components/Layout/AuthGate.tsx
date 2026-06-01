@@ -83,7 +83,6 @@ export default function AuthGate({ children, guestOnly = false }: AuthGateProps)
 
         // ✅ Authenticated and on a valid page
         setChecking(false);
-        return;
       }
     };
 

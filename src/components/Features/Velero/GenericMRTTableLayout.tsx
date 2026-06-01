@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { ActionIcon, Center, Divider, Flex, Indicator, Title, Tooltip } from '@mantine/core';
 import { IconFilterOff, IconRefresh, IconSettingsX } from '@tabler/icons-react';
 import {
@@ -80,16 +79,16 @@ export function GenericMRTTableLayout({
     enableSorting: true,
     enableColumnOrdering: true,
     enableDensityToggle: true,
-    enableRowActions: enableRowActions,
+    enableRowActions,
     positionActionsColumn: 'last',
-    enablePagination: enablePagination,
+    enablePagination,
     enableColumnResizing: true,
-    enableTopToolbar: enableTopToolbar,
-    enableBottomToolbar: enableBottomToolbar,
+    enableTopToolbar,
+    enableBottomToolbar,
     enableColumnPinning: true,
     enableRowVirtualization: true,
 
-    initialState: initialState,
+    initialState,
 
     state: {
       grouping,
@@ -124,7 +123,7 @@ export function GenericMRTTableLayout({
     enableGlobalFilter: true,
     enableFilterMatchHighlighting: true,
     enableGlobalFilterModes: true,
-    enableGrouping: enableGrouping,
+    enableGrouping,
 
     renderRowActions,
     renderRowActionMenuItems,

@@ -5,7 +5,7 @@ import AppShellUserRuntime from './AppShell.UserRuntime';
 import { useServerStatus } from '@/contexts/ServerContext';
 import AppShellLoader from '@/components/Layout/AppShell.Loader';
 import { useAgentStatus } from '@/contexts/AgentContext';
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 interface AppShellBootProps {
   children: any;

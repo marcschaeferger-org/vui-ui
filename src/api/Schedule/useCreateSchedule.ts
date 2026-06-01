@@ -6,7 +6,7 @@ export const useCreateSchedule = () => {
   const handleCreateSchedule = async (values: any) => {
     try {
       return await postData('/v1/schedule', values);
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

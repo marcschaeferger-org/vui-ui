@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { env } from 'next-runtime-env';
 import { useServerStatus } from '@/contexts/ServerContext';
 

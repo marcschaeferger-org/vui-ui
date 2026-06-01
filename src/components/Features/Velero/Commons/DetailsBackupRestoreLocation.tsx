@@ -1,6 +1,5 @@
 import { Anchor, Box, Card, Group, Text } from '@mantine/core';
 import { IconCamera, IconServer } from '@tabler/icons-react';
-import React from 'react';
 import { useRouter } from 'next/navigation';
 import classes from '@/styles/veleroResourceDetails.module.css';
 
@@ -15,7 +14,9 @@ export function DetailsBackupRestoreLocation({ data }: any) {
   // Funzione per renderizzare un link con icona
   const renderLink = (label: string, field: string, basePath: string, Icon: any) => {
     const value = getValue(field);
-    if (!value) return null;
+    if (!value) {
+      return null;
+    }
 
     return (
       <Box
@@ -41,7 +42,9 @@ export function DetailsBackupRestoreLocation({ data }: any) {
   // Funzione per renderizzare una lista di link con icone
   const renderLinkList = (label: string, field: string, basePath: string, Icon: any) => {
     const values = getValue(field);
-    if (!Array.isArray(values) || values.length === 0) return null;
+    if (!Array.isArray(values) || values.length === 0) {
+      return null;
+    }
 
     return (
       <Box

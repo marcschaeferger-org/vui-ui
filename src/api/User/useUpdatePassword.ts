@@ -6,7 +6,7 @@ export const useUpdatePassword = () => {
   const handleUpdatePassword = async (password: string) => {
     try {
       return await putData('/v1/users/me/update/pwd', { password }, 'static');
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

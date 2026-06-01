@@ -9,7 +9,7 @@ export const usePodsLogs = () => {
         url: `/v1/k8s/pod/logs`,
         params: `pod=${podName}&target=${target}`,
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

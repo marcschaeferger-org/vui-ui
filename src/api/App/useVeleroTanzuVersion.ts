@@ -9,7 +9,7 @@ export const useVeleroTanzuVersion = () => {
         url: '/info/velero-repo-tag',
         target: 'static',
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

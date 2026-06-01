@@ -8,7 +8,7 @@ export const usePodVolumesBackup = () => {
       return await getData({
         url: '/v1/pod-volume-backups',
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

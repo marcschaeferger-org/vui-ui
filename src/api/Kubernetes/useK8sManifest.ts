@@ -16,7 +16,7 @@ export const useK8sManifest = () => {
         url: '/v1/k8s/manifest',
         params: `kind=${kind}&name=${name}&api_version=${api_version}${namespace ? `&namespace=${namespace}` : ''}&is_cluster_resource=${is_cluster_resource}&neat=${neat}`,
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

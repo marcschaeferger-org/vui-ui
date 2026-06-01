@@ -29,7 +29,9 @@ export const useDiagnosticAgent = () => {
   stateManager.arch = agentStatus?.arch?.arch;
   stateManager.watchdog = agentStatus?.watchdogStatus?.status;
 
-  if (agentStatus?.origins !== undefined) stateManager.apiOrigins = agentStatus?.origins;
+  if (agentStatus?.origins !== undefined) {
+    stateManager.apiOrigins = agentStatus?.origins;
+  }
 
   stateManager.setVariable('getUiURL', uiURL !== '');
   stateManager.setVariable('getApiURL', apiURL !== '');

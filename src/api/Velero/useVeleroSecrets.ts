@@ -8,7 +8,7 @@ export const useVeleroSecrets = () => {
       return await getData({
         url: '/v1/k8s/velero/secrets',
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

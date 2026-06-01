@@ -9,7 +9,7 @@ export const useVeleroManifest = () => {
         url: '/v1/k8s/velero/manifest',
         params: `resource_type=${resource_type}&resource_name=${resource_name}&neat=${neat}`,
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

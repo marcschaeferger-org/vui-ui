@@ -9,7 +9,7 @@ export const useInspectFolderContent = () => {
         url: '/v1/inspect/folder/content',
         params: `backup=${backup}`,
       });
-    } catch (e) {
+    } catch (_e) {
       // console.error('Error:', e);
     } finally {
       // This code will always be executed

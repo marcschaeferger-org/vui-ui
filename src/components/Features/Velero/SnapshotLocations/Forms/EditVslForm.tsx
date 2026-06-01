@@ -11,8 +11,8 @@ interface EditBslProps {
   setReload: any;
 }
 
-export function EditVslForm({ record, setReload }: EditBslProps) {
-  const appValues = useAppStatus();
+export function EditVslForm({ record, setReload: _setReload }: EditBslProps) {
+  const _appValues = useAppStatus();
 
   const { handleUpdateVsl } = useUpdateVsl();
 

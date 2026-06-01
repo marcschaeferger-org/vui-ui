@@ -97,7 +97,7 @@ export default function TableVersion({ app, githubRelease }: TableVersionProps) 
             <Table.Th>Module</Table.Th>
             <Table.Th>Version</Table.Th>
             <Table.Th>Github Release</Table.Th>
-            <Table.Th></Table.Th>
+            <Table.Th />
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>{rows}</Table.Tbody>

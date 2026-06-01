@@ -29,7 +29,7 @@ function parseAnsiToParts(text: string, computedColorScheme: string) {
   };
 
   const RESET = '\x1b[0m';
-  const ansiRegex = /\x1b\[[0-9;]*m/g;
+  const ansiRegex = /\x1b\[[0-9;]*m/g; // eslint-disable-line no-control-regex -- ANSI escape codes are intentional
   const parts: { text: string; color?: string }[] = [];
 
   let currentColor: string | undefined;
@@ -85,7 +85,7 @@ export function LogsView({
   }, [input, debouncedSetInput]);
 
   const logsToShow = useMemo(() => {
-    if (!items?.logs) return [];
+    if (!items?.logs) {return [];}
 
     const relevantLogs = filterMode == 'filter'
       ? items.logs.filter((log: string) =>
@@ -105,14 +105,6 @@ export function LogsView({
       };
     });
   }, [items.logs, debouncedInput, filterMode, computedColorScheme]);
-
-  if (fetching) {
-    return (
-      <Center mt={50}>
-        <Loader/>
-      </Center>
-    );
-  }
 
   if (fetching) {
     return (
@@ -204,13 +196,13 @@ export function LogsView({
                           {after}
                         </span>
                       );
-                    } else {
+                    } 
                       return (
                         <span key={i} style={{ color: part.color }}>
                           {part.text}
                         </span>
                       );
-                    }
+                    
                   })}
                 </Text>
               ))}

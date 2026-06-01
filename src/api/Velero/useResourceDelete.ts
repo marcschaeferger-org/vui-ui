@@ -9,7 +9,7 @@ export const useResourceDelete = () => {
         url: `/v1/${resourceType}`,
         params,
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

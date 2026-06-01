@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Box, Center, Loader, Stack } from '@mantine/core';
 
-import { useViewportSize } from '@mantine/hooks';
 import { AgentStats } from './items/AgentStats';
 
 import { useAgentStatus } from '@/contexts/AgentContext';
@@ -17,7 +16,6 @@ import { MainStack } from '@/components/Commons/MainStack';
 
 export function Agents() {
   const agentValues = useAgentStatus();
-  const { height: vpHeight, width: vpWidth } = useViewportSize();
   const { data, getAgentStats, fetching } = useAgentStats();
   const [reload, setReload] = useState(1);
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Stack, Text } from '@mantine/core';
 
 import DebugContextAgent from './Context/DebugContextAgent';

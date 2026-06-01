@@ -8,7 +8,7 @@ import { useAppVersion } from '@/api/App/useAppVersion';
 import { useAppStatus } from '@/contexts/AppContext';
 
 export const Version = () => {
-  const { data, getAppVersion } = useAppVersion();
+  const { data, getAppVersion: _getAppVersion } = useAppVersion();
 
   const agentValues = useAgentStatus();
   const computedColorScheme = useComputedColorScheme();

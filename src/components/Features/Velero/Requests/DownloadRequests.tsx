@@ -36,7 +36,9 @@ export default function DownloadRequests({
   /* end watch */
 
   useEffect(() => {
-    if (!active) return undefined;
+    if (!active) {
+      return undefined;
+    }
     getDownloadRequests();
     return undefined;
   }, []);
@@ -58,7 +60,9 @@ export default function DownloadRequests({
   }, [data]);
 
   useEffect(() => {
-    if (!active) return undefined;
+    if (!active) {
+      return undefined;
+    }
     getDownloadRequests();
     return undefined;
   }, [active]);

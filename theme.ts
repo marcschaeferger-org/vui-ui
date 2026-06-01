@@ -1,7 +1,6 @@
 'use client';
 
 import { createTheme, Loader } from '@mantine/core';
-import { RingLoader } from '@/components/Display/RingLoader';
 
 //const open_sans = Open_Sans({ subsets: ['latin'] });
 

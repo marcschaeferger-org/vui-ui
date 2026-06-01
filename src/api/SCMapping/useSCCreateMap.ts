@@ -8,7 +8,7 @@ export const useSCCreateMap = () => {
       return await postData('/v1/sc-mapping', {
         storageClassMapping: values,
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

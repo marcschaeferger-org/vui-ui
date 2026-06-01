@@ -10,7 +10,7 @@ export const useAgentStats = () => {
         target: 'core',
         params: `forced=${forced}`,
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

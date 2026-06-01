@@ -9,7 +9,7 @@ export const useRepositoryLocks = () => {
         url: '/v1/repo/locks',
         params: `bsl=${bsl}&repository_url=${repositoryUrl}`,
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

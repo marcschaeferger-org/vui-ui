@@ -6,7 +6,7 @@ export const useCreateRestore = () => {
   const handleCreateRestore = async (values: any) => {
     try {
       return await postData('/v1/restore', values);
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

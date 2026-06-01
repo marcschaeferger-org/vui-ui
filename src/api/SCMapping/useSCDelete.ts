@@ -9,7 +9,7 @@ export const useSCDelete = () => {
         url: '/v1/sc-mapping',
         params: { storageClassMapping: params },
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

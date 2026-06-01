@@ -1,7 +1,9 @@
 import React from 'react';
 
 export function highlightMultiple(text: string, highlights: string[]): React.ReactNode[] {
-  if (!highlights.length) return [text];
+  if (!highlights.length) {
+    return [text];
+  }
 
   const regex = new RegExp(`(${highlights.filter(Boolean).join('|')})`, 'gi');
   const parts = text.split(regex);

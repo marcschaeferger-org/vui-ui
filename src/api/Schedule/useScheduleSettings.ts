@@ -6,7 +6,7 @@ export const useCreationScheduleSettings = () => {
   const getCreationScheduleSettings = async () => {
     try {
       return await getData({ url: '/v1/schedule/environment' });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

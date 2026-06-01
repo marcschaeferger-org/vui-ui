@@ -6,7 +6,7 @@ export const useCreateBackupFromScheule = () => {
   const handleCreateBackupFromSchedule = async (scheduleName: string) => {
     try {
       return await postData('/v1/backup/create-from-schedule', { scheduleName: `${scheduleName}` });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

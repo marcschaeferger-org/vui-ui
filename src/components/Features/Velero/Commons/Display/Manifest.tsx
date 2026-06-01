@@ -89,14 +89,18 @@ export function Manifest({ resourceType, resourceName, reload }: ManifestProps) 
 
   // Compute highlighted YAML with <mark> tags
   const highlightedYaml = useMemo(() => {
-    if (!debouncedSearch) return yamlString;
+    if (!debouncedSearch) {
+      return yamlString;
+    }
     const regex = new RegExp(`(${debouncedSearch})`, 'gi');
     return yamlString.replace(regex, '<mark>$1</mark>');
   }, [yamlString, debouncedSearch]);
 
   // Compute match line indices for minimap
   const matchLines = useMemo(() => {
-    if (!debouncedSearch) return [];
+    if (!debouncedSearch) {
+      return [];
+    }
     const lines = yamlString.split('\n');
     return lines.reduce((acc: number[], line, index) => {
       if (line.toLowerCase().includes(debouncedSearch.toLowerCase())) {

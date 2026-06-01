@@ -1,12 +1,11 @@
 import { Box, Card, Group, Space, Text, Title } from '@mantine/core';
 import { IconCalendarTime } from '@tabler/icons-react';
 import VeleroResourceStatusBadge from '@/components/Features/Velero/Commons/Display/VeleroResourceStatusBadge';
-import React from 'react';
 import { DetailsBackupRestoreContent } from '@/components/Features/Velero/Commons/DetailsBackupRestoreContent';
 import { DetailsBackupRestoreLocation } from '@/components/Features/Velero/Commons/DetailsBackupRestoreLocation';
 import classes from '@/styles/veleroResourceDetails.module.css';
 
-export function ScheduleDetailsView({ data, ...rest }: any) {
+export function ScheduleDetailsView({ data }: any) {
   return (
     <Card shadow="sm" radius="md" withBorder h="100%">
       <Card.Section p="md" className={classes.section}>

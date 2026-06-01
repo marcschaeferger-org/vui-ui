@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useAgentStatus } from '@/contexts/AgentContext';
 import { MainStack } from '@/components/Commons/MainStack';
@@ -10,7 +10,7 @@ import { PodEnvMRT } from '@/components/Features/Settings/PodEnvMRT';
 export function API() {
   const agentValues = useAgentStatus();
 
-  const [reload, setReload] = useState(1);
+  const [_reload, setReload] = useState(1);
   const [rowApiConfiguration, setRowApiConfiguration] = useState<any>([]);
 
   useEffect(() => {

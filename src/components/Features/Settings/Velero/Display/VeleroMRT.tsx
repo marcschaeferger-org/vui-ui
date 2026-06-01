@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 
 import { Group } from '@mantine/core';
 import { type MRT_ColumnDef, MRT_Row } from 'mantine-react-table';
@@ -12,7 +12,7 @@ import PodLogsActionIcon from '@/components/Features/Settings/Velero/Actions/Pod
 import VeleroResourceStatusBadge from '@/components/Features/Velero/Commons/Display/VeleroResourceStatusBadge';
 
 export function VeleroMRT({ fetching, setReload, items }: any) {
-  const router = useRouter();
+  const _router = useRouter();
 
   const renderActions = (record: any) => (
     <Group gap={2} wrap="nowrap">

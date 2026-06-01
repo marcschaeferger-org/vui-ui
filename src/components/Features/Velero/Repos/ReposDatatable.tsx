@@ -36,7 +36,9 @@ export function ReposDatatable() {
   /* end watch */
 
   useEffect(() => {
-    if (reload > 1) getRepositories(true);
+    if (reload > 1) {
+      getRepositories(true);
+    }
   }, [reload]);
 
   useEffect(() => {

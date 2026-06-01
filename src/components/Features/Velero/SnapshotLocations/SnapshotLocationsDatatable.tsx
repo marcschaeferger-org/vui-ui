@@ -36,7 +36,9 @@ export function SnapshotLocationsDatatable() {
   /* end watch */
 
   useEffect(() => {
-    if (reload > 1) getSnapshotLocation(true);
+    if (reload > 1) {
+      getSnapshotLocation(true);
+    }
   }, [reload]);
 
   useEffect(() => {

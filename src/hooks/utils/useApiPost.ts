@@ -13,10 +13,6 @@ import { useServerStatus } from '@/contexts/ServerContext';
 import { useAgentStatus } from '@/contexts/AgentContext';
 import { buildBackendUrl } from '@/utils/backend';
 
-interface UseApiPostProps {
-  target?: 'core' | 'agent' | 'static';
-}
-
 export const useApiPost = () => {
   const { logout } = useAuthErrorHandler();
 
@@ -26,7 +22,7 @@ export const useApiPost = () => {
   const { addNotificationHistory } = useUserNotificationHistory();
   const { addApiRequestHistory, addApiResponseHistory } = useApiLogger();
 
-  const [fetchedTime, setFetchedTime] = useState<string | undefined>(undefined);
+  const [_fetchedTime, setFetchedTime] = useState<string | undefined>(undefined);
   const [fetching, setFetching] = useState(false);
   const [data, setData] = useState<Record<string, any> | undefined>(undefined);
   const [error, setError] = useState(false);

@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { Box, Flex, Group, Image, Paper, Text } from '@mantine/core';
 
 import {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { DonutChart } from '@mantine/charts';
 import { Anchor, Card, Center, Group, Text, Title } from '@mantine/core';
 import { IconActivity } from '@tabler/icons-react';

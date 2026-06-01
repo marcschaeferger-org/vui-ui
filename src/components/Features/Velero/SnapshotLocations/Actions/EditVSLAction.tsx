@@ -3,7 +3,6 @@ import { ActionIcon, Button, Tooltip } from '@mantine/core';
 import { openModal } from '@mantine/modals';
 
 import { IconEdit } from '@tabler/icons-react';
-import { EditBslForm } from '@/components/Features/Velero/BackupLocations/Forms/EditBslForm';
 import { EditVslForm } from '@/components/Features/Velero/SnapshotLocations/Forms/EditVslForm';
 
 interface EditBslActionProps {

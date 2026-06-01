@@ -16,7 +16,9 @@ export const useAuth = () => {
 
   // 🧠 Compute SWR fetch key only when token and server URL are available
   const fetchKey = useMemo(() => {
-    if (!jwtToken || !serverValues?.currentServer?.url) return null;
+    if (!jwtToken || !serverValues?.currentServer?.url) {
+      return null;
+    }
     return `${serverValues.currentServer.url}/v1/users/me/info`;
   }, [jwtToken, serverValues?.currentServer?.url]);
 

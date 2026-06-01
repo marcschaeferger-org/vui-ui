@@ -20,7 +20,9 @@ export default function WatchdogService({ reload }: any) {
   }, [reload]);
 
   useEffect(() => {
-    if (reload > 1) getWatchdogAppSecrets(true);
+    if (reload > 1) {
+      getWatchdogAppSecrets(true);
+    }
   }, [reload]);
 
   useEffect(() => {

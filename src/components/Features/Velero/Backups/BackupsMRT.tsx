@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { ActionIcon, Anchor, CopyButton, Group, Text, Tooltip } from '@mantine/core';
 import { IconCalendarEvent, IconCheck, IconCopy, IconServer } from '@tabler/icons-react';
 import { type MRT_ColumnDef, MRT_Row } from 'mantine-react-table';
@@ -91,7 +91,9 @@ export function BackupsMRT({ fetching, setReload, items, customActions }: any) {
           const columnFilter = column.getFilterValue() ?? '';
           const highlights = [globalFilter, columnFilter].filter(Boolean);
 
-          if (!scheduleName) return null;
+          if (!scheduleName) {
+            return null;
+          }
 
           const highlighted = highlightMultiple(scheduleName, highlights);
 

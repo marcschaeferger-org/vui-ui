@@ -17,7 +17,7 @@ interface DeleteActionIconProps {
 const DeleteAction: React.FC<DeleteActionIconProps> = ({
   resourceType,
   record,
-  setReload,
+  setReload: _setReload,
   buttonType = 'actionIcon',
   redirectAfterDelete = '',
 }) => {

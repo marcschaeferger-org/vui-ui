@@ -6,7 +6,7 @@ export const useWatchdogRestart = () => {
   const watchdogRestart = async () => {
     try {
       return await postData('/v1/watchdog/restart', {});
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

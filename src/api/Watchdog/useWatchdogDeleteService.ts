@@ -13,7 +13,7 @@ export const useWatchdogDeleteService = () => {
         url: '/v1/watchdog/user/service',
         params: { name },
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

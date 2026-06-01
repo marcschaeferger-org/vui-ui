@@ -13,8 +13,8 @@ interface EditBslProps {
 
 const ttlRegex = /^(\d+h)?(\d+m)?(\d+s)?$/;
 
-export function EditBslForm({ record, setReload }: EditBslProps) {
-  const appValues = useAppStatus();
+export function EditBslForm({ record, setReload: _setReload }: EditBslProps) {
+  const _appValues = useAppStatus();
 
   const { handleUpdateBsl } = useUpdateBsl();
 

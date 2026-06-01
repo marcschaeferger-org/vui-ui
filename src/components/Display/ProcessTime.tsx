@@ -9,7 +9,9 @@ export const ProcessTime = () => {
   const appValues = useAppStatus();
   const isVisible = useMediaQuery('(min-width: 74em');
 
-  if (!isVisible) return <></>;
+  if (!isVisible) {
+    return <></>;
+  }
 
   const xProcessTimeArray = appValues.xProcessTimer;
 

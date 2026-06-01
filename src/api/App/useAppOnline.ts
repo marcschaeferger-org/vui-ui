@@ -9,7 +9,7 @@ export const useAppOnline = () => {
         url: '/online',
         target: 'static',
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

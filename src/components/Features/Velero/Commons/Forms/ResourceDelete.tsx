@@ -19,7 +19,7 @@ export function ResourceDelete({
   redirectAfterDelete = '',
 }: ResourceDeleteProps) {
   const router = useRouter();
-  const appValues = useAppStatus();
+  const _appValues = useAppStatus();
   const { handleDeleteResource } = useResourceDelete();
 
   function deleteResource() {

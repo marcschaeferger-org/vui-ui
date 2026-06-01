@@ -24,7 +24,9 @@ export function LoginSponsorMessage() {
     setInit(true);
   }, [computedColorScheme]);
 
-  if (!init) return <></>;
+  if (!init) {
+    return <></>;
+  }
 
   return (
     <>

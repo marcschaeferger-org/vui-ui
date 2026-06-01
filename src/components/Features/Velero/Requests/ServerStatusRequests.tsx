@@ -36,7 +36,9 @@ export default function ServerStatusRequests({
   /* end watch */
 
   useEffect(() => {
-    if (active) return undefined;
+    if (active) {
+      return undefined;
+    }
     getServerStatusRequests();
     return undefined;
   }, []);
@@ -58,7 +60,9 @@ export default function ServerStatusRequests({
   }, [data]);
 
   useEffect(() => {
-    if (!active) return undefined;
+    if (!active) {
+      return undefined;
+    }
     getServerStatusRequests();
     return undefined;
   }, [active]);

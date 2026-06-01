@@ -6,7 +6,7 @@ export const useReconnectAgent = () => {
   const reconnectAgent = async () => {
     try {
       return await postData('/v1/nats/send-core-restarted', {}, 'core');
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

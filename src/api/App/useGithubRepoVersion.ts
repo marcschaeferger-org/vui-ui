@@ -5,14 +5,14 @@ type TargetType = 'core' | 'agent' | 'static';
 export const useGithubRepoVersion = () => {
   const { data, getData, fetching, error } = useApiGet();
 
-  const getRepoVersion = async (target: TargetType, force: boolean = false) => {
+  const getRepoVersion = async (_target: TargetType, force: boolean = false) => {
     try {
       return await getData({
         url: '/info/vui-repo-tags',
         params: `force_scrapy=${force}`,
         target: 'static',
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

@@ -35,7 +35,9 @@ export function RestoresDatatable() {
   /* end watch */
 
   useEffect(() => {
-    if (reload > 1) getRestores(true);
+    if (reload > 1) {
+      getRestores(true);
+    }
   }, [reload]);
 
   useEffect(() => {

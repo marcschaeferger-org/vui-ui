@@ -17,15 +17,15 @@ interface TableStatusItemProps {
 }
 
 export function TableStatusItem({
-  label,
-  value,
+  label: _label,
+  value: _value,
   ok,
   warning = false,
-  actionIcon,
-  message = '',
-  message2 = '',
-  message3 = '',
-  message4 = '',
+  actionIcon: _actionIcon,
+  message: _message = '',
+  message2: _message2 = '',
+  message3: _message3 = '',
+  message4: _message4 = '',
 }: TableStatusItemProps) {
   const IconOk = (
     <IconCheck

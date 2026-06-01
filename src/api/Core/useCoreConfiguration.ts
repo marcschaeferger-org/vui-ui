@@ -9,7 +9,7 @@ export const useCoreConfiguration = () => {
         url: '/v1/settings/environment',
         target: 'core',
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

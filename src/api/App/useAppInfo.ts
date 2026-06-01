@@ -11,7 +11,7 @@ export const useAppInfo = () => {
         url: '/info/app',
         target,
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

@@ -9,7 +9,7 @@ export const useInspectFile = () => {
         url: '/v1/inspect/file',
         params: `path=${path}`,
       });
-    } catch (e) {
+    } catch (_e) {
       // console.error('Error:', e);
     } finally {
       // This code will always be executed

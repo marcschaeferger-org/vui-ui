@@ -2,7 +2,6 @@ import { Box, Card, Group, Space, Text, Title } from '@mantine/core';
 
 import { IconServer } from '@tabler/icons-react';
 import VeleroResourceStatusBadge from '@/components/Features/Velero/Commons/Display/VeleroResourceStatusBadge';
-import React from 'react';
 import classes from '@/styles/veleroResourceDetails.module.css';
 
 export function BslDetailsView({ data }: any) {

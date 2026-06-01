@@ -9,7 +9,7 @@ export const useAppVersion = () => {
         url: '/v1/velero/version',
         target: 'agent',
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

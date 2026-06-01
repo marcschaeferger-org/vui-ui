@@ -99,7 +99,7 @@ export function ScheduleDetails({ params }: ScheduleProps) {
       }
       details={<ScheduleDetailsView data={manifest} fetching={fetching} />}
       manifest={<Manifest resourceType="Schedule" resourceName={params.schedule} reload={reload} />}
-      tabs={(height) => (
+      tabs={(_height) => (
         <Tabs defaultValue="PodVolumes" h="100%">
           <Tabs.List>
             <Tabs.Tab value="PodVolumes" leftSection={<IconDatabaseExport size={12} />}>
@@ -112,7 +112,7 @@ export function ScheduleDetails({ params }: ScheduleProps) {
 
           <Tabs.Panel value="PodVolumes" h="100%">
             <Box p={0} h="100%">
-              <BackupsDatatable scheduleName={params.schedule} onlyTable={true} />
+              <BackupsDatatable scheduleName={params.schedule} onlyTable />
             </Box>
           </Tabs.Panel>
 

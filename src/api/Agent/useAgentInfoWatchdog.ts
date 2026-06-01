@@ -9,7 +9,7 @@ export const useAgentHealthWatchdog = () => {
         url: '/health/watchdog',
         target: 'agent',
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

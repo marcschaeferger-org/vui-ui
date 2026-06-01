@@ -6,9 +6,9 @@ import { ServerApiConfig, ApiManager } from '@/lib/ApiManager';
 interface ServerStatus {
   servers: Array<ServerApiConfig>;
   currentServer: ServerApiConfig | undefined;
-  isServerAvailable: Boolean | undefined;
+  isServerAvailable: boolean | undefined;
   serverInfo: any;
-  isCurrentServerControlPlane: Boolean | undefined;
+  isCurrentServerControlPlane: boolean | undefined;
   origins: any;
   arch: any;
   k8sHealth: any;
@@ -20,7 +20,7 @@ interface ServerStatusContextProps extends ServerStatus {
   setServers: React.Dispatch<React.SetStateAction<Array<ServerApiConfig>>>;
   setCurrentBackend: React.Dispatch<React.SetStateAction<ServerApiConfig | undefined>>;
   setIsServerAvailable: React.Dispatch<React.SetStateAction<any | undefined>>;
-  setCurrentServerAsControlPlane: React.Dispatch<React.SetStateAction<Boolean | undefined>>;
+  setCurrentServerAsControlPlane: React.Dispatch<React.SetStateAction<boolean | undefined>>;
   setServerInfo: React.Dispatch<React.SetStateAction<Record<string, any>>>;
   setOrigins: React.Dispatch<React.SetStateAction<Record<string, any>>>;
   setArch: React.Dispatch<React.SetStateAction<Record<string, any>>>;
@@ -37,10 +37,10 @@ export const ServerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   const [currentServer, setCurrentBackend] = useState<ServerApiConfig | undefined>(undefined);
   const [isCurrentServerControlPlane, setCurrentServerAsControlPlane] = useState<
-    Boolean | undefined
+    boolean | undefined
   >(undefined);
 
-  const [isServerAvailable, setIsServerAvailable] = useState<Boolean | undefined>(undefined);
+  const [isServerAvailable, setIsServerAvailable] = useState<boolean | undefined>(undefined);
   const [serverInfo, setServerInfo] = useState<Record<string, any>>([]);
   const [origins, setOrigins] = useState<Record<string, any>>([]);
   const [arch, setArch] = useState<Record<string, any>>([]);

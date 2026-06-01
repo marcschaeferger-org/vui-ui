@@ -9,7 +9,7 @@ export const useRepositoryCheck = () => {
         url: '/v1/repo/check',
         params: `bsl=${bsl}&repository_url=${repositoryUrl}`,
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

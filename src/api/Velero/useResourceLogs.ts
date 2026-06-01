@@ -9,7 +9,7 @@ export const useResourceLogs = () => {
         url: `/v1/${resourceType}/logs`,
         params: `resource_name=${resourceName}`,
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

@@ -21,7 +21,7 @@ interface BackupProps {
 }
 
 export function RepoDetails({ params }: BackupProps) {
-  const { data, getManifest, fetching } = useVeleroManifest();
+  const { data, getManifest } = useVeleroManifest();
   const [reload, setReload] = useState(1);
   const agentValues = useAgentStatus();
   const [manifest, setManifest] = useState<Record<string, any>>([]);

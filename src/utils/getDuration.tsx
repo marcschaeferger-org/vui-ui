@@ -1,6 +1,5 @@
 import { getDurationDetails, getDurationInMilliseconds } from '@/utils/getDurationDetails';
 import { Text, Tooltip } from '@mantine/core';
-import React from 'react';
 
 export function get_duration(status: any) {
   if (status?.startTimestamp && status?.completionTimestamp) {

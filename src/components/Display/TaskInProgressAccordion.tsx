@@ -27,7 +27,7 @@ export default function TaskInProgressAccordion() {
   const uiValues = useUIStatus();
   const [reload, setReload] = useState(1);
   const [enableTopToolbar, setEnableTopToolbar] = useState(false);
-  const [fetching, setFetching] = useState(false);
+  const [_fetching, setFetching] = useState(false);
   const [activeTab, setActiveTab] = useState<string | null>('BackupRestoreInProgress');
   const [opened, setOpened] = useState(false);
 

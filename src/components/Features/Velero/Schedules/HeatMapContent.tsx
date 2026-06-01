@@ -8,7 +8,7 @@ import { IconCalendarTime } from '@tabler/icons-react';
 
 interface DayHeatmapProps {
   data: any;
-  heatmapScheduleName: Array<String>;
+  heatmapScheduleName: Array<string>;
 }
 
 const xLabels = new Array(60).fill(0).map((_, i) => (i % 5 === 0 ? `${i}` : ''));

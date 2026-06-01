@@ -9,7 +9,7 @@ export const useAgentConfiguration = () => {
         url: '/v1/settings/environment',
         target: 'agent',
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

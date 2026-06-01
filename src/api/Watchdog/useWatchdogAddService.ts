@@ -12,7 +12,7 @@ export const useWatchdogAddService = () => {
       return await postData('/v1/watchdog/user/service', {
         config,
       });
-    } catch (e) {
+    } catch (_e) {
       // Error handling
       // console.error('Error during call:', error);
     } finally {

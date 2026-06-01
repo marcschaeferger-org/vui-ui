@@ -40,7 +40,7 @@ export const useBackups = () => {
         cache: true,
         force: forced,
       });
-    } catch (e) {
+    } catch (_e) {
       // console.error('Error:', e);
     } finally {
       // This code will always be executed
