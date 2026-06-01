@@ -8,9 +8,9 @@ import { useAuthErrorHandler } from '../user/useAuthErrorHandler';
 import { ApiResponseShowErrorNotification } from '@/components/Display/ApiNotification';
 import { handleApiResponse } from './handleApiResponse';
 import { parseApiResponse } from '@/hooks/utils/parseApiResponse';
-import { useServerStatus } from "@/contexts/ServerContext";
-import { useAgentStatus } from "@/contexts/AgentContext";
-import { buildBackendUrl } from "@/utils/backend";
+import { useServerStatus } from '@/contexts/ServerContext';
+import { useAgentStatus } from '@/contexts/AgentContext';
+import { buildBackendUrl } from '@/utils/backend';
 
 type DeleteParams = {
   url: string;
@@ -25,21 +25,14 @@ export const useApiDelete = () => {
   const agentValues = useAgentStatus();
 
   const { addNotificationHistory } = useUserNotificationHistory();
-  const {
-    addApiRequestHistory,
-    addApiResponseHistory
-  } = useApiLogger();
+  const { addApiRequestHistory, addApiResponseHistory } = useApiLogger();
   const [fetchedTime, setFetchedTime] = useState<string | undefined>(undefined);
 
   const [fetching, setFetching] = useState(false);
   const [data, setData] = useState<Record<string, any> | undefined>(undefined);
   const [error, setError] = useState(false);
 
-  const deleteData = async ({
-                              url,
-                              params,
-                              target = 'agent'
-                            }: DeleteParams) => {
+  const deleteData = async ({ url, params, target = 'agent' }: DeleteParams) => {
     if (error) {
       setError(false);
     }

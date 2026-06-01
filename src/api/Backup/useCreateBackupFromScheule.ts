@@ -1,18 +1,11 @@
 import { useApiPost } from '@/hooks/utils/useApiPost';
 
 export const useCreateBackupFromScheule = () => {
-  const {
-    data,
-    postData,
-    fetching,
-    error
-  } = useApiPost();
+  const { data, postData, fetching, error } = useApiPost();
 
   const handleCreateBackupFromSchedule = async (scheduleName: string) => {
     try {
-
       return await postData('/v1/backup/create-from-schedule', { scheduleName: `${scheduleName}` });
-
     } catch (e) {
       // Error handling
       // console.error('Error during call:', error);

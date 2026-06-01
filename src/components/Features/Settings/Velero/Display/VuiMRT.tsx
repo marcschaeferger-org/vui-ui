@@ -11,15 +11,10 @@ import { GenericMRTTableLayout } from '@/components/Features/Velero/GenericMRTTa
 import PodLogsActionIcon from '@/components/Features/Settings/Velero/Actions/PodLogsActionIcon';
 import VeleroResourceStatusBadge from '@/components/Features/Velero/Commons/Display/VeleroResourceStatusBadge';
 
-export function VuiMRT({
-                         fetching,
-                         setReload,
-                         items,
-                       }: any) {
-
+export function VuiMRT({ fetching, setReload, items }: any) {
   const renderActions = (record: any) => (
     <Group gap={2} wrap="nowrap">
-      <PodLogsActionIcon podName={record?.podName} target='vui'/>
+      <PodLogsActionIcon podName={record?.podName} target="vui" />
     </Group>
   );
 
@@ -44,10 +39,7 @@ export function VuiMRT({
       {
         accessorKey: 'status',
         header: 'Status',
-        Cell: ({ row }) => (
-          <VeleroResourceStatusBadge status={row.original?.status}/>
-        )
-
+        Cell: ({ row }) => <VeleroResourceStatusBadge status={row.original?.status} />,
       },
       {
         accessorKey: 'restarts',
@@ -65,15 +57,17 @@ export function VuiMRT({
     [],
   );
 
-  return <GenericMRTTableLayout
-    name='vui'
-    fetching={fetching}
-    items={items || []}
-    setReload={setReload}
-    columns={columns}
-    initialState={{
-      columnVisibility: { created: false },
-    }}
-    renderRowActions={({ row }: { row: MRT_Row<any> }) => <>{renderActions(row?.original)}</>}
-  />
+  return (
+    <GenericMRTTableLayout
+      name="vui"
+      fetching={fetching}
+      items={items || []}
+      setReload={setReload}
+      columns={columns}
+      initialState={{
+        columnVisibility: { created: false },
+      }}
+      renderRowActions={({ row }: { row: MRT_Row<any> }) => <>{renderActions(row?.original)}</>}
+    />
+  );
 }

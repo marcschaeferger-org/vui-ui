@@ -1,20 +1,13 @@
 import { useApiGet } from '@/hooks/utils/useApiGet';
 
 export const useVeleroPods = () => {
-  const {
-    data,
-    getData,
-    fetching,
-    error
-  } = useApiGet();
+  const { data, getData, fetching, error } = useApiGet();
 
   const getVeleroPods = async (): Promise<void> => {
     try {
-
       return await getData({
-        url: '/v1/velero/pods'
+        url: '/v1/velero/pods',
       });
-
     } catch (e) {
       // console.error('Error:', e);
     } finally {

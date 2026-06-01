@@ -1,21 +1,14 @@
 import { useApiGet } from '@/hooks/utils/useApiGet';
 
 export const useVeleroTanzuVersion = () => {
-  const {
-    data,
-    getData,
-    fetching,
-    error
-  } = useApiGet();
+  const { data, getData, fetching, error } = useApiGet();
 
   const getVeleroTanzuVersion = async () => {
     try {
-
       return await getData({
         url: '/info/velero-repo-tag',
-        target: 'static'
+        target: 'static',
       });
-
     } catch (e) {
       // Error handling
       // console.error('Error during call:', error);

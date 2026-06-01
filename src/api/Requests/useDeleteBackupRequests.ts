@@ -1,20 +1,13 @@
 import { useApiGet } from '@/hooks/utils/useApiGet';
 
 export const useDeleteBackupRequests = () => {
-  const {
-    data,
-    getData,
-    fetching,
-    error
-  } = useApiGet();
+  const { data, getData, fetching, error } = useApiGet();
 
   const getDeleteBackupRequests = async () => {
     try {
-
       return await getData({
         url: '/v1/delete-backup-requests',
       });
-
     } catch (e) {
       // Error handling
       // console.error('Error during call:', error);

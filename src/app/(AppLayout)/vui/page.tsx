@@ -1,5 +1,5 @@
-import { Vui } from "@/components/Features/Settings/Velero/Vui";
+import { Vui } from '@/components/Features/Settings/Velero/Vui';
 
 export default function VuiConfigurationPage() {
-  return <Vui/>;
+  return <Vui />;
 }

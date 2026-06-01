@@ -7,7 +7,7 @@ import { IconPlug, IconRefresh, IconSpy } from '@tabler/icons-react';
 
 import { useAgentStatus } from '@/contexts/AgentContext';
 import { useServerStatus } from '@/contexts/ServerContext';
-import { useReconnectAgent } from "@/api/Nats/useReconnectAgent";
+import { useReconnectAgent } from '@/api/Nats/useReconnectAgent';
 
 export function SwitchAgent() {
   const agentValues = useAgentStatus();
@@ -15,12 +15,12 @@ export function SwitchAgent() {
 
   const [opened, setOpened] = useState(false);
 
-  const { reconnectAgent } = useReconnectAgent()
+  const { reconnectAgent } = useReconnectAgent();
 
   const items =
     agentValues?.agents?.map((item: any, index: number) => (
       <Menu.Item
-        leftSection={<Image radius="md" h={20} w="auto" fit="contain" src="/kubernetes_logo.svg"/>}
+        leftSection={<Image radius="md" h={20} w="auto" fit="contain" src="/kubernetes_logo.svg" />}
         onClick={() => {
           if (agentValues.agents != null) {
             agentValues.setCurrentAgent(agentValues.agents[index]);
@@ -48,7 +48,9 @@ export function SwitchAgent() {
         >
           <Menu.Target>
             <Button
-              leftSection={<Image radius="md" h={30} w="auto" fit="contain" src="/kubernetes_logo.svg"/>}
+              leftSection={
+                <Image radius="md" h={30} w="auto" fit="contain" src="/kubernetes_logo.svg" />
+              }
               data-expanded={opened || undefined}
               fullWidth
               //justify="space-between"
@@ -61,7 +63,7 @@ export function SwitchAgent() {
           </Menu.Target>
           <Menu.Dropdown>
             {items}
-            <Menu.Divider/>
+            <Menu.Divider />
 
             <Menu.Item
               leftSection={

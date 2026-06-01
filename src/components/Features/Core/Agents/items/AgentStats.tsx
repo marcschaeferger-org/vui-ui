@@ -9,7 +9,7 @@ import {
   IconDeviceFloppy,
   IconPlugConnected,
   IconRestore,
-  IconServer
+  IconServer,
 } from '@tabler/icons-react';
 import { useRouter } from 'next/navigation';
 import styles from './AgentStats.module.css';
@@ -21,11 +21,7 @@ interface AgentStatsProps {
   data: any;
 }
 
-export function AgentStats({
-                             name,
-                             data
-                           }: AgentStatsProps) {
-
+export function AgentStats({ name, data }: AgentStatsProps) {
   const agentValues = useAgentStatus();
 
   const router = useRouter();
@@ -55,7 +51,7 @@ export function AgentStats({
       }}
     >
       <Group gap={20}>
-        <Image radius="md" h={160} w="auto" fit="contain" src="/kubernetes_logo.svg"/>
+        <Image radius="md" h={160} w="auto" fit="contain" src="/kubernetes_logo.svg" />
 
         <Flex gap={5} direction="column">
           <Group justify="space-between">
@@ -65,20 +61,21 @@ export function AgentStats({
           </Group>
 
           <Group justify="space-between" gap={60}>
-
             {/* backups */}
             <Box>
               <Group gap={5}>
-                <IconDeviceFloppy size={20}/>
-                <Text size="lg" fw={800}>{data?.stats?.backups?.stats?.all?.count}</Text>
-                <Text size="sm">
-                  Backups
+                <IconDeviceFloppy size={20} />
+                <Text size="lg" fw={800}>
+                  {data?.stats?.backups?.stats?.all?.count}
                 </Text>
+                <Text size="sm">Backups</Text>
               </Group>
               <Group gap={10}>
                 <Group gap={2}>
                   <div>
-                    <Text fw={600} size="xl">{data?.stats?.backups?.stats?.all?.stats[0]?.count || 0}</Text>
+                    <Text fw={600} size="xl">
+                      {data?.stats?.backups?.stats?.all?.stats[0]?.count || 0}
+                    </Text>
                     <Text fz="xs" c="dimmed">
                       Completed
                     </Text>
@@ -86,7 +83,9 @@ export function AgentStats({
                 </Group>
                 <Group gap={2}>
                   <div>
-                    <Text fw={600} size="xl">{data?.stats?.backups?.stats?.all?.stats[1]?.count || 0}</Text>
+                    <Text fw={600} size="xl">
+                      {data?.stats?.backups?.stats?.all?.stats[1]?.count || 0}
+                    </Text>
                     <Text fz="xs" c="dimmed">
                       Partial Failed
                     </Text>
@@ -94,7 +93,9 @@ export function AgentStats({
                 </Group>
                 <Group gap={2}>
                   <div>
-                    <Text fw={600} size="xl">{data?.stats?.backups?.stats?.all?.stats[2]?.count || 0}</Text>
+                    <Text fw={600} size="xl">
+                      {data?.stats?.backups?.stats?.all?.stats[2]?.count || 0}
+                    </Text>
                     <Text fz="xs" c="dimmed">
                       Failed
                     </Text>
@@ -106,16 +107,18 @@ export function AgentStats({
             {/* latest */}
             <Box>
               <Group gap={5}>
-                <IconCalendarTime size={20}/>
-                <Text size="lg" fw={800}>{data?.stats?.backups?.stats?.latest?.count}</Text>
-                <Text size="sm">
-                  Latest
+                <IconCalendarTime size={20} />
+                <Text size="lg" fw={800}>
+                  {data?.stats?.backups?.stats?.latest?.count}
                 </Text>
+                <Text size="sm">Latest</Text>
               </Group>
               <Group gap={10}>
                 <Group gap={2}>
                   <div>
-                    <Text fw={600} size="xl">{data?.stats?.backups?.stats?.latest?.stats[0]?.count || 0}</Text>
+                    <Text fw={600} size="xl">
+                      {data?.stats?.backups?.stats?.latest?.stats[0]?.count || 0}
+                    </Text>
                     <Text fz="xs" c="dimmed">
                       Completed
                     </Text>
@@ -123,7 +126,9 @@ export function AgentStats({
                 </Group>
                 <Group gap={2}>
                   <div>
-                    <Text fw={600} size="xl">{data?.stats?.backups?.stats?.latest?.stats[1]?.count || 0}</Text>
+                    <Text fw={600} size="xl">
+                      {data?.stats?.backups?.stats?.latest?.stats[1]?.count || 0}
+                    </Text>
                     <Text fz="xs" c="dimmed">
                       Partial Failed
                     </Text>
@@ -131,7 +136,9 @@ export function AgentStats({
                 </Group>
                 <Group gap={2}>
                   <div>
-                    <Text fw={600} size="xl">{data?.stats?.backups?.stats?.latest?.stats[2]?.count || 0}</Text>
+                    <Text fw={600} size="xl">
+                      {data?.stats?.backups?.stats?.latest?.stats[2]?.count || 0}
+                    </Text>
                     <Text fz="xs" c="dimmed">
                       Failed
                     </Text>
@@ -143,16 +150,18 @@ export function AgentStats({
             {/* Restore */}
             <Box>
               <Group gap={5}>
-                <IconRestore size={20}/>
-                <Text size="lg" fw={800}>{data?.stats?.restores?.all?.count}</Text>
-                <Text size="sm">
-                  Restore
+                <IconRestore size={20} />
+                <Text size="lg" fw={800}>
+                  {data?.stats?.restores?.all?.count}
                 </Text>
+                <Text size="sm">Restore</Text>
               </Group>
               <Group gap={10}>
                 <Group gap={2}>
                   <div>
-                    <Text fw={600} size="xl">{data?.stats?.restores?.all?.stats[0]?.count || 0}</Text>
+                    <Text fw={600} size="xl">
+                      {data?.stats?.restores?.all?.stats[0]?.count || 0}
+                    </Text>
                     <Text fz="xs" c="dimmed">
                       Completed
                     </Text>
@@ -160,7 +169,9 @@ export function AgentStats({
                 </Group>
                 <Group gap={2}>
                   <div>
-                    <Text fw={600} size="xl">{data?.stats?.restores?.all?.stats[1]?.count || 0}</Text>
+                    <Text fw={600} size="xl">
+                      {data?.stats?.restores?.all?.stats[1]?.count || 0}
+                    </Text>
                     <Text fz="xs" c="dimmed">
                       Partial Failed
                     </Text>
@@ -168,7 +179,9 @@ export function AgentStats({
                 </Group>
                 <Group gap={2}>
                   <div>
-                    <Text fw={600} size="xl">{data?.stats?.restores?.all?.stats[2]?.count || 0}</Text>
+                    <Text fw={600} size="xl">
+                      {data?.stats?.restores?.all?.stats[2]?.count || 0}
+                    </Text>
                     <Text fz="xs" c="dimmed">
                       Failed
                     </Text>
@@ -180,16 +193,18 @@ export function AgentStats({
             {/* Schedules */}
             <Box>
               <Group gap={5}>
-                <IconCalendar size={20}/>
-                <Text size="lg" fw={800}>{data?.stats?.schedules?.all?.count}</Text>
-                <Text size="sm">
-                  Schedule
+                <IconCalendar size={20} />
+                <Text size="lg" fw={800}>
+                  {data?.stats?.schedules?.all?.count}
                 </Text>
+                <Text size="sm">Schedule</Text>
               </Group>
               <Group gap={10}>
                 <Group gap={2}>
                   <div>
-                    <Text fw={600} size="xl">{data?.stats?.schedules?.all?.count || 0}</Text>
+                    <Text fw={600} size="xl">
+                      {data?.stats?.schedules?.all?.count || 0}
+                    </Text>
                     <Text fz="xs" c="dimmed">
                       Total
                     </Text>
@@ -197,7 +212,9 @@ export function AgentStats({
                 </Group>
                 <Group gap={2}>
                   <div>
-                    <Text fw={600} size="xl">{data?.stats?.schedules?.all?.stats[0]?.count || 0}</Text>
+                    <Text fw={600} size="xl">
+                      {data?.stats?.schedules?.all?.stats[0]?.count || 0}
+                    </Text>
                     <Text fz="xs" c="dimmed">
                       Unpaused
                     </Text>
@@ -205,7 +222,9 @@ export function AgentStats({
                 </Group>
                 <Group gap={2}>
                   <div>
-                    <Text fw={600} size="xl">{data?.stats?.schedules?.all?.stats[1]?.count || 0}</Text>
+                    <Text fw={600} size="xl">
+                      {data?.stats?.schedules?.all?.stats[1]?.count || 0}
+                    </Text>
                     <Text fz="xs" c="dimmed">
                       Paused
                     </Text>
@@ -218,13 +237,13 @@ export function AgentStats({
           <Group justify="space-between" gap={10} mt={10}>
             <Group gap={30}>
               <Group gap={2}>
-                <IconPlugConnected size={22} color="green"/>
+                <IconPlugConnected size={22} color="green" />
                 <Text size="sm" fw={500}>
                   connected
                 </Text>
               </Group>
               <Group gap={5}>
-                <IconServer size={22}/>
+                <IconServer size={22} />
                 <Text size="sm" fw={500}>
                   {data?.health?.nodes?.total}
                 </Text>
@@ -233,7 +252,7 @@ export function AgentStats({
                 </Text>
               </Group>
               <Group gap={5}>
-                <IconServer size={22} color="red"/>
+                <IconServer size={22} color="red" />
                 <Text size="sm" fw={500}>
                   {data?.health?.nodes?.in_error}
                 </Text>

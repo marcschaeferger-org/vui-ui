@@ -12,13 +12,7 @@ import { DataFetchedInfo } from '@/components/Display/DataFetchedInfo';
 import { RestoresMRT } from '@/components/Features/Velero/Restores/RestoresMRT';
 
 export function RestoresDatatable() {
-
-  const {
-    data,
-    getRestores,
-    fetching,
-    fetchedTime
-  } = useRestores();
+  const { data, getRestores, fetching, fetchedTime } = useRestores();
 
   const [items, setItems] = useState<Record<string, unknown>[]>([]);
   const [reload, setReload] = useState(1);
@@ -61,12 +55,8 @@ export function RestoresDatatable() {
       <Toolbar title="Restore" breadcrumbItem={[{ name: 'Restores' }]}>
         <></>
       </Toolbar>
-      <RestoresMRT
-        fetching={fetching}
-        setReload={setReload}
-        items={items}
-      />
-      <DataFetchedInfo fetchedTime={fetchedTime}/>
+      <RestoresMRT fetching={fetching} setReload={setReload} items={items} />
+      <DataFetchedInfo fetchedTime={fetchedTime} />
     </MainStack>
   );
 }

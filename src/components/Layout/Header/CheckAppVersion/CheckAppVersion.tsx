@@ -12,16 +12,16 @@ import { compareVersions } from './CompareVersion';
 
 export default function CheckAppVersion() {
   const [updateAvailable, setUpdateAvailable] = useState(false);
-  const [opened, {
-    open,
-    close
-  }] = useDisclosure(false);
+  const [opened, { open, close }] = useDisclosure(false);
   const appValues = useAppStatus();
 
   useEffect(() => {
     const currentAppVersion = appValues.appInfo;
     if (currentAppVersion?.helm_version && appValues.repoVersion?.helm) {
-      const cmp = compareVersions(currentAppVersion?.helm_version, appValues.repoVersion?.helm?.replace(/^[a-zA-Z]/, ''));
+      const cmp = compareVersions(
+        currentAppVersion?.helm_version,
+        appValues.repoVersion?.helm?.replace(/^[a-zA-Z]/, ''),
+      );
       if (cmp === 'githubRelease') {
         setUpdateAvailable(true);
       } else {
@@ -38,7 +38,7 @@ export default function CheckAppVersion() {
         title={`App version v${appValues.appInfo?.helm_app_version}`}
         size="lg"
       >
-        <TableVersion app={appValues.appInfo} githubRelease={appValues.repoVersion}/>
+        <TableVersion app={appValues.appInfo} githubRelease={appValues.repoVersion} />
         <Group justify="flex-end">
           <Text size="sm">Last check {appValues.repoVersion?.datetime || 'N.A'}</Text>
           <ActionIcon
@@ -49,7 +49,7 @@ export default function CheckAppVersion() {
               appValues.setRefreshRepoVersion((prev: number) => prev + 1);
             }}
           >
-            <IconRefresh size={18}/>
+            <IconRefresh size={18} />
           </ActionIcon>
         </Group>
       </Modal>
@@ -61,8 +61,8 @@ export default function CheckAppVersion() {
           aria-label="Toggle color scheme"
           onClick={open}
         >
-          {updateAvailable && <IconRotateClockwise/>}
-          {!updateAvailable && <IconRotateClockwise/>}
+          {updateAvailable && <IconRotateClockwise />}
+          {!updateAvailable && <IconRotateClockwise />}
         </ActionIcon>
       </Indicator>
     </>

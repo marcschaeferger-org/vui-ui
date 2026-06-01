@@ -3,7 +3,12 @@
 import { ActionIcon, Group, Modal, Text, Tooltip } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
-import { IconCheck, IconInfoSquare, IconPlugConnected, IconPlugConnectedX } from '@tabler/icons-react';
+import {
+  IconCheck,
+  IconInfoSquare,
+  IconPlugConnected,
+  IconPlugConnectedX,
+} from '@tabler/icons-react';
 
 import { useAgentStatus } from '@/contexts/AgentContext';
 import { useServerStatus } from '@/contexts/ServerContext';
@@ -13,15 +18,9 @@ import { DiagnosticMRT } from './DiagnosticMRT';
 export const DiagnosticAgentInfo = () => {
   const serverValues = useServerStatus();
 
-  const {
-    stateManager,
-  } =
-    useDiagnosticAgent();
+  const { stateManager } = useDiagnosticAgent();
 
-  const [opened, {
-    open,
-    close
-  }] = useDisclosure(false);
+  const [opened, { open, close }] = useDisclosure(false);
 
   const agentValues = useAgentStatus();
 
@@ -30,12 +29,8 @@ export const DiagnosticAgentInfo = () => {
       <Group gap={2}>
         <Tooltip label="Vui Cluster Agent">
           <Group gap={0}>
-            {!agentValues.isAgentAvailable && (
-              <IconPlugConnectedX color="red" size={16}/>
-            )}
-            {agentValues.isAgentAvailable && (
-              <IconPlugConnected color="green" size={16}/>
-            )}
+            {!agentValues.isAgentAvailable && <IconPlugConnectedX color="red" size={16} />}
+            {agentValues.isAgentAvailable && <IconPlugConnected color="green" size={16} />}
             <Text size="sm" fw={600}>
               {agentValues?.currentAgent?.name}
             </Text>
@@ -44,13 +39,13 @@ export const DiagnosticAgentInfo = () => {
 
         {stateManager.allTrue && !stateManager.hasWarnings && (
           <Tooltip label="Agent Check Passed!">
-            <IconCheck color="green"/>
+            <IconCheck color="green" />
           </Tooltip>
         )}
         {stateManager.allTrue && stateManager.hasWarnings && (
           <>
             <Group gap={0}>
-              <IconCheck color="orange" size={20}/>
+              <IconCheck color="orange" size={20} />
               <Text c="orange" size="sm">
                 Check warning
               </Text>
@@ -60,7 +55,7 @@ export const DiagnosticAgentInfo = () => {
         {!stateManager?.allTrue && (
           <>
             <Group gap={0}>
-              <IconCheck color="red" size={20}/>
+              <IconCheck color="red" size={20} />
               <Text c="red" size="sm">
                 Error
               </Text>
@@ -69,12 +64,8 @@ export const DiagnosticAgentInfo = () => {
         )}
 
         <Tooltip label="Agent info">
-          <ActionIcon
-            size={20}
-            variant="transparent"
-            onClick={open}
-          >
-            <IconInfoSquare size={20}/>
+          <ActionIcon size={20} variant="transparent" onClick={open}>
+            <IconInfoSquare size={20} />
           </ActionIcon>
         </Tooltip>
       </Group>

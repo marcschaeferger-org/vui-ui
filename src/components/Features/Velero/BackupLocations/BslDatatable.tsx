@@ -14,13 +14,7 @@ import Toolbar from '@/components/Display/Toolbar';
 import { DataFetchedInfo } from '@/components/Display/DataFetchedInfo';
 
 export function BslDatatable() {
-
-  const {
-    data,
-    getBackupLocation,
-    fetching,
-    fetchedTime
-  } = useBackupLocation();
+  const { data, getBackupLocation, fetching, fetchedTime } = useBackupLocation();
   const [items, setItems] = useState<Array<any>>([]);
   const [reload, setReload] = useState(1);
 
@@ -75,11 +69,11 @@ export function BslDatatable() {
         items={items}
         customActions={
           <>
-            <CreateBslToolbar setReload={setReload} reload={reload}/>
+            <CreateBslToolbar setReload={setReload} reload={reload} />
           </>
         }
       />
-      <DataFetchedInfo fetchedTime={fetchedTime}/>
+      <DataFetchedInfo fetchedTime={fetchedTime} />
     </MainStack>
   );
 }

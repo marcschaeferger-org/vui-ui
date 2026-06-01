@@ -16,10 +16,7 @@ type PersistentTableDefaults = {
   };
 };
 
-export function usePersistentTableState(
-  keyPrefix: string,
-  defaults?: PersistentTableDefaults
-) {
+export function usePersistentTableState(keyPrefix: string, defaults?: PersistentTableDefaults) {
   const getFromStorage = (key: string, fallback: any) => {
     try {
       const saved = localStorage.getItem(`${keyPrefix}-${key}`);
@@ -30,46 +27,45 @@ export function usePersistentTableState(
   };
 
   const [columnVisibility, setColumnVisibility] = useState(() =>
-    getFromStorage('columnVisibility', defaults?.columnVisibility ?? {})
+    getFromStorage('columnVisibility', defaults?.columnVisibility ?? {}),
   );
 
   const [columnFilters, setColumnFilters] = useState(() =>
-    getFromStorage('columnFilters', defaults?.columnFilters ?? [])
+    getFromStorage('columnFilters', defaults?.columnFilters ?? []),
   );
 
-  const [sorting, setSorting] = useState(() =>
-    getFromStorage('sorting', defaults?.sorting ?? [])
-  );
+  const [sorting, setSorting] = useState(() => getFromStorage('sorting', defaults?.sorting ?? []));
 
   const [pagination, setPagination] = useState(() =>
-    getFromStorage('pagination', defaults?.pagination ?? {
-      pageIndex: 0,
-      pageSize: 10
-    })
+    getFromStorage(
+      'pagination',
+      defaults?.pagination ?? {
+        pageIndex: 0,
+        pageSize: 10,
+      },
+    ),
   );
 
   const [columnOrder, setColumnOrder] = useState(() =>
-    getFromStorage('columnOrder', defaults?.columnOrder ?? [])
+    getFromStorage('columnOrder', defaults?.columnOrder ?? []),
   );
 
   const [density, setDensity] = useState(() =>
-    getFromStorage('density', defaults?.density ?? 'compact')
+    getFromStorage('density', defaults?.density ?? 'compact'),
   );
 
-  const [globalFilter, setGlobalFilter] = useState(() =>
-    getFromStorage('globalFilter', '')
-  );
+  const [globalFilter, setGlobalFilter] = useState(() => getFromStorage('globalFilter', ''));
 
   const [grouping, setGrouping] = useState(() =>
-    getFromStorage('grouping', defaults?.grouping ?? [])
+    getFromStorage('grouping', defaults?.grouping ?? []),
   );
 
   const [columnSizing, setColumnSizing] = useState(() =>
-    getFromStorage('columnSizing', defaults?.columnSizing ?? {})
+    getFromStorage('columnSizing', defaults?.columnSizing ?? {}),
   );
 
   const [columnPinning, setColumnPinning] = useState(() =>
-    getFromStorage('columnPinning', defaults?.columnPinning ?? {})
+    getFromStorage('columnPinning', defaults?.columnPinning ?? {}),
   );
 
   useEffect(() => {
@@ -126,18 +122,22 @@ export function usePersistentTableState(
     setColumnVisibility(defaults?.columnVisibility ?? {});
     setColumnFilters(defaults?.columnFilters ?? []);
     setSorting(defaults?.sorting ?? []);
-    setPagination(defaults?.pagination ?? {
-      pageIndex: 0,
-      pageSize: 10
-    });
+    setPagination(
+      defaults?.pagination ?? {
+        pageIndex: 0,
+        pageSize: 10,
+      },
+    );
     // setColumnOrder(defaults?.columnOrder ?? []);
     setDensity(defaults?.density ?? 'compact');
     setGlobalFilter(defaults?.globalFilter ?? undefined);
     setGrouping(defaults?.grouping ?? []);
-    setColumnPinning(defaults?.columnPinning ?? {
-      left: [],
-      right: ['mrt-row-actions']
-    });
+    setColumnPinning(
+      defaults?.columnPinning ?? {
+        left: [],
+        right: ['mrt-row-actions'],
+      },
+    );
     setColumnSizing(defaults?.columnSizing ?? {});
   };
 

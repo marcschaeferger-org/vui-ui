@@ -5,24 +5,17 @@ import { usePathname, useRouter } from 'next/navigation';
 import { Loader, Center } from '@mantine/core';
 
 import { useAuth } from '@/hooks/user/useAuth';
-import { useAppStatus } from "@/contexts/AppContext";
-import { env } from "next-runtime-env";
+import { useAppStatus } from '@/contexts/AppContext';
+import { env } from 'next-runtime-env';
 
 interface AuthGateProps {
   children: React.ReactNode;
   guestOnly?: boolean;
 }
 
-export default function AuthGate({
-                                   children,
-                                   guestOnly = false
-                                 }: AuthGateProps) {
-
+export default function AuthGate({ children, guestOnly = false }: AuthGateProps) {
   const appValues = useAppStatus();
-  const {
-    user,
-    error
-  } = useAuth();
+  const { user, error } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
 
@@ -101,7 +94,7 @@ export default function AuthGate({
   if (checking) {
     return (
       <Center h="100vh">
-        <Loader size="lg" type="dots"/>
+        <Loader size="lg" type="dots" />
       </Center>
     );
   }

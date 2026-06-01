@@ -17,17 +17,9 @@ function isJSONObject(variable: any) {
   return typeof variable === 'object' && variable !== null && !Array.isArray(variable);
 }
 
-export function ResourceDescribe({
-                                   resourceType,
-                                   resourceName
-                                 }: ResourceDescribeProps) {
+export function ResourceDescribe({ resourceType, resourceName }: ResourceDescribeProps) {
   // const { data, getResourceDescribe, error, fetching } = useResourceDescribe();
-  const {
-    data,
-    getManifest,
-    error,
-    fetching
-  } = useVeleroManifest();
+  const { data, getManifest, error, fetching } = useVeleroManifest();
 
   useEffect(() => {
     getManifest(resourceType, resourceName, false);

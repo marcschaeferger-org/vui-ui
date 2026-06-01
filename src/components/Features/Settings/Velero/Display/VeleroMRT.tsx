@@ -2,7 +2,7 @@
 
 import React, { useMemo } from 'react';
 
-import { Group, } from '@mantine/core';
+import { Group } from '@mantine/core';
 import { type MRT_ColumnDef, MRT_Row } from 'mantine-react-table';
 import { useRouter } from 'next/navigation';
 
@@ -11,17 +11,12 @@ import { GenericMRTTableLayout } from '@/components/Features/Velero/GenericMRTTa
 import PodLogsActionIcon from '@/components/Features/Settings/Velero/Actions/PodLogsActionIcon';
 import VeleroResourceStatusBadge from '@/components/Features/Velero/Commons/Display/VeleroResourceStatusBadge';
 
-export function VeleroMRT({
-                            fetching,
-                            setReload,
-                            items,
-                          }: any) {
-
+export function VeleroMRT({ fetching, setReload, items }: any) {
   const router = useRouter();
 
   const renderActions = (record: any) => (
     <Group gap={2} wrap="nowrap">
-      <PodLogsActionIcon podName={record?.podName}/>
+      <PodLogsActionIcon podName={record?.podName} />
     </Group>
   );
 
@@ -46,10 +41,7 @@ export function VeleroMRT({
       {
         accessorKey: 'status',
         header: 'Status',
-        Cell: ({ row }: any) => (
-          <VeleroResourceStatusBadge status={row.original?.status}/>
-        )
-
+        Cell: ({ row }: any) => <VeleroResourceStatusBadge status={row.original?.status} />,
       },
       {
         accessorKey: 'restarts',
@@ -63,20 +55,21 @@ export function VeleroMRT({
         accessorKey: 'ip',
         header: 'Ip',
       },
-
     ],
     [],
   );
 
-  return <GenericMRTTableLayout
-    name='velero'
-    fetching={fetching}
-    items={items || []}
-    setReload={setReload}
-    columns={columns}
-    initialState={{
-      columnVisibility: { created: false },
-    }}
-    renderRowActions={({ row }: { row: MRT_Row<any> }) => <>{renderActions(row?.original)}</>}
-  />
+  return (
+    <GenericMRTTableLayout
+      name="velero"
+      fetching={fetching}
+      items={items || []}
+      setReload={setReload}
+      columns={columns}
+      initialState={{
+        columnVisibility: { created: false },
+      }}
+      renderRowActions={({ row }: { row: MRT_Row<any> }) => <>{renderActions(row?.original)}</>}
+    />
+  );
 }

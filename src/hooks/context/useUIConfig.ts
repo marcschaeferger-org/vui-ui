@@ -8,7 +8,7 @@ export const useUIConfig = () => {
   const uiValues = useUIStatus();
   useEffect(() => {
     const defaultFontSizeRaw = localStorage.getItem('fontSize');
-    const defaultFontSize = defaultFontSizeRaw ? parseInt(defaultFontSizeRaw) : 50;
+    const defaultFontSize = defaultFontSizeRaw ? parseInt(defaultFontSizeRaw, 10) : 50;
     const validFontSizes: FontSizeKey[] = [0, 25, 50, 75, 100]; // Ensure this matches the FontSizeKey type
     const fontSizeKey: FontSizeKey = validFontSizes.includes(defaultFontSize as FontSizeKey)
       ? (defaultFontSize as FontSizeKey)
@@ -25,10 +25,14 @@ export const useUIConfig = () => {
       fontFamily: defaultFontFamily,
     });
 
-    const mainColored = localStorage.getItem('mainColored') ? localStorage.getItem('navbarColored') === 'true' : 'true';
+    const mainColored = localStorage.getItem('mainColored')
+      ? localStorage.getItem('navbarColored') === 'true'
+      : 'true';
     uiValues.setMainColored(mainColored);
 
-    const navbarColored = localStorage.getItem('navbarColored') ? localStorage.getItem('navbarColored') === 'true' : 'true';
+    const navbarColored = localStorage.getItem('navbarColored')
+      ? localStorage.getItem('navbarColored') === 'true'
+      : 'true';
     uiValues.setNavbarColored(navbarColored);
 
     const primaryColor = localStorage.getItem('primaryColor') || 'indigo';

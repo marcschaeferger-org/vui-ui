@@ -1,21 +1,14 @@
 import { useApiGet } from '@/hooks/utils/useApiGet';
 
 export const useAppOnline = () => {
-  const {
-    data,
-    getData,
-    fetching,
-    error
-  } = useApiGet();
+  const { data, getData, fetching, error } = useApiGet();
 
   const getAppOnline = async () => {
     try {
-
       return await getData({
         url: '/online',
-        target: 'static'
+        target: 'static',
       });
-
     } catch (e) {
       // Error handling
       // console.error('Error during call:', error);

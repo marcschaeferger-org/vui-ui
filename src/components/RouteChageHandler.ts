@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { useSocketStatus } from '@/contexts/SocketContext';
-import { useAgentStatus } from "@/contexts/AgentContext";
+import { useAgentStatus } from '@/contexts/AgentContext';
 
 const RouteChangeHandler = () => {
   const pathname = usePathname();
@@ -13,7 +13,10 @@ const RouteChangeHandler = () => {
   const prevCurrentAgentRef = useRef<string | null>(null);
 
   useEffect(() => {
-    if (prevPathnameRef.current !== pathname || prevCurrentAgentRef.current !== agentValues.currentAgent?.name) {
+    if (
+      prevPathnameRef.current !== pathname ||
+      prevCurrentAgentRef.current !== agentValues.currentAgent?.name
+    ) {
       prevPathnameRef.current = pathname;
       prevCurrentAgentRef.current = agentValues.currentAgent?.name || null;
 

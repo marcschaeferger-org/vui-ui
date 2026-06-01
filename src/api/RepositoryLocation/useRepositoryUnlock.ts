@@ -1,20 +1,14 @@
 import { useApiPost } from '@/hooks/utils/useApiPost';
 
 export const useRepositoryUnlock = () => {
-  const {
-    data,
-    postData,
-    fetching,
-    error
-  } = useApiPost();
+  const { data, postData, fetching, error } = useApiPost();
 
   const getRepositoryUnlock = async (
     bsl: string,
     repositoryUrl: string,
-    removeAll: boolean = false
+    removeAll: boolean = false,
   ) => {
     try {
-
       if (!removeAll) {
         return await postData('/v1/repo/unlock', {
           bsl,
@@ -28,7 +22,6 @@ export const useRepositoryUnlock = () => {
           removeAll: true,
         });
       }
-
     } catch (e) {
       // Error handling
       // console.error('Error during call:', error);

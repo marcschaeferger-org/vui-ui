@@ -21,13 +21,13 @@ interface MultiSelectCreatableProps {
 }
 
 export function MultiSelectCreatable({
-                                       label = '',
-                                       content = [],
-                                       form,
-                                       fieldName,
-                                       initalValue = [],
-                                       description = '',
-                                     }: MultiSelectCreatableProps) {
+  label = '',
+  content = [],
+  form,
+  fieldName,
+  initalValue = [],
+  description = '',
+}: MultiSelectCreatableProps) {
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
     onDropdownOpen: () => combobox.updateSelectedOptionIndex('active'),
@@ -46,7 +46,7 @@ export function MultiSelectCreatable({
       setSearch('');
     } else {
       setValue((current) =>
-        current.includes(val) ? current.filter((v) => v !== val) : [...current, val]
+        current.includes(val) ? current.filter((v) => v !== val) : [...current, val],
       );
     }
   };
@@ -65,7 +65,7 @@ export function MultiSelectCreatable({
     .map((item) => (
       <Combobox.Option value={item} key={item} active={value.includes(item)}>
         <Group gap="sm">
-          {value.includes(item) ? <CheckIcon size={12}/> : null}
+          {value.includes(item) ? <CheckIcon size={12} /> : null}
           <span>{item}</span>
         </Group>
       </Combobox.Option>
@@ -73,7 +73,7 @@ export function MultiSelectCreatable({
 
   useEffect(() => {
     form.setFieldValue(fieldName, value);
-    setSearch('')
+    setSearch('');
   }, [value]);
 
   return (

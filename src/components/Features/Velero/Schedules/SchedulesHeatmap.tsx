@@ -21,13 +21,13 @@ export default function SchedulesHeatmapToolbarIcon() {
             title: 'Cron Schedules Heatmap',
             size: '80rem',
             fullScreen: isMobile,
-            children: <HeatMapBox/>,
+            children: <HeatMapBox />,
             padding: 'md',
             radius: 'md',
             centered: true,
           });
         }}
-        leftSection={<IconCalendarEvent/>}
+        leftSection={<IconCalendarEvent />}
       >
         Cron Heatmap
       </Button>

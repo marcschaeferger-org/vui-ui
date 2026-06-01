@@ -1,12 +1,17 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
+import utc from 'dayjs/plugin/utc';
+
+dayjs.extend(duration);
+dayjs.extend(utc);
 
 export function getExpirationString(expirationDate: string): string {
-  const currentDateTime = moment(); // Current date and time
-  const eventDateTime = moment.utc(expirationDate); // Event date in UTC format
+  const currentDateTime = dayjs(); // Current date and time
+  const eventDateTime = dayjs.utc(expirationDate); // Event date in UTC format
 
   const isEventPast = eventDateTime.isBefore(currentDateTime);
   const timeDifferenceInMilliseconds = Math.abs(eventDateTime.diff(currentDateTime));
 
-  const formattedDuration = moment.duration(timeDifferenceInMilliseconds).humanize();
+  const formattedDuration = dayjs.duration(timeDifferenceInMilliseconds).humanize();
   return isEventPast ? `${formattedDuration} ago` : `${formattedDuration}`;
 }

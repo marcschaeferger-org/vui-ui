@@ -16,15 +16,9 @@ interface EditScheduleProps {
 const ttlRegex = /^(\d+h)?(\d+m)?(\d+s)?$/;
 const timeoutRegex = /^\d+[smh]$/;
 
-export function EditScheduleForm({
-                                   record,
-                                   setReload
-                                 }: EditScheduleProps) {
+export function EditScheduleForm({ record, setReload }: EditScheduleProps) {
   const appValues = useAppStatus();
-  const {
-    data,
-    getCreationScheduleSettings
-  } = useCreationScheduleSettings();
+  const { data, getCreationScheduleSettings } = useCreationScheduleSettings();
 
   const { handleUpdateSchedule } = useUpdateSchedule();
 

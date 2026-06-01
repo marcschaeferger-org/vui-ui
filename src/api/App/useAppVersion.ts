@@ -1,21 +1,14 @@
 import { useApiGet } from '@/hooks/utils/useApiGet';
 
 export const useAppVersion = () => {
-  const {
-    data,
-    getData,
-    fetching,
-    error
-  } = useApiGet();
+  const { data, getData, fetching, error } = useApiGet();
 
   const getAppVersion = async () => {
     try {
-
       return await getData({
         url: '/v1/velero/version',
-        target: 'agent'
+        target: 'agent',
       });
-
     } catch (e) {
       // Error handling
       // console.error('Error during call:', error);

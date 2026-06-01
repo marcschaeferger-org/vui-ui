@@ -7,8 +7,8 @@ import { useAppStatus } from '@/contexts/AppContext';
 import { SocketProvider } from '@/contexts/SocketContext';
 
 import AppShellLoader from '../AppShell.Loader';
-import { ServerError } from "@/components/Features/Errors/ServerError";
-import AppShellRuntime from "@/components/Layout/AppLayout/AppShell.Runtime";
+import { ServerError } from '@/components/Features/Errors/ServerError';
+import AppShellRuntime from '@/components/Layout/AppLayout/AppShell.Runtime';
 
 interface AppShellBootProps {
   children: any;
@@ -26,12 +26,12 @@ export default function AppShellStartup({ children }: AppShellBootProps) {
 
   return (
     <>
-      {!appValues.isAppInitialized &&
-          <AppShellLoader description="Loading server configuration..."/>
-      }
+      {!appValues.isAppInitialized && (
+        <AppShellLoader description="Loading server configuration..." />
+      )}
       <SocketProvider>
         <>
-          <ServerError/>
+          <ServerError />
           <AppShellRuntime>{children}</AppShellRuntime>
         </>
       </SocketProvider>

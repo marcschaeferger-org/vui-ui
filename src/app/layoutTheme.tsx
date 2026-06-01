@@ -7,26 +7,17 @@ import { useUIStatus } from '@/contexts/UIContext';
 import { theme } from '../../theme';
 
 export default function LayoutTheme({ children }: { children: any }) {
-
-  return (
-    <LayoutWithTheme>
-      {children}
-    </LayoutWithTheme>
-  );
+  return <LayoutWithTheme>{children}</LayoutWithTheme>;
 }
 
 // Theme dynamic component
 function LayoutWithTheme({ children }: { children: any }) {
-  const {
-    primaryColor,
-    uiFontFamily,
-    uiFontSize
-  } = useUIStatus();
+  const { primaryColor, uiFontFamily, uiFontSize } = useUIStatus();
   useEffect(() => {
     if (uiFontSize) {
       document.documentElement.style.setProperty('--text-fz', uiFontSize?.fontSize);
     }
-  }, [uiFontSize])
+  }, [uiFontSize]);
 
   return (
     <MantineProvider
@@ -50,7 +41,6 @@ function LayoutWithTheme({ children }: { children: any }) {
           },
         },*/
       }}
-
     >
       {children}
     </MantineProvider>

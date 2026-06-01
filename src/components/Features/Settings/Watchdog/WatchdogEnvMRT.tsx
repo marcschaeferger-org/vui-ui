@@ -8,11 +8,7 @@ import { GenericMRTTableLayout } from '@/components/Features/Velero/GenericMRTTa
 import { Group } from '@mantine/core';
 import { IconAlertTriangle } from '@tabler/icons-react';
 
-export function WatchdogEnvMRT({
-                                 fetching,
-                                 setReload,
-                                 items,
-                               }: any) {
+export function WatchdogEnvMRT({ fetching, setReload, items }: any) {
   const columns = useMemo<MRT_ColumnDef<any>[]>(
     () => [
       {
@@ -22,7 +18,7 @@ export function WatchdogEnvMRT({
           <>
             <Group gap={5}>
               {row.original?.hasChanged && (
-                <IconAlertTriangle size={20} color="var(--mantine-primary-color-light-color)"/>
+                <IconAlertTriangle size={20} color="var(--mantine-primary-color-light-color)" />
               )}
             </Group>
           </>
@@ -44,12 +40,14 @@ export function WatchdogEnvMRT({
     [],
   );
 
-  return <GenericMRTTableLayout
-    name="watchdog"
-    fetching={fetching}
-    items={items || []}
-    setReload={setReload}
-    columns={columns}
-    enableRowActions={false}
-  />
+  return (
+    <GenericMRTTableLayout
+      name="watchdog"
+      fetching={fetching}
+      items={items || []}
+      setReload={setReload}
+      columns={columns}
+      enableRowActions={false}
+    />
+  );
 }

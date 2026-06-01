@@ -5,7 +5,7 @@ export default function AppShellLoader({ description }: any) {
     <Stack h="100vh" justify="center" align="center">
       <Center>
         <Group>
-          <Loader size="lg"/>
+          <Loader size="lg" />
           <Text>{description}</Text>
         </Group>
       </Center>

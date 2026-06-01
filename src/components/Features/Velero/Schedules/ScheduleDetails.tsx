@@ -12,8 +12,7 @@ import { BackupsDatatable } from '@/components/Features/Velero/Backups/BackupsDa
 import DeleteAction from '@/components/Features/Velero/Commons/Actions/DeleteAction';
 import { isRecordStringAny } from '@/utils/isRecordStringIsType';
 import EditScheduleAction from '@/components/Features/Velero/Schedules/Action/EditScheduleAction';
-import CreateBackupFromScheduleAction
-  from '@/components/Features/Velero/Schedules/Action/CreateBackupFromScheduleAction';
+import CreateBackupFromScheduleAction from '@/components/Features/Velero/Schedules/Action/CreateBackupFromScheduleAction';
 import StartStopActionIcon from '@/components/Features/Velero/Schedules/StartStopActionIcon';
 import { useWatchResources } from '@/hooks/useWatchResources';
 import { eventEmitter } from '@/lib/EventEmitter.js';
@@ -27,11 +26,7 @@ interface ScheduleProps {
 }
 
 export function ScheduleDetails({ params }: ScheduleProps) {
-  const {
-    data,
-    getManifest,
-    fetching
-  } = useVeleroManifest();
+  const { data, getManifest, fetching } = useVeleroManifest();
   const [reload, setReload] = useState(1);
   const agentValues = useAgentStatus();
   const [manifest, setManifest] = useState<Record<string, any>>([]);
@@ -85,14 +80,14 @@ export function ScheduleDetails({ params }: ScheduleProps) {
             },
           ]}
         >
-          <ReloadData setReload={setReload} reload={reload}/>
-          <CreateBackupFromScheduleAction record={manifest} buttonType="button"/>
+          <ReloadData setReload={setReload} reload={reload} />
+          <CreateBackupFromScheduleAction record={manifest} buttonType="button" />
           <StartStopActionIcon
             resourceName={manifest?.metadata?.name}
             paused={manifest?.spec?.paused === true}
             buttonType="button"
           />
-          <EditScheduleAction record={manifest} setReload={setReload} buttonType="button"/>
+          <EditScheduleAction record={manifest} setReload={setReload} buttonType="button" />
           <DeleteAction
             resourceType="schedule"
             record={manifest}
@@ -102,32 +97,31 @@ export function ScheduleDetails({ params }: ScheduleProps) {
           />
         </Toolbar>
       }
-      details={<ScheduleDetailsView data={manifest} fetching={fetching}/>}
-      manifest={<Manifest resourceType="Schedule" resourceName={params.schedule} reload={reload}/>}
+      details={<ScheduleDetailsView data={manifest} fetching={fetching} />}
+      manifest={<Manifest resourceType="Schedule" resourceName={params.schedule} reload={reload} />}
       tabs={(height) => (
         <Tabs defaultValue="PodVolumes" h="100%">
           <Tabs.List>
-            <Tabs.Tab value="PodVolumes" leftSection={<IconDatabaseExport size={12}/>}>
+            <Tabs.Tab value="PodVolumes" leftSection={<IconDatabaseExport size={12} />}>
               Backups
             </Tabs.Tab>
-            <Tabs.Tab value="Logs" leftSection={<IconFileText size={12}/>}>
+            <Tabs.Tab value="Logs" leftSection={<IconFileText size={12} />}>
               Overview
             </Tabs.Tab>
           </Tabs.List>
 
           <Tabs.Panel value="PodVolumes" h="100%">
             <Box p={0} h="100%">
-              <BackupsDatatable scheduleName={params.schedule} onlyTable={true}/>
+              <BackupsDatatable scheduleName={params.schedule} onlyTable={true} />
             </Box>
           </Tabs.Panel>
 
           <Tabs.Panel value="Logs" h="100%">
             <Box p={5} h="100%">
-              <BackupsOverview scheduleName={params.schedule}/>
+              <BackupsOverview scheduleName={params.schedule} />
             </Box>
           </Tabs.Panel>
         </Tabs>
-
       )}
     />
   );

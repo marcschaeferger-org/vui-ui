@@ -9,9 +9,9 @@ import { useAuthErrorHandler } from '../user/useAuthErrorHandler';
 import { handleApiResponse } from './handleApiResponse';
 import { ApiResponseShowErrorNotification } from '@/components/Display/ApiNotification';
 import { parseApiResponse } from '@/hooks/utils/parseApiResponse';
-import { useServerStatus } from "@/contexts/ServerContext";
-import { useAgentStatus } from "@/contexts/AgentContext";
-import { buildBackendUrl } from "@/utils/backend";
+import { useServerStatus } from '@/contexts/ServerContext';
+import { useAgentStatus } from '@/contexts/AgentContext';
+import { buildBackendUrl } from '@/utils/backend';
 
 interface UseApiPostProps {
   target?: 'core' | 'agent' | 'static';
@@ -24,10 +24,7 @@ export const useApiPost = () => {
   const agentValues = useAgentStatus();
 
   const { addNotificationHistory } = useUserNotificationHistory();
-  const {
-    addApiRequestHistory,
-    addApiResponseHistory
-  } = useApiLogger();
+  const { addApiRequestHistory, addApiResponseHistory } = useApiLogger();
 
   const [fetchedTime, setFetchedTime] = useState<string | undefined>(undefined);
   const [fetching, setFetching] = useState(false);

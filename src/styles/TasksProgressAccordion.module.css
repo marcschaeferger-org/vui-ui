@@ -1,6 +1,5 @@
-
 .element {
-    &:hover {
-        background-color: var(--mantine-primary-color-light-hover);
-    }
+  &:hover {
+    background-color: var(--mantine-primary-color-light-hover);
+  }
 }

@@ -1,21 +1,14 @@
 import { useApiGet } from '@/hooks/utils/useApiGet';
 
 export const useBackupExpiration = () => {
-  const {
-    data,
-    getData,
-    fetching,
-    error
-  } = useApiGet();
+  const { data, getData, fetching, error } = useApiGet();
 
   const getBackupExpiration = async (resourceName: String) => {
     try {
-
       return await getData({
         url: '/v1/backup/expiration',
         params: `backup_name=${resourceName}`,
       });
-
     } catch (e) {
       // Error handling
       // console.error('Error during call:', error);

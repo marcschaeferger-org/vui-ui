@@ -20,9 +20,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { useVeleroSecrets } from '@/api/Velero/useVeleroSecrets';
 import { useVeleroSecretKey } from '@/api/Velero/useVeleroSecretKey';
 
-import {
-  CreateLocationCredentialsForm
-} from '@/components/Features/Velero/Commons/Forms/CreateLocationCredentialsForm';
+import { CreateLocationCredentialsForm } from '@/components/Features/Velero/Commons/Forms/CreateLocationCredentialsForm';
 import ConfigurationOptions from '@/components/Features/Velero/Commons/Inputs/ConfigurationOptions';
 import { JsonViewer } from '@/components/Features/Velero/Commons/Display/JsonViewer';
 import AlertLocationEdit from '@/components/Features/Velero/Commons/Display/AlertLocationEdit';
@@ -33,23 +31,10 @@ interface CreateBslFormProps {
   mode: string;
 }
 
-export default function BslFormView({
-                                      form,
-                                      onDone,
-                                      mode
-                                    }: CreateBslFormProps) {
-  const {
-    data: secrets,
-    getVeleroSecrets
-  } = useVeleroSecrets();
-  const {
-    data: secretKeys,
-    getVeleroSecretKey
-  } = useVeleroSecretKey();
-  const [opened, {
-    open,
-    close
-  }] = useDisclosure(false);
+export default function BslFormView({ form, onDone, mode }: CreateBslFormProps) {
+  const { data: secrets, getVeleroSecrets } = useVeleroSecrets();
+  const { data: secretKeys, getVeleroSecretKey } = useVeleroSecretKey();
+  const [opened, { open, close }] = useDisclosure(false);
   const [sKeys, setSeks] = useState<Record<string, any>[]>([]);
   const [reload, setReload] = useState(1);
   const [showAlert, setShowAlert] = useState<boolean>(true);
@@ -107,7 +92,7 @@ export default function BslFormView({
             onDone(values);
           })}
         >
-          {mode === 'edit' && showAlert && <AlertLocationEdit setShowAlert={setShowAlert}/>}
+          {mode === 'edit' && showAlert && <AlertLocationEdit setShowAlert={setShowAlert} />}
           <Stepper active={active} onStepClick={setActive}>
             <Stepper.Step label="Basic Configuration" description="Name, default, properties">
               <SimpleGrid cols={2} spacing="lg" verticalSpacing="xl">
@@ -178,7 +163,7 @@ export default function BslFormView({
                 description="Name for whichever object storage provider will be used to store the backups"
                 required
               >
-                <TextInput placeholder="" {...form.getInputProps('provider')} required/>
+                <TextInput placeholder="" {...form.getInputProps('provider')} required />
               </Input.Wrapper>
 
               <Input.Wrapper
@@ -186,7 +171,7 @@ export default function BslFormView({
                 description="Directory inside a storage bucket where backups are to be uploaded"
                 required
               >
-                <TextInput placeholder="" {...form.getInputProps('bucket')} required/>
+                <TextInput placeholder="" {...form.getInputProps('bucket')} required />
               </Input.Wrapper>
               <Input.Wrapper
                 label="Prefix"
@@ -195,7 +180,7 @@ export default function BslFormView({
                 <TextInput placeholder="" {...form.getInputProps('prefix')} />
               </Input.Wrapper>
 
-              <Space h={20}/>
+              <Space h={20} />
               <Card p={10} withBorder bg="transparent">
                 <Text fw={600} size="sm">
                   Credentials
@@ -214,7 +199,7 @@ export default function BslFormView({
                 </SimpleGrid>
               </Card>
 
-              <Space h={20}/>
+              <Space h={20} />
               <ConfigurationOptions
                 config={form.values.config}
                 setConfig={(configs: any) => form.setFieldValue('config', configs)}
@@ -224,8 +209,8 @@ export default function BslFormView({
             </Stepper.Step>
 
             <Stepper.Completed>
-              <Space h={20}/>
-              <JsonViewer record={form?.values}/>
+              <Space h={20} />
+              <JsonViewer record={form?.values} />
               <Text size="sm" mt={10}>
                 Completed! click {mode === 'create' ? 'Create' : 'Update'} button to {mode} a backup
                 storage location
@@ -240,7 +225,7 @@ export default function BslFormView({
             zIndex={1000}
             centered
           >
-            <CreateLocationCredentialsForm reload={reload} setReload={setReload} close={close}/>
+            <CreateLocationCredentialsForm reload={reload} setReload={setReload} close={close} />
           </Modal>
           <Group justify="space-between" mt="md">
             <Group>

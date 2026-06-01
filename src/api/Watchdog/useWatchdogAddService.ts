@@ -5,20 +5,13 @@ interface ChannelTest {
 }
 
 export const useWatchdogAddService = () => {
-  const {
-    data,
-    postData,
-    fetching,
-    error
-  } = useApiPost();
+  const { data, postData, fetching, error } = useApiPost();
 
   const watchdogAddService = async ({ config }: ChannelTest) => {
     try {
-
       return await postData('/v1/watchdog/user/service', {
         config,
       });
-
     } catch (e) {
       // Error handling
       // console.error('Error during call:', error);

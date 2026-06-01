@@ -8,18 +8,13 @@ import { eventEmitter } from '@/lib/EventEmitter.js';
 import { ServerStatusRequestMRT } from '@/components/Features/Velero/Requests/ServerStatusRequestMRT';
 
 export default function ServerStatusRequests({
-                                               reload,
-                                               setReload,
-                                               active,
-                                               setFetchingData,
-                                               enableTopToolbar
-                                             }: any) {
-
-  const {
-    data,
-    getServerStatusRequests,
-    fetching
-  } = useServerStatusRequests();
+  reload,
+  setReload,
+  active,
+  setFetchingData,
+  enableTopToolbar,
+}: any) {
+  const { data, getServerStatusRequests, fetching } = useServerStatusRequests();
 
   const [records, setRecords] = useState<Array<any>>([]);
 
@@ -56,7 +51,7 @@ export default function ServerStatusRequests({
 
   useEffect(() => {
     if (data !== undefined) {
-      setRecords(data?.items)
+      setRecords(data?.items);
     } else {
       setRecords([]);
     }

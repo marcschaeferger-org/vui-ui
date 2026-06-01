@@ -2,5 +2,9 @@ import { ReposDatatable } from '@/components/Features/Velero/Repos/ReposDatatabl
 import WithCoreAndAgentReady from '@/components/WithCoreAndAgentReady';
 
 export default function RepoLocationPage() {
-  return <WithCoreAndAgentReady><ReposDatatable/></WithCoreAndAgentReady>;
+  return (
+    <WithCoreAndAgentReady>
+      <ReposDatatable />
+    </WithCoreAndAgentReady>
+  );
 }

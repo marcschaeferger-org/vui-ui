@@ -20,7 +20,7 @@ export default function Breadcrumb(breadcrumbItem = []) {
       </Anchor>
     ) : (
       <Text key={index}>{item.name}</Text>
-    )
+    ),
   );
 
   return (

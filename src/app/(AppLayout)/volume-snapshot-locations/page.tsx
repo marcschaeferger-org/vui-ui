@@ -2,5 +2,9 @@ import { SnapshotLocationsDatatable } from '@/components/Features/Velero/Snapsho
 import WithCoreAndAgentReady from '@/components/WithCoreAndAgentReady';
 
 export default function VolumeSnapshotLocationsPage() {
-  return <WithCoreAndAgentReady><SnapshotLocationsDatatable/></WithCoreAndAgentReady>;
+  return (
+    <WithCoreAndAgentReady>
+      <SnapshotLocationsDatatable />
+    </WithCoreAndAgentReady>
+  );
 }

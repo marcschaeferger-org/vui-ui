@@ -28,9 +28,7 @@ function ProvidersWrapper({ children }: { children: React.ReactNode }) {
         <ServerProvider>
           <AgentProvider>
             <LayoutTheme>
-              <AppClientWrapper>
-                {children}
-              </AppClientWrapper>
+              <AppClientWrapper>{children}</AppClientWrapper>
             </LayoutTheme>
           </AgentProvider>
         </ServerProvider>
@@ -44,29 +42,25 @@ export default function RootLayout({ children }: { children: any }) {
 
   return (
     <html lang="en" {...mantineHtmlProps}>
-    <head>
-      <PublicEnvScript nonce={{ headerKey: 'x-nonce' }}/>
-      <ColorSchemeScript/>
-      <title>VUI - Velero UI</title>
-      <link rel="shortcut icon" href="/favicon.svg"/>
-      <meta
-        name="viewport"
-        content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
-      />
-    </head>
-    <body>
-    {loggerEnabled ? (
-      <LoggerProvider>
-        <ProvidersWrapper>
-          {children}
-        </ProvidersWrapper>
-      </LoggerProvider>
-    ) : (
-      <ProvidersWrapper>
-        {children}
-      </ProvidersWrapper>
-    )}
-    </body>
+      <head>
+        <PublicEnvScript nonce={{ headerKey: 'x-nonce' }} />
+        <ColorSchemeScript />
+        <title>VUI - Velero UI</title>
+        <link rel="shortcut icon" href="/favicon.svg" />
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
+        />
+      </head>
+      <body>
+        {loggerEnabled ? (
+          <LoggerProvider>
+            <ProvidersWrapper>{children}</ProvidersWrapper>
+          </LoggerProvider>
+        ) : (
+          <ProvidersWrapper>{children}</ProvidersWrapper>
+        )}
+      </body>
     </html>
   );
 }

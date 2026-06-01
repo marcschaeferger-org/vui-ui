@@ -1,20 +1,13 @@
 import { useApiGet } from '@/hooks/utils/useApiGet';
 
 export const usePodVolumesBackup = () => {
-  const {
-    data,
-    getData,
-    fetching,
-    error
-  } = useApiGet();
+  const { data, getData, fetching, error } = useApiGet();
 
   const getPodVolumeBackups = async () => {
     try {
-
       return await getData({
         url: '/v1/pod-volume-backups',
       });
-
     } catch (e) {
       // Error handling
       // console.error('Error during call:', error);

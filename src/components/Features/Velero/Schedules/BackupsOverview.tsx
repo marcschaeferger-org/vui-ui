@@ -11,19 +11,19 @@ interface BackupsOverviewProps {
 }
 
 export function BackupsOverview({ scheduleName }: BackupsOverviewProps) {
-  const {
-    data: backups,
-    getBackups,
-  } = useBackups();
+  const { data: backups, getBackups } = useBackups();
 
   const [reload, setReload] = useState(5);
   const [pvbBackup, setPvbBackup] = useState([]);
-  const [value, setValue] = useState('Status')
+  const [value, setValue] = useState('Status');
 
   // useWatchResources('backups');
   /* watch */
   const handleWatchResources = debounce((message) => {
-    if (message?.payload?.resources === 'backups' || message?.payload?.resources === 'deletebackuprequests') {
+    if (
+      message?.payload?.resources === 'backups' ||
+      message?.payload?.resources === 'deletebackuprequests'
+    ) {
       setReload((prev) => prev + 1);
     }
   }, 150);
@@ -45,54 +45,48 @@ export function BackupsOverview({ scheduleName }: BackupsOverviewProps) {
     });
   }, [reload]);
 
-  const {
-    data: pvbs,
-    getPodVolumes,
-  } = usePodVolumes();
+  const { data: pvbs, getPodVolumes } = usePodVolumes();
 
   useEffect(() => {
-    getPodVolumes('PodVolumeBackup').then(response => {
-      const backupNames = backups ? backups.map((backup: any) => backup.metadata?.name).filter(Boolean) : [];
-      const relatedPvbs = pvbs ? response.filter((pvb: any) =>
-        backupNames.includes(pvb.spec?.tags?.backup)
-      ) : [];
+    getPodVolumes('PodVolumeBackup').then((response) => {
+      const backupNames = backups
+        ? backups.map((backup: any) => backup.metadata?.name).filter(Boolean)
+        : [];
+      const relatedPvbs = pvbs
+        ? response.filter((pvb: any) => backupNames.includes(pvb.spec?.tags?.backup))
+        : [];
       setPvbBackup(relatedPvbs);
-    })
+    });
   }, [backups, pvbs]);
 
   const segmentedControlValues = [
     {
       label: 'Errors & Warnings',
-      value: 'Status'
+      value: 'Status',
     },
     {
       label: 'Backed Up Items',
-      value: 'Items'
+      value: 'Items',
     },
     {
       label: 'Operation Duration',
-      value: 'Duration'
-    }
-  ]
+      value: 'Duration',
+    },
+  ];
 
   if (pvbBackup.length > 0) {
     segmentedControlValues.push({
       label: 'Pod Volume Backup Size',
-      value: 'Size'
-    })
+      value: 'Size',
+    });
   }
 
   return (
     <Box h="calc(100% - 35px)">
       <Center>
-        <SegmentedControl
-          value={value}
-          onChange={setValue}
-          data={segmentedControlValues}
-        />
+        <SegmentedControl value={value} onChange={setValue} data={segmentedControlValues} />
       </Center>
-      <BackupsCharts data={backups} show={value} pvbBackup={pvbBackup}/>
+      <BackupsCharts data={backups} show={value} pvbBackup={pvbBackup} />
     </Box>
-  )
-
+  );
 }

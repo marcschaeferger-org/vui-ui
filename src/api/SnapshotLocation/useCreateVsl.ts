@@ -1,18 +1,11 @@
 import { useApiPost } from '@/hooks/utils/useApiPost';
 
 export const useCreateVsl = () => {
-  const {
-    data,
-    postData,
-    fetching,
-    error
-  } = useApiPost();
+  const { data, postData, fetching, error } = useApiPost();
 
   const handleCreateVsl = async (values: any) => {
     try {
-
       return await postData('/v1/vsl', values);
-
     } catch (e) {
       // Error handling
       // console.error('Error during call:', error);

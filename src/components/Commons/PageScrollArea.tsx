@@ -19,4 +19,3 @@ export function PageScrollArea({ children }: any) {
     </Flex>
   );
 }
-

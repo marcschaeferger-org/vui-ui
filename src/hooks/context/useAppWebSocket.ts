@@ -5,7 +5,7 @@ import { useAppStatus } from '@/contexts/AppContext';
 import { useServerStatus } from '@/contexts/ServerContext';
 import { useAgentStatus } from '@/contexts/AgentContext';
 import { env } from 'next-runtime-env';
-import { useAuthErrorHandler } from "@/hooks/user/useAuthErrorHandler";
+import { useAuthErrorHandler } from '@/hooks/user/useAuthErrorHandler';
 import { eventEmitter } from '@/lib/EventEmitter.js';
 
 const MAX_RECONNECT_ATTEMPTS = 20;
@@ -34,10 +34,7 @@ export const useAppWebSocket = ({ addSocketHistory = null }: UseAppWebSocketPara
   const jwtToken: string = localStorage.getItem('token') ?? '';
   const isAuthenticated = Boolean(jwtToken);
 
-  const {
-    sendMessage,
-    readyState
-  } = useWebSocket(
+  const { sendMessage, readyState } = useWebSocket(
     socketUrl,
     {
       shouldReconnect: () => !didUnmount.current && reconnectAttempts < MAX_RECONNECT_ATTEMPTS,
@@ -46,11 +43,13 @@ export const useAppWebSocket = ({ addSocketHistory = null }: UseAppWebSocketPara
       onOpen: () => {
         setReconnectAttempts(0);
         if (isAuthenticated) {
-          sendMessage(JSON.stringify({
-            type: 'authentication',
-            kind: 'request',
-            payload: { token: jwtToken }
-          }));
+          sendMessage(
+            JSON.stringify({
+              type: 'authentication',
+              kind: 'request',
+              payload: { token: jwtToken },
+            }),
+          );
         }
         serverValues.setIsServerAvailable(true);
         if (heartbeatInterval.current) {
@@ -58,12 +57,14 @@ export const useAppWebSocket = ({ addSocketHistory = null }: UseAppWebSocketPara
         }
         heartbeatInterval.current = setInterval(() => {
           if (readyStateRef.current === ReadyState.OPEN) {
-            sendMessage(JSON.stringify({
-              type: 'ping',
-              kind: 'request',
-              request_id: "req-" + Date.now(),
-              timestamp: new Date().toISOString()
-            }));
+            sendMessage(
+              JSON.stringify({
+                type: 'ping',
+                kind: 'request',
+                request_id: 'req-' + Date.now(),
+                timestamp: new Date().toISOString(),
+              }),
+            );
           }
         }, 30000);
       },
@@ -74,10 +75,18 @@ export const useAppWebSocket = ({ addSocketHistory = null }: UseAppWebSocketPara
           if (response.type === 'user_watch' || response.type === 'global_watch') {
             eventEmitter.emit('watchResources', response);
           }
-          if (response.type === 'agent_alive' && agentValues.currentAgent?.name === response?.payload?.agent_name && response?.payload?.is_alive) {
+          if (
+            response.type === 'agent_alive' &&
+            agentValues.currentAgent?.name === response?.payload?.agent_name &&
+            response?.payload?.is_alive
+          ) {
             agentValues.setIsAgentAvailable(true);
           }
-          if (response.type === 'agent_alive' && agentValues.currentAgent?.name === response?.payload?.agent_name && !response?.payload?.is_alive) {
+          if (
+            response.type === 'agent_alive' &&
+            agentValues.currentAgent?.name === response?.payload?.agent_name &&
+            !response?.payload?.is_alive
+          ) {
             agentValues.setIsAgentAvailable(false);
           }
           // if (response.type !== 'agent_alive' && response.type !== 'pong') {
@@ -107,7 +116,7 @@ export const useAppWebSocket = ({ addSocketHistory = null }: UseAppWebSocketPara
         }
       },
     },
-    serverValues.currentServer !== undefined
+    serverValues.currentServer !== undefined,
   );
 
   const handleMaxReconnectFailure = () => {
@@ -141,11 +150,11 @@ export const useAppWebSocket = ({ addSocketHistory = null }: UseAppWebSocketPara
     () => () => {
       didUnmount.current = true;
     },
-    []
+    [],
   );
 
   return {
     sendMessage,
-    isConnectionFailed
+    isConnectionFailed,
   };
 };

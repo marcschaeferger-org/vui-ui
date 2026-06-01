@@ -1,11 +1,11 @@
-import { useServerStatus } from "@/contexts/ServerContext";
-import { useAgentStatus } from "@/contexts/AgentContext";
+import { useServerStatus } from '@/contexts/ServerContext';
+import { useAgentStatus } from '@/contexts/AgentContext';
 
 export const buildBackendUrl = ({
-                                  target = 'agent',
-                                  serverValues,
-                                  agentValues,
-                                }: {
+  target = 'agent',
+  serverValues,
+  agentValues,
+}: {
   target?: 'core' | 'agent' | 'static';
   serverValues: ReturnType<typeof useServerStatus>;
   agentValues: ReturnType<typeof useAgentStatus>;

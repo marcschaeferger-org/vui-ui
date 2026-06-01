@@ -16,8 +16,8 @@ export default function SwitchColorScheme() {
       radius={8}
       aria-label="Toggle color scheme"
     >
-      <IconSun className={cx(classes.icon, classes.light)}/>
-      <IconMoon className={cx(classes.icon, classes.dark)}/>
+      <IconSun className={cx(classes.icon, classes.light)} />
+      <IconMoon className={cx(classes.icon, classes.dark)} />
     </ActionIcon>
   );
 }

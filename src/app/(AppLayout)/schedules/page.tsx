@@ -2,5 +2,9 @@ import { SchedulesDatatable } from '@/components/Features/Velero/Schedules/Sched
 import WithCoreAndAgentReady from '@/components/WithCoreAndAgentReady';
 
 export default function ScheduledPage() {
-  return <WithCoreAndAgentReady><SchedulesDatatable/></WithCoreAndAgentReady>
+  return (
+    <WithCoreAndAgentReady>
+      <SchedulesDatatable />
+    </WithCoreAndAgentReady>
+  );
 }

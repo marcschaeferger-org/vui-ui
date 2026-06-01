@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useMemo } from 'react';
-import { ActionIcon, Anchor, CopyButton, Group, Tooltip, } from '@mantine/core';
-import { IconCalendarEvent, IconCheck, IconCopy, IconDeviceFloppy, } from '@tabler/icons-react';
+import { ActionIcon, Anchor, CopyButton, Group, Tooltip } from '@mantine/core';
+import { IconCalendarEvent, IconCheck, IconCopy, IconDeviceFloppy } from '@tabler/icons-react';
 
 import { type MRT_ColumnDef, MRT_Row } from 'mantine-react-table';
 
@@ -15,18 +15,13 @@ import { GenericMRTTableLayout } from '@/components/Features/Velero/GenericMRTTa
 import VeleroResourceStatusBadge from '@/components/Features/Velero/Commons/Display/VeleroResourceStatusBadge';
 import { highlightMultiple } from '@/utils/highlightMultiple';
 
-export function RestoresMRT({
-                              fetching,
-                              setReload,
-                              items,
-                            }: any) {
-
+export function RestoresMRT({ fetching, setReload, items }: any) {
   const router = useRouter();
 
   const renderActions = (record: any) => (
     <Group gap={2} wrap="nowrap">
-      <DescribeActionIcon resourceType="restore" record={record}/>
-      <DeleteAction resourceType="restore" record={record} setReload={setReload}/>
+      <DescribeActionIcon resourceType="restore" record={record} />
+      <DeleteAction resourceType="restore" record={record} setReload={setReload} />
     </Group>
   );
 
@@ -36,11 +31,7 @@ export function RestoresMRT({
         id: 'metadata.name',
         accessorFn: (row) => row?.metadata?.name ?? '',
         header: 'Name',
-        Cell: ({
-                 row,
-                 column,
-                 table
-               }) => {
+        Cell: ({ row, column, table }) => {
           const globalFilter = table.getState().globalFilter ?? '';
           const columnFilter = column.getFilterValue() ?? '';
           const highlights = [globalFilter, columnFilter].filter(Boolean);
@@ -49,11 +40,12 @@ export function RestoresMRT({
           return (
             <Group gap={5}>
               <CopyButton value={name} timeout={2000}>
-                {({
-                    copied,
-                    copy
-                  }) => (
-                  <Tooltip label={copied ? 'Copied' : 'Copy backup name'} withArrow position="right">
+                {({ copied, copy }) => (
+                  <Tooltip
+                    label={copied ? 'Copied' : 'Copy backup name'}
+                    withArrow
+                    position="right"
+                  >
                     <ActionIcon
                       color={copied ? 'teal' : 'var(--mantine-primary-color-filled)'}
                       variant="light"
@@ -62,7 +54,7 @@ export function RestoresMRT({
                       p={0}
                       m={0}
                     >
-                      {copied ? <IconCheck size={14}/> : <IconCopy size={16}/>}
+                      {copied ? <IconCheck size={14} /> : <IconCopy size={16} />}
                     </ActionIcon>
                   </Tooltip>
                 )}
@@ -73,9 +65,7 @@ export function RestoresMRT({
                   router.push(`/restores/${name}`);
                 }}
               >
-                <Group gap={5}>
-                  {highlightMultiple(name, highlights)}
-                </Group>
+                <Group gap={5}>{highlightMultiple(name, highlights)}</Group>
               </Anchor>
             </Group>
           );
@@ -85,11 +75,7 @@ export function RestoresMRT({
         id: 'spec.backupName',
         accessorFn: (row) => row?.spec?.backupName ?? '',
         header: 'From Backup',
-        Cell: ({
-                 row,
-                 column,
-                 table
-               }) => {
+        Cell: ({ row, column, table }) => {
           const backupName = row?.original?.spec?.backupName ?? '';
           const globalFilter = table.getState().globalFilter ?? '';
           const columnFilter = column.getFilterValue() ?? '';
@@ -103,23 +89,18 @@ export function RestoresMRT({
               }}
             >
               <Group gap={5}>
-                <IconDeviceFloppy size={16}/>
+                <IconDeviceFloppy size={16} />
                 {highlightMultiple(backupName, highlights)}
               </Group>
             </Anchor>
           );
         },
-
       },
       {
         id: 'spec.scheduleName',
         accessorFn: (row) => row?.spec?.scheduleName ?? '',
         header: 'From Schedule',
-        Cell: ({
-                 row,
-                 column,
-                 table
-               }) => {
+        Cell: ({ row, column, table }) => {
           const scheduleName = row?.original?.spec?.scheduleName;
           const globalFilter = table.getState().globalFilter ?? '';
           const columnFilter = column.getFilterValue() ?? '';
@@ -135,7 +116,7 @@ export function RestoresMRT({
               }}
             >
               <Group gap={5}>
-                <IconCalendarEvent size={16}/>
+                <IconCalendarEvent size={16} />
                 {highlightMultiple(scheduleName, highlights)}
               </Group>
             </Anchor>
@@ -146,10 +127,8 @@ export function RestoresMRT({
         id: 'status.phase',
         accessorFn: (row) => row?.status?.phase ?? '',
         header: 'Status',
-        Cell: ({
-                 row
-               }) => (
-          <VeleroResourceStatusBadge status={row?.original?.status?.phase || undefined}/>
+        Cell: ({ row }) => (
+          <VeleroResourceStatusBadge status={row?.original?.status?.phase || undefined} />
         ),
       },
       {
@@ -177,19 +156,21 @@ export function RestoresMRT({
     [],
   );
 
-  return <GenericMRTTableLayout
-    name='restores'
-    fetching={fetching}
-    items={items || []}
-    setReload={setReload}
-    columns={columns}
-    initialState={{
-      columnVisibility: {
-        'status.startTimestamp': false,
-        'status.errors': false,
-        'status.warnings': false,
-      },
-    }}
-    renderRowActions={({ row }: { row: MRT_Row<any> }) => <>{renderActions(row?.original)}</>}
-  />
+  return (
+    <GenericMRTTableLayout
+      name="restores"
+      fetching={fetching}
+      items={items || []}
+      setReload={setReload}
+      columns={columns}
+      initialState={{
+        columnVisibility: {
+          'status.startTimestamp': false,
+          'status.errors': false,
+          'status.warnings': false,
+        },
+      }}
+      renderRowActions={({ row }: { row: MRT_Row<any> }) => <>{renderActions(row?.original)}</>}
+    />
+  );
 }

@@ -1,20 +1,13 @@
 import { useApiPatch } from '@/hooks/utils/useApiPatch';
 
 export const useSCUpdateMap = () => {
-  const {
-    data,
-    patchData,
-    fetching,
-    error
-  } = useApiPatch();
+  const { data, patchData, fetching, error } = useApiPatch();
 
   const handleScUpdateMap = async (values: any) => {
     try {
-
       return await patchData('/v1/sc-mapping', {
         storageClassMapping: values,
       });
-
     } catch (e) {
       // Error handling
       // console.error('Error during call:', error);

@@ -11,12 +11,7 @@ interface ResourceDeleteProps {
   def: boolean;
 }
 
-export function SetDefaultBsl({
-                                name,
-                                reload,
-                                setReload,
-                                def
-                              }: ResourceDeleteProps) {
+export function SetDefaultBsl({ name, reload, setReload, def }: ResourceDeleteProps) {
   const appValues = useAppStatus();
   const { handleDefaultBsl } = useDefaultBsl();
 

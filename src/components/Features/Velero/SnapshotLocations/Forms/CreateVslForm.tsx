@@ -11,10 +11,7 @@ interface CreateVslProps {
   setReload: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export function CreateVslForm({
-                                reload,
-                                setReload
-                              }: CreateVslProps) {
+export function CreateVslForm({ reload, setReload }: CreateVslProps) {
   const appValues = useAppStatus();
 
   const { handleCreateVsl } = useCreateVsl();
@@ -56,5 +53,5 @@ export function CreateVslForm({
     }, appValues.refreshDatatableAfter);*/
   }
 
-  return <VslFormView mode="create" form={form} onDone={createVsl}/>;
+  return <VslFormView mode="create" form={form} onDone={createVsl} />;
 }

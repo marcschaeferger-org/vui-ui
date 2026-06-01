@@ -1,18 +1,11 @@
 import { useApiPost } from '@/hooks/utils/useApiPost';
 
 export const useCreateRestore = () => {
-  const {
-    data,
-    postData,
-    fetching,
-    error
-  } = useApiPost();
+  const { data, postData, fetching, error } = useApiPost();
 
   const handleCreateRestore = async (values: any) => {
     try {
-
       return await postData('/v1/restore', values);
-
     } catch (e) {
       // Error handling
       // console.error('Error during call:', error);

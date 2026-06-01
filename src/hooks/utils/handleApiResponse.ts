@@ -9,7 +9,7 @@ type HandleApiResponseParams = {
     data: any;
     status: number;
     xProcessTime: string | null;
-    xFetchedTime: string | null,
+    xFetchedTime: string | null;
   };
   setData: (data: any) => void;
   setFetchedTime: (data: any) => void;
@@ -24,18 +24,18 @@ type HandleApiResponseParams = {
 };
 
 export const handleApiResponse = ({
-                                    res,
-                                    setData,
-                                    setFetchedTime,
-                                    setError,
-                                    addNotificationHistory,
-                                    addApiResponseHistory,
-                                    addInHistory,
-                                    backendUrl,
-                                    url,
-                                    params,
-                                    method,
-                                  }: HandleApiResponseParams) => {
+  res,
+  setData,
+  setFetchedTime,
+  setError,
+  addNotificationHistory,
+  addApiResponseHistory,
+  addInHistory,
+  backendUrl,
+  url,
+  params,
+  method,
+}: HandleApiResponseParams) => {
   const { data } = res;
   const statusCode = res.status;
 
@@ -54,7 +54,7 @@ export const handleApiResponse = ({
     });
   } else if (data && typeof data === 'object' && 'data' in data) {
     setData(data.data);
-    setFetchedTime(res.xFetchedTime)
+    setFetchedTime(res.xFetchedTime);
   }
 
   if (data && typeof data === 'object' && 'notifications' in data) {

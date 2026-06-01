@@ -7,9 +7,9 @@ import { useAuthErrorHandler } from '../user/useAuthErrorHandler';
 import { handleApiResponse } from './handleApiResponse';
 import { ApiResponseShowErrorNotification } from '@/components/Display/ApiNotification';
 import { parseApiResponse } from '@/hooks/utils/parseApiResponse';
-import { buildBackendUrl } from "@/utils/backend";
-import { useServerStatus } from "@/contexts/ServerContext";
-import { useAgentStatus } from "@/contexts/AgentContext";
+import { buildBackendUrl } from '@/utils/backend';
+import { useServerStatus } from '@/contexts/ServerContext';
+import { useAgentStatus } from '@/contexts/AgentContext';
 
 export const useApiPut = () => {
   const { logout } = useAuthErrorHandler();
@@ -18,10 +18,7 @@ export const useApiPut = () => {
   const agentValues = useAgentStatus();
 
   const { addNotificationHistory } = useUserNotificationHistory();
-  const {
-    addApiRequestHistory,
-    addApiResponseHistory
-  } = useApiLogger();
+  const { addApiRequestHistory, addApiResponseHistory } = useApiLogger();
 
   const [fetchedTime, setFetchedTime] = useState<string | undefined>(undefined);
   const [fetching, setFetching] = useState(false);
@@ -72,8 +69,7 @@ export const useApiPut = () => {
         setFetching(false);
         handleApiResponse({
           res,
-          setData: () => {
-          },
+          setData: () => {},
           setFetchedTime,
           setError,
           addNotificationHistory,

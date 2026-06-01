@@ -11,10 +11,7 @@ import { PasswordStrength } from '@/components/Features/Auth/PasswordStrength';
 import { useUpdatePassword } from '@/api/User/useUpdatePassword';
 
 export function UpdatePasswordForm() {
-  const {
-    handleUpdatePassword,
-    responseStatus
-  } = useUpdatePassword();
+  const { handleUpdatePassword, responseStatus } = useUpdatePassword();
 
   const form = useForm({
     initialValues: {
@@ -54,9 +51,9 @@ export function UpdatePasswordForm() {
           {...form.getInputProps('password')}
           />
         */}
-        <Space h="lg"/>
+        <Space h="lg" />
         <PasswordStrength {...form.getInputProps('newPassword')} />
-        <Space h="xs"/>
+        <Space h="xs" />
         <PasswordInput
           placeholder="Confirm password"
           id="confirm-password"
@@ -64,7 +61,7 @@ export function UpdatePasswordForm() {
           required
           {...form.getInputProps('confirmPassword')}
         />
-        <Space h="md"/>
+        <Space h="md" />
         <Group justify="flex-end" mt="md">
           <Button onClick={() => closeAllModals()}>Close</Button>
           <Button type="submit" color="green">

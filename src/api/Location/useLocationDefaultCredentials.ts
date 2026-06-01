@@ -1,18 +1,11 @@
 import { useApiGet } from '@/hooks/utils/useApiGet';
 
 export const useLocationDefaultCredentials = () => {
-  const {
-    data,
-    getData,
-    fetching,
-    error
-  } = useApiGet();
+  const { data, getData, fetching, error } = useApiGet();
 
   const getK8sDefaultCredential = async () => {
     try {
-
       return await getData({ url: '/v1/location/cloud-credentials' });
-
     } catch (e) {
       // Error handling
       // console.error('Error during call:', error);

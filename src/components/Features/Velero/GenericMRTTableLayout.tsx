@@ -1,8 +1,8 @@
 'use client';
 
-import React from "react";
-import { ActionIcon, Center, Divider, Flex, Indicator, Title, Tooltip, } from '@mantine/core';
-import { IconFilterOff, IconRefresh, IconSettingsX, } from '@tabler/icons-react';
+import React from 'react';
+import { ActionIcon, Center, Divider, Flex, Indicator, Title, Tooltip } from '@mantine/core';
+import { IconFilterOff, IconRefresh, IconSettingsX } from '@tabler/icons-react';
 import {
   MantineReactTable,
   MRT_GlobalFilterTextInput,
@@ -16,29 +16,26 @@ import {
 import { usePersistentTableState } from '@/hooks/usePersistentTableState';
 
 export function GenericMRTTableLayout({
-                                        name,
-                                        title,
-                                        setReload,
-                                        initialState = {},
-                                        renderRowActions,
-                                        items,
-                                        fetching,
-                                        columns,
-                                        renderRowActionMenuItems,
-                                        customActions,
-                                        showLoading = true,
-                                        mantinePaperPropsContent = { style: { height: "100%" } },
-                                        mantineTableContainerPropsContent = { style: { height: "calc(100% - 112px)" } },
-                                        enableRowActions = true,
-                                        enablePagination = true,
-                                        enableTopToolbar = true,
-                                        enableBottomToolbar = true,
-                                        enableGrouping = true,
-                                        enableRefreshButton = true,
-                                      }:
-                                      any
-) {
-
+  name,
+  title,
+  setReload,
+  initialState = {},
+  renderRowActions,
+  items,
+  fetching,
+  columns,
+  renderRowActionMenuItems,
+  customActions,
+  showLoading = true,
+  mantinePaperPropsContent = { style: { height: '100%' } },
+  mantineTableContainerPropsContent = { style: { height: 'calc(100% - 112px)' } },
+  enableRowActions = true,
+  enablePagination = true,
+  enableTopToolbar = true,
+  enableBottomToolbar = true,
+  enableGrouping = true,
+  enableRefreshButton = true,
+}: any) {
   // set a default initial states if missing
   if (!('showGlobalFilter' in initialState)) {
     initialState.showGlobalFilter = true;
@@ -106,7 +103,7 @@ export function GenericMRTTableLayout({
       isLoading: showLoading && fetching && items?.length === 0,
       showProgressBars: fetching,
       columnSizing,
-      columnPinning
+      columnPinning,
     },
 
     mantineTableContainerProps: { ...mantineTableContainerPropsContent },
@@ -134,8 +131,14 @@ export function GenericMRTTableLayout({
 
     renderTopToolbarCustomActions: ({ table }) => (
       <>
-        <Flex gap='xs'>
-          {title && (<Center><Title order={4} mr={10}>{title}</Title></Center>)}
+        <Flex gap="xs">
+          {title && (
+            <Center>
+              <Title order={4} mr={10}>
+                {title}
+              </Title>
+            </Center>
+          )}
           {enableRefreshButton && (
             <Tooltip label="Refresh">
               <ActionIcon
@@ -145,31 +148,34 @@ export function GenericMRTTableLayout({
                 className="react-table-custom-action"
                 onClick={() => setReload((prev: number) => prev + 1)}
               >
-                <IconRefresh/>
+                <IconRefresh />
               </ActionIcon>
             </Tooltip>
           )}
-          <Divider orientation="vertical"/>
-          <MRT_GlobalFilterTextInput table={table} style={{ width: '400px' }}/>
+          <Divider orientation="vertical" />
+          <MRT_GlobalFilterTextInput table={table} style={{ width: '400px' }} />
           <Tooltip label="Clear All Filter">
-            <Indicator inline label={(globalFilter?.length > 0 ? 1 : 0) + table.getState().columnFilters.length}
-                       size={16}
-                       disabled={(!globalFilter?.length && table.getState().columnFilters.length == 0)}>
+            <Indicator
+              inline
+              label={(globalFilter?.length > 0 ? 1 : 0) + table.getState().columnFilters.length}
+              size={16}
+              disabled={!globalFilter?.length && table.getState().columnFilters.length == 0}
+            >
               <ActionIcon
                 h={38}
                 variant="default"
                 className="react-table-custom-action"
                 onClick={() => {
-                  setGlobalFilter('')
-                  setColumnFilters([])
+                  setGlobalFilter('');
+                  setColumnFilters([]);
                 }}
                 disabled={!globalFilter?.length && table.getState().columnFilters.length === 0}
               >
-                <IconFilterOff/>
+                <IconFilterOff />
               </ActionIcon>
             </Indicator>
           </Tooltip>
-          <Divider orientation="vertical"/>
+          <Divider orientation="vertical" />
           {customActions}
         </Flex>
       </>
@@ -178,33 +184,35 @@ export function GenericMRTTableLayout({
     renderToolbarInternalActions: ({ table }) => (
       <Flex gap="xs" align="center">
         <Tooltip label="Reset table view">
-          <ActionIcon variant="subtle"
-                      className="react-table-custom-action"
-                      onClick={() => {
-                        resetTableState();
-                        table.resetColumnOrder(true);
-                        /*setTimeout(() => {
+          <ActionIcon
+            variant="subtle"
+            className="react-table-custom-action"
+            onClick={() => {
+              resetTableState();
+              table.resetColumnOrder(true);
+              /*setTimeout(() => {
                           const reordered = table
                             .getAllLeafColumns()
                             .map((col) => col.id)
                             .filter((id) => id !== 'mrt-row-actions');
                           table.setColumnOrder([...reordered, 'mrt-row-actions']);
                         }, 10);*/
-                      }}>
-            <IconSettingsX/>
+            }}
+          >
+            <IconSettingsX />
           </ActionIcon>
         </Tooltip>
-        <MRT_ToggleFiltersButton table={table}/>
-        <MRT_ShowHideColumnsButton table={table}/>
-        <MRT_ToggleDensePaddingButton table={table}/>
-        <MRT_ToggleFullScreenButton table={table}/>
+        <MRT_ToggleFiltersButton table={table} />
+        <MRT_ShowHideColumnsButton table={table} />
+        <MRT_ToggleDensePaddingButton table={table} />
+        <MRT_ToggleFullScreenButton table={table} />
       </Flex>
     ),
 
     defaultColumn: {
       minSize: 50,
       // maxSize: 1000,
-      size: 200
+      size: 200,
     },
 
     mantineTableProps: {
@@ -225,7 +233,7 @@ export function GenericMRTTableLayout({
     },
 
     mantinePaperProps: {
-      ...mantinePaperPropsContent
+      ...mantinePaperPropsContent,
     },
 
     mantineTableBodyCellProps: {
@@ -236,5 +244,5 @@ export function GenericMRTTableLayout({
     },
   });
 
-  return <MantineReactTable table={table}/>
+  return <MantineReactTable table={table} />;
 }

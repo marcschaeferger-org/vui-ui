@@ -13,10 +13,7 @@ interface CreateBslProps {
 
 const ttlRegex = /^(\d+h)?(\d+m)?(\d+s)?$/;
 
-export function CreateBslForm({
-                                reload,
-                                setReload
-                              }: CreateBslProps) {
+export function CreateBslForm({ reload, setReload }: CreateBslProps) {
   const appValues = useAppStatus();
 
   const { handleCreateBsl } = useCreateBsl();
@@ -46,9 +43,13 @@ export function CreateBslForm({
       provider: (value) => (value.length >= 1 ? null : 'Invalid provider'),
       bucket: (value) => (value.length >= 1 ? null : 'Invalid bucket'),
       backupSyncPeriod: (value) =>
-        value.replace(/\s+/, '') !== '' && ttlRegex.test(value) ? null : 'Invalid format. Expected a number followed by s, m, or h',
+        value.replace(/\s+/, '') !== '' && ttlRegex.test(value)
+          ? null
+          : 'Invalid format. Expected a number followed by s, m, or h',
       validationFrequency: (value) =>
-        value.replace(/\s+/, '') !== '' && ttlRegex.test(value) ? null : 'Invalid format. Expected a number followed by s, m, or h',
+        value.replace(/\s+/, '') !== '' && ttlRegex.test(value)
+          ? null
+          : 'Invalid format. Expected a number followed by s, m, or h',
 
       credentialName: (value, values) => {
         if ((value && !values.credentialKey) || (!value && values.credentialKey)) {
@@ -63,7 +64,9 @@ export function CreateBslForm({
         return null;
       },
       accessMode: (value) =>
-        ['ReadWrite', 'ReadOnly'].includes(value) ? null : 'Access mode must be either "readwrite" or "readonly"',
+        ['ReadWrite', 'ReadOnly'].includes(value)
+          ? null
+          : 'Access mode must be either "readwrite" or "readonly"',
     },
   });
 
@@ -76,5 +79,5 @@ export function CreateBslForm({
     }, appValues.refreshDatatableAfter);*/
   }
 
-  return <BslFormView mode="create" form={form} onDone={createBsl}/>;
+  return <BslFormView mode="create" form={form} onDone={createBsl} />;
 }

@@ -1,21 +1,14 @@
 import { useApiGet } from '@/hooks/utils/useApiGet';
 
 export const useAgentConfiguration = () => {
-  const {
-    data,
-    getData,
-    fetching,
-    error
-  } = useApiGet();
+  const { data, getData, fetching, error } = useApiGet();
 
   const getAgentConfiguration = async () => {
     try {
-
       return await getData({
         url: '/v1/settings/environment',
-        target: 'agent'
+        target: 'agent',
       });
-
     } catch (e) {
       // Error handling
       // console.error('Error during call:', error);

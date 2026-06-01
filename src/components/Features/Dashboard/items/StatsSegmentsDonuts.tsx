@@ -33,12 +33,7 @@ const segmentColors = {
   Paused: 'red.9',
 };
 
-export function StatsSegmentsDonuts({
-                                      data,
-                                      title,
-                                      icon,
-                                      path
-                                    }: StatsSegmentsProps) {
+export function StatsSegmentsDonuts({ data, title, icon, path }: StatsSegmentsProps) {
   const router = useRouter();
   const sections = data.stats.map((segment) => ({
     value: segment.count,
@@ -63,10 +58,7 @@ export function StatsSegmentsDonuts({
             }}
             underline="never"
           >
-            <IconActivity
-              size="2rem"
-              color="var(--mantine-primary-color-light-color)"
-            />
+            <IconActivity size="2rem" color="var(--mantine-primary-color-light-color)" />
           </Anchor>
         </Group>
         <Center py={15}>

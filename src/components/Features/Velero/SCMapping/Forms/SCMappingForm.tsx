@@ -15,17 +15,10 @@ interface SCMappingFormProps {
   mode: string;
 }
 
-export function SCMappingForm({
-                                record = null,
-                                setReload,
-                                mode = 'create',
-                              }: SCMappingFormProps) {
+export function SCMappingForm({ record = null, setReload, mode = 'create' }: SCMappingFormProps) {
   const appValues = useAppStatus();
 
-  const {
-    data: storageClasses,
-    getStorageClasses
-  } = useStorageClasses();
+  const { data: storageClasses, getStorageClasses } = useStorageClasses();
   const { handleScCreateMap } = useSCCreateMap();
   const { handleScUpdateMap } = useSCUpdateMap();
   const form = useForm({
@@ -53,7 +46,7 @@ export function SCMappingForm({
 
     closeAllModals();
     const interval = setInterval(() => {
-      setReload(prev => prev + 1);
+      setReload((prev) => prev + 1);
       clearInterval(interval);
     }, appValues.refreshDatatableAfter);
   }

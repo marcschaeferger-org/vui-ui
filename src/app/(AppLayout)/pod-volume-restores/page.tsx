@@ -2,5 +2,9 @@ import { PVBDatatable } from '@/components/Features/Velero/PodVolumes/PVBDatatab
 import WithCoreAndAgentReady from '@/components/WithCoreAndAgentReady';
 
 export default function PvbPage() {
-  return <WithCoreAndAgentReady><PVBDatatable type="PodVolumeRestore"/></WithCoreAndAgentReady>;
+  return (
+    <WithCoreAndAgentReady>
+      <PVBDatatable type="PodVolumeRestore" />
+    </WithCoreAndAgentReady>
+  );
 }

@@ -2,5 +2,9 @@ import { RestoresDatatable } from '@/components/Features/Velero/Restores/Restore
 import WithCoreAndAgentReady from '@/components/WithCoreAndAgentReady';
 
 export default function RestoresPage() {
-  return <WithCoreAndAgentReady><RestoresDatatable/></WithCoreAndAgentReady>;
+  return (
+    <WithCoreAndAgentReady>
+      <RestoresDatatable />
+    </WithCoreAndAgentReady>
+  );
 }

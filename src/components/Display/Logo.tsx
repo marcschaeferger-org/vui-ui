@@ -27,7 +27,7 @@ export function Logo({ collapsed }: LogoProps) {
     >
       <Box lightHidden>
         <Group p={0} gap={2}>
-          <IconSailboat size={40} color="white"/>
+          <IconSailboat size={40} color="white" />
           <Text fz="xl" size="xl" fw={800} c="white">
             Vui
           </Text>
@@ -35,13 +35,23 @@ export function Logo({ collapsed }: LogoProps) {
       </Box>
       <Box darkHidden>
         <Group p={0} gap={2}>
-          <IconSailboat size={40}
-                        color={uiValues.navbarColored && !collapsed && pathname !== '/login' ? 'white' : 'var(--mantine-primary-color-filled)'}/>
+          <IconSailboat
+            size={40}
+            color={
+              uiValues.navbarColored && !collapsed && pathname !== '/login'
+                ? 'white'
+                : 'var(--mantine-primary-color-filled)'
+            }
+          />
           <Text
             fz="xl"
             size="xl"
             fw={800}
-            c={uiValues.navbarColored && !collapsed && pathname !== '/login' ? 'white' : 'var(--mantine-primary-color-filled)'}
+            c={
+              uiValues.navbarColored && !collapsed && pathname !== '/login'
+                ? 'white'
+                : 'var(--mantine-primary-color-filled)'
+            }
           >
             Vui
           </Text>

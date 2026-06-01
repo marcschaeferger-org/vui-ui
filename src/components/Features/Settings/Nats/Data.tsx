@@ -9,11 +9,7 @@ import Toolbar from '@/components/Display/Toolbar';
 import { NatsMRT } from '@/components/Features/Settings/Nats/NatsMRT';
 
 export function Nats() {
-  const {
-    data,
-    getNatsClients,
-    fetching
-  } = useNatsClients();
+  const { data, getNatsClients, fetching } = useNatsClients();
   const [items, setItems] = useState<Array<any>>([]);
   const [reload, setReload] = useState(1);
   const serverValues = useServerStatus();
@@ -44,11 +40,7 @@ export function Nats() {
         <></>
       </Toolbar>
 
-      <NatsMRT
-        fetching={fetching}
-        setReload={setReload}
-        items={items}
-      />
+      <NatsMRT fetching={fetching} setReload={setReload} items={items} />
     </MainStack>
   );
 }

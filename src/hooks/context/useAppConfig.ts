@@ -7,25 +7,18 @@ import { useGithubRepoVersion } from '@/api/App/useGithubRepoVersion';
 import { useAgentStatus } from '@/contexts/AgentContext';
 import { useServerStatus } from '@/contexts/ServerContext';
 import { useAppInfo } from '@/api/App/useAppInfo';
-import { useVeleroTanzuVersion } from "@/api/App/useVeleroTanzuVersion";
+import { useVeleroTanzuVersion } from '@/api/App/useVeleroTanzuVersion';
 
 export const useAppConfig = () => {
   const appValues = useAppStatus();
   const agentValues = useAgentStatus();
   const serverValues = useServerStatus();
 
-  const {
-    getAppInfo
-  } = useAppInfo();
+  const { getAppInfo } = useAppInfo();
 
-  const {
-    data: repoVersion,
-    getRepoVersion
-  } = useGithubRepoVersion();
+  const { data: repoVersion, getRepoVersion } = useGithubRepoVersion();
 
-  const {
-    getVeleroTanzuVersion
-  } = useVeleroTanzuVersion();
+  const { getVeleroTanzuVersion } = useVeleroTanzuVersion();
 
   useEffect(() => {
     if (appValues.isAuthenticated) {
@@ -58,15 +51,14 @@ export const useAppConfig = () => {
   useEffect(() => {
     if (serverValues.isServerAvailable && appValues.isAuthenticated) {
       // getAppInfo();
-      getVeleroTanzuVersion().then(response => {
-        appValues.setVeleroTanzuVersion(response)
+      getVeleroTanzuVersion().then((response) => {
+        appValues.setVeleroTanzuVersion(response);
       });
     }
     if (serverValues.isServerAvailable) {
-      getAppInfo().then(response => {
+      getAppInfo().then((response) => {
         appValues.setAppInfo(response);
       });
     }
   }, [serverValues.isServerAvailable, appValues.isAuthenticated]);
-
 };

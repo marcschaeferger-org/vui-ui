@@ -13,13 +13,7 @@ import { DataFetchedInfo } from '@/components/Display/DataFetchedInfo';
 import { RepoMRT } from '@/components/Features/Velero/Repos/RepoMRT';
 
 export function ReposDatatable() {
-
-  const {
-    data,
-    getRepositories,
-    fetching,
-    fetchedTime
-  } = useRepositories();
+  const { data, getRepositories, fetching, fetchedTime } = useRepositories();
 
   const [items, setItems] = useState<Array<any>>([]);
   const [reload, setReload] = useState(1);
@@ -70,13 +64,9 @@ export function ReposDatatable() {
         <></>
       </Toolbar>
 
-      <RepoMRT
-        fetching={fetching}
-        setReload={setReload}
-        items={items}
-      />
+      <RepoMRT fetching={fetching} setReload={setReload} items={items} />
 
-      <DataFetchedInfo fetchedTime={fetchedTime}/>
+      <DataFetchedInfo fetchedTime={fetchedTime} />
     </MainStack>
   );
 }

@@ -2,14 +2,11 @@ import { Box, Center, Group, PasswordInput, Progress, Text } from '@mantine/core
 import { useInputState } from '@mantine/hooks';
 import { IconCheck, IconX } from '@tabler/icons-react';
 
-function PasswordRequirement({
-                               meets,
-                               label
-                             }: { meets: boolean; label: string }) {
+function PasswordRequirement({ meets, label }: { meets: boolean; label: string }) {
   return (
     <Text component="div" c={meets ? 'teal' : 'red'} mt={5} size="sm">
       <Center inline>
-        {meets ? <IconCheck size="0.9rem"/> : <IconX size="0.9rem"/>}
+        {meets ? <IconCheck size="0.9rem" /> : <IconX size="0.9rem" />}
         <Box ml={7}>{label}</Box>
       </Center>
     </Text>
@@ -51,7 +48,7 @@ export function PasswordStrength(props: any) {
   const [value, setValue] = useInputState('');
   const strength = getStrength(value);
   const checks = requirements.map((requirement, index) => (
-    <PasswordRequirement key={index} label={requirement.label} meets={requirement.re.test(value)}/>
+    <PasswordRequirement key={index} label={requirement.label} meets={requirement.re.test(value)} />
   ));
   const bars = Array(4)
     .fill(0)
@@ -82,7 +79,7 @@ export function PasswordStrength(props: any) {
         {bars}
       </Group>
 
-      <PasswordRequirement label="Has at least 6 characters" meets={value.length > 5}/>
+      <PasswordRequirement label="Has at least 6 characters" meets={value.length > 5} />
       {checks}
     </div>
   );

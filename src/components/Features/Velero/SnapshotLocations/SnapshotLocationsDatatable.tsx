@@ -14,13 +14,7 @@ import CreateVslToolbar from '@/components/Features/Velero/SnapshotLocations/Act
 import { VslMRT } from '@/components/Features/Velero/SnapshotLocations/VslMRT';
 
 export function SnapshotLocationsDatatable() {
-
-  const {
-    data,
-    getSnapshotLocation,
-    fetching,
-    fetchedTime
-  } = useSnapshotLocation();
+  const { data, getSnapshotLocation, fetching, fetchedTime } = useSnapshotLocation();
   const [items, setItems] = useState<Array<any>>([]);
   const [reload, setReload] = useState(1);
 
@@ -75,11 +69,11 @@ export function SnapshotLocationsDatatable() {
         items={items}
         customActions={
           <>
-            <CreateVslToolbar setReload={setReload} reload={reload}/>
+            <CreateVslToolbar setReload={setReload} reload={reload} />
           </>
         }
       />
-      <DataFetchedInfo fetchedTime={fetchedTime}/>
+      <DataFetchedInfo fetchedTime={fetchedTime} />
     </MainStack>
   );
 }

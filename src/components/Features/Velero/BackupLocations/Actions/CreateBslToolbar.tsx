@@ -9,10 +9,7 @@ interface CreateBslToolbarIconProps {
   setReload: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function CreateBslToolbar({
-                                           reload,
-                                           setReload
-                                         }: CreateBslToolbarIconProps) {
+export default function CreateBslToolbar({ reload, setReload }: CreateBslToolbarIconProps) {
   return (
     <Tooltip label="New Backup Storage Location">
       <Button
@@ -25,13 +22,13 @@ export default function CreateBslToolbar({
             modalId: 'newBSL',
             title: 'Create New Backups Storage Location',
             size: '60rem',
-            children: <CreateBslForm reload={reload} setReload={setReload}/>,
+            children: <CreateBslForm reload={reload} setReload={setReload} />,
             padding: 'md',
             radius: 'md',
             centered: true,
           });
         }}
-        leftSection={<IconPlus/>}
+        leftSection={<IconPlus />}
       >
         New
       </Button>

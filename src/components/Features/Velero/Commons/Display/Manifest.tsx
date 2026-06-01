@@ -33,17 +33,9 @@ interface ManifestProps {
   reload?: number;
 }
 
-export function Manifest({
-                           resourceType,
-                           resourceName,
-                           reload
-                         }: ManifestProps) {
+export function Manifest({ resourceType, resourceName, reload }: ManifestProps) {
   const computedColorScheme = useComputedColorScheme();
-  const {
-    fetching,
-    data,
-    getManifest
-  } = useVeleroManifest();
+  const { fetching, data, getManifest } = useVeleroManifest();
   const agentValues = useAgentStatus();
   const [neat, setNeat] = useState(false);
   const [manifest, setManifest] = useState<Record<string, any>>([]);
@@ -54,7 +46,7 @@ export function Manifest({
   // Debounce logic
   const debouncedSetSearch = useCallback(
     debounce((value: string) => setDebouncedSearch(value), 200),
-    []
+    [],
   );
   useEffect(() => {
     debouncedSetSearch(search);
@@ -119,13 +111,10 @@ export function Manifest({
       <Group justify="space-between">
         <Group gap={5}>
           <CopyButton value={convertJsonToYaml(manifest)} timeout={2000}>
-            {({
-                copied,
-                copy
-              }) => (
+            {({ copied, copy }) => (
               <Tooltip label={copied ? 'Copied' : 'Copy'} withArrow position="right">
                 <ActionIcon color={copied ? 'teal' : 'gray'} variant="transparent" onClick={copy}>
-                  {copied ? <IconCheck size={16}/> : <IconCopy size={16}/>}
+                  {copied ? <IconCheck size={16} /> : <IconCopy size={16} />}
                 </ActionIcon>
               </Tooltip>
             )}
@@ -138,7 +127,7 @@ export function Manifest({
           placeholder="Search..."
           value={search}
           onChange={(e) => setSearch(e.currentTarget.value)}
-          leftSection={<IconSearch/>}
+          leftSection={<IconSearch />}
           rightSection={
             <CloseButton
               aria-label="Clear input"
@@ -165,7 +154,7 @@ export function Manifest({
           h="100%"
           style={{
             pointerEvents: 'none',
-            zIndex: 2
+            zIndex: 2,
           }}
         >
           {matchLines.map((lineIndex, i) => (
@@ -178,7 +167,7 @@ export function Manifest({
               bg="yellow"
               style={{
                 borderRadius: 2,
-                opacity: 0.5
+                opacity: 0.5,
               }}
             />
           ))}
@@ -186,20 +175,26 @@ export function Manifest({
 
         {fetching && manifest.length === 0 && (
           <Center>
-            <Loader/>
+            <Loader />
           </Center>
         )}
         {manifest.length !== 0 && (
-          <Code block style={{ borderRadius: '5px' }} color={computedColorScheme === 'light' ? '' : 'dark.8'}>
-          <pre>
-              <Text size="xs" component="div" style={{ fontFamily: 'monospace' }}
-                    dangerouslySetInnerHTML={{ __html: highlightedYaml }}/>
+          <Code
+            block
+            style={{ borderRadius: '5px' }}
+            color={computedColorScheme === 'light' ? '' : 'dark.8'}
+          >
+            <pre>
+              <Text
+                size="xs"
+                component="div"
+                style={{ fontFamily: 'monospace' }}
+                dangerouslySetInnerHTML={{ __html: highlightedYaml }}
+              />
             </pre>
           </Code>
         )}
       </ScrollArea>
-
-
     </Flex>
   );
 }

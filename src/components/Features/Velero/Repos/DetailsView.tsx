@@ -5,16 +5,13 @@ import VeleroResourceStatusBadge from '@/components/Features/Velero/Commons/Disp
 import React from 'react';
 import classes from '@/styles/veleroResourceDetails.module.css';
 
-export function DetailsView({
-                              data,
-                              ...rest
-                            }: any) {
+export function DetailsView({ data, ...rest }: any) {
   const router = useRouter();
   return (
     <Card shadow="sm" radius="md" withBorder {...rest}>
       <Card.Section p="sm">
         <Group gap={5}>
-          <IconStack size={80}/>
+          <IconStack size={80} />
           <Box>
             <Title order={2} fw={800}>
               {data?.metadata?.name}
@@ -26,9 +23,9 @@ export function DetailsView({
         </Group>
       </Card.Section>
 
-      <Space h={3}/>
+      <Space h={3} />
 
-      <Space h={3}/>
+      <Space h={3} />
       <Card.Section p="sm" className={classes.section}>
         <Text fz="sm" c="dimmed" className={classes.label}>
           Status
@@ -67,7 +64,7 @@ export function DetailsView({
         )}
       </Card.Section>
 
-      <Space h={3}/>
+      <Space h={3} />
       <Card.Section p="sm" className={classes.section}>
         <Text fz="sm" c="dimmed" className={classes.label}>
           Config
@@ -83,7 +80,7 @@ export function DetailsView({
           <Text w={150} size="sm">
             Type:
           </Text>
-          <VeleroResourceStatusBadge status={data?.spec?.repositoryType}/>
+          <VeleroResourceStatusBadge status={data?.spec?.repositoryType} />
         </Box>
 
         <Box
@@ -133,7 +130,7 @@ export function DetailsView({
               }}
             >
               <Group gap={5}>
-                <IconServer size={16}/>
+                <IconServer size={16} />
                 <Text size="sm">{data?.spec?.backupStorageLocation}</Text>
               </Group>
             </Anchor>

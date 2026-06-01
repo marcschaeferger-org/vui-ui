@@ -87,7 +87,7 @@ export function AuthenticationForm() {
         border: 'none',
       }}
     >
-      <Logo/>
+      <Logo />
 
       <Text
         style={{
@@ -99,9 +99,9 @@ export function AuthenticationForm() {
         Backup Simplified
       </Text>
 
-      <Space h="xl"/>
+      <Space h="xl" />
 
-      {LoginClustersSwitch && <SwitchCluster/>}
+      {LoginClustersSwitch && <SwitchCluster />}
 
       <form onSubmit={handleSubmit}>
         <Stack>
@@ -109,17 +109,17 @@ export function AuthenticationForm() {
             <TextInput
               leftSection={
                 <ActionIcon variant="outline" p={4} tabIndex={-1}>
-                  <IconUser/>
+                  <IconUser />
                 </ActionIcon>
               }
               rightSection={
-                (appValues.appInfo?.auth_type === 'LDAP' && (
+                appValues.appInfo?.auth_type === 'LDAP' && (
                   <Group justify="flex-end">
                     <Badge p={2} color="var(--mantine-primary-color-filled)" radius="xs">
                       LDAP
                     </Badge>
                   </Group>
-                ))
+                )
               }
               size="md"
               required
@@ -133,7 +133,7 @@ export function AuthenticationForm() {
           <PasswordInput
             leftSection={
               <ActionIcon variant="outline" p={4} tabIndex={-1}>
-                <IconLock/>
+                <IconLock />
               </ActionIcon>
             }
             size="md"

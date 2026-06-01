@@ -8,11 +8,7 @@ import { useInspectBackups } from '@/api/Inspect/useInspectBackups';
 import { InspectMRT } from '@/components/Features/Velero/Inspect/InspectMRT';
 
 export function InspectDatatable() {
-  const {
-    data,
-    getInspectBackups,
-    fetching
-  } = useInspectBackups();
+  const { data, getInspectBackups, fetching } = useInspectBackups();
   const [items, setItems] = useState<any>([]);
   const [reload, setReload] = useState(1);
 
@@ -32,11 +28,7 @@ export function InspectDatatable() {
         <></>
       </Toolbar>
 
-      <InspectMRT
-        fetching={fetching}
-        setReload={setReload}
-        items={items}
-      />
+      <InspectMRT fetching={fetching} setReload={setReload} items={items} />
     </MainStack>
   );
 }

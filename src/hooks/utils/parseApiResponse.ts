@@ -8,7 +8,9 @@ export const parseApiResponse = async (res: Response): Promise<any> => {
 
   if (res.status === 503) {
     const errorData = await res.json();
-    throw new Error(`HTTP 503 Service Unavailable: Unprocessable Entity ${errorData?.detail?.description || 'Bad request'}`);
+    throw new Error(
+      `HTTP 503 Service Unavailable: Unprocessable Entity ${errorData?.detail?.description || 'Bad request'}`,
+    );
   }
 
   if (res.status === 400) {

@@ -17,17 +17,14 @@ import EditBslAction from '@/components/Features/Velero/BackupLocations/Actions/
 import { debounce } from 'lodash';
 import { eventEmitter } from '@/lib/EventEmitter.js';
 import { useWatchResources } from '@/hooks/useWatchResources';
-import { VeleroDetailsLayout } from "@/components/Commons/VeleroDetailsLayout";
+import { VeleroDetailsLayout } from '@/components/Commons/VeleroDetailsLayout';
 
 interface BackupProps {
   params: any;
 }
 
 export function BslDetails({ params }: BackupProps) {
-  const {
-    data,
-    getManifest
-  } = useVeleroManifest();
+  const { data, getManifest } = useVeleroManifest();
   const [reload, setReload] = useState(1);
   const agentValues = useAgentStatus();
 
@@ -81,8 +78,8 @@ export function BslDetails({ params }: BackupProps) {
             },
           ]}
         >
-          <ReloadData setReload={setReload} reload={reload}/>
-          <EditBslAction record={manifest} setReload={setReload} buttonType="button"/>
+          <ReloadData setReload={setReload} reload={reload} />
+          <EditBslAction record={manifest} setReload={setReload} buttonType="button" />
           <DeleteAction
             resourceType="bsl"
             record={manifest}
@@ -92,12 +89,10 @@ export function BslDetails({ params }: BackupProps) {
           />
         </Toolbar>
       }
-      details={<BslDetailsView data={manifest}/>}
-      manifest={<Manifest
-        resourceType="BackupStorageLocation"
-        resourceName={params.bsl}
-        reload={reload}
-      />}
+      details={<BslDetailsView data={manifest} />}
+      manifest={
+        <Manifest resourceType="BackupStorageLocation" resourceName={params.bsl} reload={reload} />
+      }
     />
   );
 }

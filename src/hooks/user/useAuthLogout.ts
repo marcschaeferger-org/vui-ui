@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation';
 import { useAppStatus } from '@/contexts/AppContext';
-import { clearInMemoryCache } from "@/cache/inMemoryCache";
+import { clearInMemoryCache } from '@/cache/inMemoryCache';
 
 export const useAuthLogout = () => {
   const router = useRouter();

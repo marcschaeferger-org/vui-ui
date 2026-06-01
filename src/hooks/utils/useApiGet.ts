@@ -11,7 +11,7 @@ import { useAuthErrorHandler } from '../user/useAuthErrorHandler';
 import { ApiResponseShowErrorNotification } from '@/components/Display/ApiNotification';
 import { handleApiResponse } from './handleApiResponse';
 import { parseApiResponse } from './parseApiResponse';
-import { buildBackendUrl } from "@/utils/backend";
+import { buildBackendUrl } from '@/utils/backend';
 import { env } from 'next-runtime-env';
 import { inMemoryCache } from '@/cache/inMemoryCache';
 
@@ -32,10 +32,7 @@ type GetDataParams = {
 export const useApiGet = () => {
   const { logout } = useAuthErrorHandler();
   const router = useRouter();
-  const {
-    addApiRequestHistory,
-    addApiResponseHistory
-  } = useApiLogger();
+  const { addApiRequestHistory, addApiResponseHistory } = useApiLogger();
   const { addNotificationHistory } = useUserNotificationHistory();
 
   const serverValues = useServerStatus();
@@ -47,14 +44,14 @@ export const useApiGet = () => {
   const [error, setError] = useState(false);
 
   const getData = async ({
-                           url,
-                           params = '',
-                           addInHistory = true,
-                           target = 'agent',
-                           force = false,
-                           cache = false,
-                           ttl
-                         }: GetDataParams) => {
+    url,
+    params = '',
+    addInHistory = true,
+    target = 'agent',
+    force = false,
+    cache = false,
+    ttl,
+  }: GetDataParams) => {
     if (error) {
       setError(false);
     }
@@ -68,10 +65,10 @@ export const useApiGet = () => {
     // Remove `forced` from the cache key
     const cacheKeyParams = params
       .split('&')
-      .filter(p => !p.startsWith('forced='))
+      .filter((p) => !p.startsWith('forced='))
       .join('&');
 
-    const fullUrl = `${backendUrl}${url}?${params}`
+    const fullUrl = `${backendUrl}${url}?${params}`;
     const cacheKeyUrl = `${backendUrl}${url}?${cacheKeyParams}`;
 
     if (cache && !force) {
@@ -165,7 +162,7 @@ export const useApiGet = () => {
 
         if (err.message.includes('Unauthorized')) {
           logout();
-          return
+          return;
         }
         if (err.message.includes('404')) {
           router.push('/dashboard');

@@ -5,13 +5,10 @@ import { IconAlertTriangle } from '@tabler/icons-react';
 import { useAgentStatus } from '@/contexts/AgentContext';
 import { useUIStatus } from '@/contexts/UIContext';
 import { useAppVersion } from '@/api/App/useAppVersion';
-import { useAppStatus } from "@/contexts/AppContext";
+import { useAppStatus } from '@/contexts/AppContext';
 
 export const Version = () => {
-  const {
-    data,
-    getAppVersion
-  } = useAppVersion();
+  const { data, getAppVersion } = useAppVersion();
 
   const agentValues = useAgentStatus();
   const computedColorScheme = useComputedColorScheme();
@@ -43,7 +40,7 @@ export const Version = () => {
               variant="outline"
               color="yellow"
               title="Warning"
-              icon={<IconAlertTriangle/>}
+              icon={<IconAlertTriangle />}
               p={5}
             >
               <Text fw={500} size="xs">
@@ -69,7 +66,10 @@ export const Version = () => {
             </Text>
             <Tooltip label={`Latest release ${appValues?.veleroTanzuVersion?.velero}`}>
               <Code fw={700}>
-                {appValues?.veleroTanzuVersion?.velero.substring(0, appValues?.veleroTanzuVersion?.velero.indexOf(' '))}
+                {appValues?.veleroTanzuVersion?.velero.substring(
+                  0,
+                  appValues?.veleroTanzuVersion?.velero.indexOf(' '),
+                )}
               </Code>
             </Tooltip>
           </Group>

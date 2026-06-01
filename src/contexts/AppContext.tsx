@@ -44,14 +44,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [xProcessTimer, addXProcessTimer] = useState<Array<number>>([]);
 
   const [refreshDatatableAfter, setRefreshDatatableAfter] = useState<number>(
-    Number(`${NEXT_PUBLIC_REFRESH_DATATABLE_AFTER}`)
+    Number(`${NEXT_PUBLIC_REFRESH_DATATABLE_AFTER}`),
   );
   const [refreshRecent, setRefreshRecent] = useState<number>(
-    Number(`${NEXT_PUBLIC_REFRESH_RECENT}`)
+    Number(`${NEXT_PUBLIC_REFRESH_RECENT}`),
   );
 
   const [refreshGithubRepoVersion, setRefreshRepoVersion] = useState<number>(
-    Number(`${NEXT_PUBLIC_REFRESH_RECENT}`)
+    Number(`${NEXT_PUBLIC_REFRESH_RECENT}`),
   );
 
   const [repoVersion, setRepoVersion] = useState<any | undefined>(undefined);

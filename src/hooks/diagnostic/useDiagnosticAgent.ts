@@ -16,14 +16,11 @@ export const useDiagnosticAgent = () => {
   const apiURL = useBackend();
 
   useEffect(() => {
-
     if (window) {
       const currentURL = new URL(window.location.href);
       setUiHost(`${currentURL.protocol}//${currentURL.host}`);
     }
-  }, [
-    agentStatus.isAgentAvailable,
-  ]);
+  }, [agentStatus.isAgentAvailable]);
 
   stateManager.uiURL = uiURL;
   stateManager.apiURL = apiURL;
@@ -42,13 +39,16 @@ export const useDiagnosticAgent = () => {
   stateManager.setVariable(
     'validateOrigins',
     serverValues.isCurrentServerControlPlane ||
-    (agentStatus?.origins?.length > 0 && (agentStatus?.origins.includes(uiURL) || agentStatus?.origins.includes('*')))
+      (agentStatus?.origins?.length > 0 &&
+        (agentStatus?.origins.includes(uiURL) || agentStatus?.origins.includes('*'))),
   );
   stateManager.setVariable('getWatchdogInfo', agentStatus?.watchdogStatus !== undefined);
   stateManager.setVariable('getClusterHealth', agentStatus?.k8sHealth !== undefined);
 
   stateManager.hasWarnings =
-    !serverValues.isCurrentServerControlPlane && agentStatus?.origins?.length > 0 && agentStatus?.origins?.includes('*');
+    !serverValues.isCurrentServerControlPlane &&
+    agentStatus?.origins?.length > 0 &&
+    agentStatus?.origins?.includes('*');
 
   return {
     uiURL,

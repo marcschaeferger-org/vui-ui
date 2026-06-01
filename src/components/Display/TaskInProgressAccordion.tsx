@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { ActionIcon, Box, Group, Indicator, Switch, Tabs, Text, Tooltip, } from '@mantine/core';
+import { ActionIcon, Box, Group, Indicator, Switch, Tabs, Text, Tooltip } from '@mantine/core';
 import {
   IconChevronDown,
   IconChevronUp,
@@ -111,62 +111,41 @@ export default function TaskInProgressAccordion() {
             gap={5}
             className={styles.element}
           >
-            <IconChevronUp size={20}/>
+            <IconChevronUp size={20} />
             <Text size="sm">Show Task in progress</Text>
           </Group>
         )}
 
         {opened && (
-          <Box
-            px={0}
-            py={0}
-            h={300}
-          >
-            <Tabs defaultValue="BackupRestoreInProgress" value={activeTab} onChange={setActiveTab}
-                  bg="var(--mantine-primary-color-light)">
-
+          <Box px={0} py={0} h={300}>
+            <Tabs
+              defaultValue="BackupRestoreInProgress"
+              value={activeTab}
+              onChange={setActiveTab}
+              bg="var(--mantine-primary-color-light)"
+            >
               <Tabs.List p={0}>
-                <Tabs.Tab
-                  value="BackupRestoreInProgress"
-                  leftSection={<IconProgress size={16}/>}
-                >
+                <Tabs.Tab value="BackupRestoreInProgress" leftSection={<IconProgress size={16} />}>
                   <Indicator disabled={!backupRestoreNotify} processing>
-                    <Text size="sm">
-                      Backups/Restores
-                    </Text>
+                    <Text size="sm">Backups/Restores</Text>
                   </Indicator>
                 </Tabs.Tab>
 
-                <Tabs.Tab
-                  value="ServerStatusRequests"
-                  leftSection={<IconServer size={16}/>}
-                >
+                <Tabs.Tab value="ServerStatusRequests" leftSection={<IconServer size={16} />}>
                   <Indicator disabled={!serverStatusRequestNotify} processing>
-                    <Text size="sm">
-                      Server Status Requests
-                    </Text>
+                    <Text size="sm">Server Status Requests</Text>
                   </Indicator>
                 </Tabs.Tab>
 
-                <Tabs.Tab
-                  value="DownloadRequests"
-                  leftSection={<IconDownload size={16}/>}
-                >
+                <Tabs.Tab value="DownloadRequests" leftSection={<IconDownload size={16} />}>
                   <Indicator disabled={!downloadRequestsNotify} processing>
-                    <Text size="sm">
-                      Download Requests
-                    </Text>
+                    <Text size="sm">Download Requests</Text>
                   </Indicator>
                 </Tabs.Tab>
 
-                <Tabs.Tab
-                  value="DeleteBackupRequests"
-                  leftSection={<IconDeviceFloppy size={16}/>}
-                >
+                <Tabs.Tab value="DeleteBackupRequests" leftSection={<IconDeviceFloppy size={16} />}>
                   <Indicator disabled={!deleteBackupRequestsNotify} processing>
-                    <Text size="sm">
-                      Delete Backup Requests
-                    </Text>
+                    <Text size="sm">Delete Backup Requests</Text>
                   </Indicator>
                 </Tabs.Tab>
                 <Box ml="auto">
@@ -187,7 +166,7 @@ export default function TaskInProgressAccordion() {
                         w={36}
                         radius={8}
                       >
-                        <IconChevronDown/>
+                        <IconChevronDown />
                       </ActionIcon>
                     </Tooltip>
                   </Group>
@@ -242,7 +221,6 @@ export default function TaskInProgressAccordion() {
                 </WithCoreAndAgentReady>
               </Tabs.Panel>
             </Tabs>
-
           </Box>
         )}
       </Box>

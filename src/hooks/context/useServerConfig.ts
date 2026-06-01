@@ -4,29 +4,21 @@ import { useEffect } from 'react';
 
 import { useServerStatus } from '@/contexts/ServerContext';
 
-import { useAppInfoOrigins } from "@/api/Core/useAppInfoOrigins";
-import { useAppInfoArch } from "@/api/Core/useAppInfoArch";
-import { useClusterHealth } from "@/api/Core/useClusterHealth";
-import { useAppOnline } from "@/api/App/useAppOnline";
+import { useAppInfoOrigins } from '@/api/Core/useAppInfoOrigins';
+import { useAppInfoArch } from '@/api/Core/useAppInfoArch';
+import { useClusterHealth } from '@/api/Core/useClusterHealth';
+import { useAppOnline } from '@/api/App/useAppOnline';
 
 export const useServerConfig = () => {
   const serverValues = useServerStatus();
 
-  const {
-    getAppOnline
-  } = useAppOnline();
+  const { getAppOnline } = useAppOnline();
 
-  const {
-    getAppInfoOrigins
-  } = useAppInfoOrigins();
+  const { getAppInfoOrigins } = useAppInfoOrigins();
 
-  const {
-    getAppInfoArch
-  } = useAppInfoArch();
+  const { getAppInfoArch } = useAppInfoArch();
 
-  const {
-    getClusterHealth
-  } = useClusterHealth();
+  const { getClusterHealth } = useClusterHealth();
 
   // get backend index from localstorage
   useEffect(() => {
@@ -40,25 +32,24 @@ export const useServerConfig = () => {
 
   // get server data
   useEffect(() => {
-
     // get core info
     if (serverValues.isServerAvailable && serverValues.isCurrentServerControlPlane) {
-      getAppInfoOrigins().then(response => {
-        serverValues.setOrigins(response)
+      getAppInfoOrigins().then((response) => {
+        serverValues.setOrigins(response);
       });
 
-      getAppInfoArch().then(response => {
-        serverValues.setArch(response)
-      })
+      getAppInfoArch().then((response) => {
+        serverValues.setArch(response);
+      });
 
-      getClusterHealth().then(response => {
-        serverValues.setK8sHealth(response)
+      getClusterHealth().then((response) => {
+        serverValues.setK8sHealth(response);
       });
     }
 
     // get server info
     if (serverValues.isServerAvailable && serverValues.isCurrentServerControlPlane == undefined) {
-      getAppOnline().then(response => {
+      getAppOnline().then((response) => {
         if (response?.type !== undefined) {
           if (response?.type === 'core' || response?.type === 'vui-common') {
             serverValues.setCurrentServerAsControlPlane(true);
@@ -74,7 +65,6 @@ export const useServerConfig = () => {
   useEffect(() => {
     const currentURL = new URL(window.location.href);
     serverValues.setUiURL(`${currentURL.protocol}//${currentURL.host}`);
-    serverValues.setApiURL(`${serverValues?.currentServer?.url}`)
+    serverValues.setApiURL(`${serverValues?.currentServer?.url}`);
   }, [serverValues?.currentServer]);
-
 };
