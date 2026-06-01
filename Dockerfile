@@ -1,55 +1,59 @@
-FROM node:24-alpine AS base
+# syntax=docker/dockerfile:1
 
-######################################################################
-#
-######################################################################
+ARG NODE_VERSION=24-alpine
 
-# Install dependencies only when needed
-FROM base AS deps
+FROM node:${NODE_VERSION} AS base
 
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat
+ENV PNPM_HOME="/pnpm"
+ENV PATH="${PNPM_HOME}:${PATH}"
+ENV NEXT_TELEMETRY_DISABLED=1
 
 RUN corepack enable
+
+WORKDIR /app
+
+######################################################################
+# Dependencies
+######################################################################
+
+FROM base AS deps
 
 ENV NODE_ENV=development
 
-WORKDIR /app
-
-# Install dependencies based on the preferred package manager
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-RUN pnpm install --frozen-lockfile
+
+# Use BuildKit cache for the pnpm store when available.
+RUN --mount=type=cache,id=pnpm-store,target=/pnpm/store \
+    pnpm install --frozen-lockfile
 
 ######################################################################
-#
+# Build
 ######################################################################
 
-# Rebuild the source code only when needed
 FROM base AS builder
 
-WORKDIR /app
+ARG VERSION
+ARG BUILD_DATE
 
-COPY --from=deps /app/node_modules /app/node_modules
+ENV NODE_ENV=production
+ENV NEXT_PUBLIC_FRONT_END_BUILD_VERSION="${VERSION}"
+ENV NEXT_PUBLIC_FRONT_END_BUILD_DATE="${BUILD_DATE}"
 
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+# If the project requires build-time environment defaults, keep this copy.
+# Make sure .env.build does not contain secrets.
 COPY .env.build .env
-
-RUN corepack enable
-
-# Next.js collects completely anonymous telemetry data about general usage.
-# Learn more here: https://nextjs.org/telemetry
-# Uncomment the following line in case you want to disable telemetry during the build.
-ENV NEXT_TELEMETRY_DISABLED=1
 
 RUN pnpm build
 
-
 ######################################################################
-#
+# Runtime
 ######################################################################
 
-# Production image, copy all the files and run next
-FROM node:24-alpine AS runner
+FROM node:${NODE_VERSION} AS runner
+
 ARG VERSION
 ARG BUILD_DATE
 
@@ -57,18 +61,15 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
-ENV NEXT_PUBLIC_FRONT_END_BUILD_VERSION=$VERSION
-ENV NEXT_PUBLIC_FRONT_END_BUILD_DATE=$BUILD_DATE
+ENV NEXT_PUBLIC_FRONT_END_BUILD_VERSION="${VERSION}"
+ENV NEXT_PUBLIC_FRONT_END_BUILD_DATE="${BUILD_DATE}"
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-RUN addgroup --system --gid 1001 nodejs && \
-    adduser --system --uid 1001 nextjs && \
-    mkdir .next && \
-    chown nextjs:nodejs .next
+RUN addgroup --system --gid 1001 nodejs \
+    && adduser --system --uid 1001 nextjs
 
-# Automatically leverage output traces to reduce image size
-# https://nextjs.org/docs/advanced-features/output-file-tracing
+# Next.js standalone output contains the minimal server and traced runtime files.
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
