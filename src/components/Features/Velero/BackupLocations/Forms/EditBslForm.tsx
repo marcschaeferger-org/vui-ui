@@ -42,14 +42,20 @@ export function EditBslForm({ record, setReload: _setReload }: EditBslProps) {
       name: (value) => (value.length >= 3 ? null : 'Name must be at least 3 characters long'),
       provider: (value) => (value?.length >= 1 ? null : 'Invalid provider'),
       bucket: (value) => (value?.length >= 1 ? null : 'Invalid bucket'),
-      backupSyncPeriod: (value) =>
-        value.replace(/\s+/, '') !== '' && ttlRegex.test(value)
+      backupSyncPeriod: (value) => {
+        const normalized = (value ?? '').replace(/\s+/g, '');
+        if (normalized === '') return null;
+        return ttlRegex.test(normalized)
           ? null
-          : 'Invalid format. Expected a number followed by s, m, or h',
-      validationFrequency: (value) =>
-        value.replace(/\s+/, '') !== '' && ttlRegex.test(value)
+          : 'Invalid format. Expected a number followed by s, m, or h';
+      },
+      validationFrequency: (value) => {
+        const normalized = (value ?? '').replace(/\s+/g, '');
+        if (normalized === '') return null;
+        return ttlRegex.test(normalized)
           ? null
-          : 'Invalid format. Expected a number followed by s, m, or h',
+          : 'Invalid format. Expected a number followed by s, m, or h';
+      },
       credentialName: (value, values) => {
         if ((value && !values.credentialKey) || (!value && values.credentialKey)) {
           return 'Both Secret Name and Secret Key must be filled or both must be empty';
@@ -65,7 +71,7 @@ export function EditBslForm({ record, setReload: _setReload }: EditBslProps) {
       accessMode: (value) =>
         ['ReadWrite', 'ReadOnly'].includes(value)
           ? null
-          : 'Access mode must be either "readwrite" or "readonly"',
+          : 'Access mode must be either "ReadWrite" or "ReadOnly"',
     },
   });
 

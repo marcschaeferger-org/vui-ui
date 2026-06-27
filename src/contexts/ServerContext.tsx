@@ -19,7 +19,7 @@ interface ServerStatus {
 interface ServerStatusContextProps extends ServerStatus {
   setServers: React.Dispatch<React.SetStateAction<Array<ServerApiConfig>>>;
   setCurrentBackend: React.Dispatch<React.SetStateAction<ServerApiConfig | undefined>>;
-  setIsServerAvailable: React.Dispatch<React.SetStateAction<any | undefined>>;
+  setIsServerAvailable: React.Dispatch<React.SetStateAction<boolean | undefined>>;
   setCurrentServerAsControlPlane: React.Dispatch<React.SetStateAction<boolean | undefined>>;
   setServerInfo: React.Dispatch<React.SetStateAction<Record<string, any>>>;
   setOrigins: React.Dispatch<React.SetStateAction<Record<string, any>>>;

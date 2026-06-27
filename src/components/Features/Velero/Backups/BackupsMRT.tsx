@@ -187,7 +187,7 @@ export function BackupsMRT({ fetching, setReload, items, customActions }: any) {
         },
       },
     ],
-    [],
+    [pathname],
   );
 
   return (

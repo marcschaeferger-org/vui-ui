@@ -16,12 +16,10 @@ export default function WatchdogService({ reload }: any) {
   const [services, setServices] = useState<Record<string, any>[]>([]);
 
   useEffect(() => {
-    getWatchdogAppSecrets();
-  }, [reload]);
-
-  useEffect(() => {
     if (reload > 1) {
       getWatchdogAppSecrets(true);
+    } else {
+      getWatchdogAppSecrets();
     }
   }, [reload]);
 

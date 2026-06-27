@@ -4,6 +4,90 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [4.0.0] - 2026-06-01
+
+### ✨ Added
+
+- **Dashboard**: added donut chart visualization for backup/restore statistics (`StatsSegmentsDonuts`)
+- **Backup Expiration**: new ability to update backup expiration date (`useBackupExpiration`, `useBackupUpdateExpiration`, `UpdateExpirationAction`, `UpdateExpirationForm`)
+- **Backup Inspect/Download**: new "Download for inspect" action on backups (`useBackupInspect`, `InspectAction`)
+- **Create Backup from Schedule**: trigger a backup directly from an existing schedule (`useCreateBackupFromSchedule`, `CreateBackupFromScheduleForm`, `CreateBackupFromScheduleAction`)
+- **Schedule Start/Pause**: start or pause schedules from the UI (`useScheduleStart`, `useSchedulePause`, `StartStopActionIcon`)
+- **Cron Schedule Heatmap**: new heatmap visualization for cron schedules (`HeatMapBox`, `HeatMapContent`, `SchedulesHeatmap`, `useStatsSchedules`)
+- **Backups Overview & Charts**: new overview panel with bar/line charts for schedule backups (`BackupsOverview`, `BackupsCharts`)
+- **Storage Class Mapping (SCMapping)**: full feature for managing storage class mappings — CRUD operations, new route `/sc-mapping` (`useStorageClassesMap`, `useSCCreateMap`, `useSCDelete`, `useSCUpdateMap`, `SCDatatable`, `SCMMRT`, forms, actions)
+- **Set Default BSL**: set or remove default Backup Storage Location (`useDefaultBsl`, `SetDefaultBsl`)
+- **Repository Info/Check**: view repository stats and check status (`useCheckRepository`, `InfoRepositoryActionIcon`)
+- **Credential Management**: view and create location credentials (`useLocationCredentials`, `useLocationDefaultCredentials`, `useCreateLocationCredentials`, `CredentialView`, `CreateLocationCredentialsForm`)
+- **Backup/Restore Event Stream**: real-time event stream for in-progress backups & restores (`useStatsInProgress`, `BackupRestoreStream`, `BackupsRestoresMRT`)
+- **Last Backups Filter**: toggle to show only latest backup per schedule (`LastBackupsFilter`)
+- **MultiSelectCreatable Input**: new creatable multi-select input component
+- **SearchableMultiSelect Input**: new searchable multi-select input component
+- **ConfigurationOptions Input**: new key-value configuration options input (`ConfigurationOptions`, `ConfigurationOptionsField`)
+- **AlertLocationEdit**: warning alert for BSL/VSL edit operations
+- **Check App Version**: version checking in header with comparison table (`CheckAppVersion`, `CompareVersion`, `TableVersion`, `useGithubRepoVersion`)
+- **VUI Pods View**: settings page to view VUI pods (`useVuiPods`, `Vui`, `VuiMRT`, `PodLogsActionIcon`, `PodLogsContent`)
+- **Velero Pods View**: settings page to view Velero pods (`useVeleroPods`, `Velero`, `VeleroMRT`)
+- **Watchdog Settings**: full watchdog configuration UI — deploy configs, environment, service, user configs, reload/send report actions
+- **NATS Settings**: NATS clients settings page (`useNatsClients`, `useReconnectAgent`, `NatsMRT`)
+- **API Settings**: new API settings page
+- **UI Settings**: new UI settings page with font, badge, and color configuration
+- **Security Status**: system security status view (`TableStatusItem`)
+- **New route pages**: `/vui`, `/sc-mapping`, `/settings/api`, `/settings/nats`, `/settings/ui`, `/settings/watchdog`
+
+### 🛠️ Fixed
+
+- **VeleroResourceStatusBadge**: expanded status support — `Available`, `Unavailable`, `Enabled`, `Disabled`, `restic`, `kopia`, `true`, `false`
+- **LogsView**: enhanced with debounced search, filter mode (search vs. highlight), and ANSI color code parsing
+- **Manifest viewer**: added debounced search functionality
+
+### 🎨 Changed
+
+- **Mantine v8**: major upgrade from Mantine v7 to v8 (`@mantine/*` ^8.0.2, `mantine-react-table` ^2.0.0-beta.9)
+- **Next.js 15.5**: upgraded from 15.2.3 to 15.5.18
+- **React 19**: upgraded to React 19 with updated type definitions
+- **Node 24**: Dockerfile now uses `NODE_VERSION=24-alpine`
+- **pnpm 11.5**: package manager updated to `pnpm@11.5.0`
+- **TypeScript 5.8.2**: updated from previous version
+- **ESLint 9 Flat Config**: migrated to flat config with extended Mantine-style rules
+- **BackupDetails restructured**: now uses `VeleroDetailsLayout` with grid layout, includes `UpdateExpirationAction`, `DownloadAction`, `InspectAction` in toolbar
+- **ScheduleDetails restructured**: includes `BackupsOverview` tab, `StartStopActionIcon`, `CreateBackupFromScheduleAction`
+- **Dashboard restructured**: includes donut charts alongside existing stats
+- **App layout**: `AppClientWrapper` now uses `AppInitializer` + `AuthGate` pattern
+- **AuthGate improved**: enhanced with `guestOnly` prop, `next` redirect parameter, better auth flow
+- **WithCoreAndAgentReady**: includes `renderKey` state and `fallback` prop
+- **BackupScheduleFormView**: uses `Stepper` for multi-step form with new input components
+- **RestoreFormView**: uses `Stepper` with storage class mapping awareness and `ConfigurationOptions`
+- **Contexts expanded**: `ServerContext`, `AgentContext`, `AppContext`, `UIContext` all received new fields
+
+### ⚙️ Performance
+
+- **In-memory cache**: centralized `inMemoryCache` module with configurable TTL via `NEXT_PUBLIC_CACHE_TTL` env var
+- **Backup settings caching**: 10-minute cache for backup creation settings
+- **Debounce reduced to 150ms**: snappier interactions across watch handlers
+
+### 🔧 Internal / Maintenance
+
+- **Dockerfile rewrite**: complete multi-stage build with `deps`, `builder`, `runner` stages; BuildKit cache mounts; non-root user; standalone output
+- **next.config.mjs**: bundle analyzer, standalone output, `optimizePackageImports` for Mantine, turbopack config
+- **pnpm-workspace.yaml**: new workspace config with hoisted linker, strict peer deps disabled, security overrides
+- **CI workflow**: `ci.yml` with pinned SHA references, full validation pipeline (typecheck, lint, format, test, build, audit)
+- **Release workflow**: new `release.yml` — validates tag is on main, builds Docker image with semver tags, pushes to GHCR
+- **EventEmitter pattern**: new `EventEmitter.js.ts` using Node.js events for decoupled watch handling
+- **WatchedResources**: new `WatchedResources.ts` using `Set` for tracking watched resources per agent
+- **AgentStateManager / CoreStateManager**: new state manager classes with boolean tracking and markdown reports
+- **New hooks**: `useAppBootstrap`, `usePersistentTableState`, `useUrlAvailability`, `useWatchResources`, context hooks, user hooks, diagnostic hooks
+- **Test utilities**: new `test-utils/` directory with custom render and `MantineProvider` wrapper
+- **jest.config.cjs / jest.setup.cjs**: updated module mappers, added `ResizeObserver`/`matchMedia` mocks
+- **tsconfig.json**: updated with bundler `moduleResolution`, incremental, jest types
+
+### 🧹 Refactored
+
+- **VeleroDetailsLayout**: shared details layout for Backup and Schedule views
+- **DetailsBackupRestoreContent/Location/Status**: extracted shared detail sections for both backup and restore views
+- **RouteChangeHandler**: new component sending `watch_clear` on route/agent changes
+- **API hooks centralized**: all hooks now use `useApiGet`, `useApiPost`, `useApiPatch`, `useApiPut`, `useApiDelete`
+
 ## [0.3.1] - 2025-07-30
 
 ### 🧹 Maintenance
@@ -332,6 +416,16 @@ Improvements
 ---
 
 ## Tags
+
+[4.0.0] : [https://github.com/seriohub/vui-ui/releases/tag/v4.0.0](https://github.com/seriohub/vui-ui/releases/tag/v4.0.0)
+
+[v0.3.1] : [https://github.com/seriohub/vui-ui/releases/tag/v0.3.1](https://github.com/seriohub/vui-ui/releases/tag/v0.3.1)
+
+[v0.3.0] : [https://github.com/seriohub/vui-ui/releases/tag/v0.3.0](https://github.com/seriohub/vui-ui/releases/tag/v0.3.0)
+
+[v0.2.7] : [https://github.com/seriohub/vui-ui/releases/tag/v0.2.7](https://github.com/seriohub/vui-ui/releases/tag/v0.2.7)
+
+[v0.2.6] : [https://github.com/seriohub/vui-ui/releases/tag/v0.2.6](https://github.com/seriohub/vui-ui/releases/tag/v0.2.6)
 
 [v0.2.5] : [https://github.com/seriohub/vui-ui/releases/tag/v0.2.5](https://github.com/seriohub/vui-ui/releases/tag/v0.2.5)
 

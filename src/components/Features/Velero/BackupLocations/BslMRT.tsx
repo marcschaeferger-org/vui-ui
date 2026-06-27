@@ -135,7 +135,7 @@ export function BslMRT({ fetching, setReload, items, customActions }: any) {
       },
       {
         id: 'status.lastSyncedTime',
-        accessorFn: (row) => row?.spec?.lastSyncedTime ?? '',
+        accessorFn: (row) => row?.status?.lastSyncedTime ?? '',
         header: 'Last sync',
       },
       {

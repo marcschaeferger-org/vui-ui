@@ -3,9 +3,7 @@ import { Text, Tooltip } from '@mantine/core';
 
 export function get_duration(status: any) {
   if (status?.startTimestamp && status?.completionTimestamp) {
-    const { startTimestamp } = status;
-    const { completionTimestamp } = status;
-    const ms = getDurationInMilliseconds(startTimestamp, completionTimestamp);
+    const ms = getDurationInMilliseconds(status.startTimestamp, status.completionTimestamp);
     const { humanDuration, durationHHmmss } = getDurationDetails(ms);
     return (
       <Tooltip label={durationHHmmss} offset={5}>
@@ -13,5 +11,5 @@ export function get_duration(status: any) {
       </Tooltip>
     );
   }
-  return <></>;
+  return null;
 }

@@ -101,7 +101,7 @@ export function RestoreDetails({ params }: RestoreProps) {
 
           <Tabs.Panel value="PodVolumes" h="100%">
             <Box p={5} h="100%">
-              <PodVolumeList podVolumeName={params.backup} type="podvolumerestores" />
+              <PodVolumeList podVolumeName={params.restore} type="podvolumerestores" />
             </Box>
           </Tabs.Panel>
 

@@ -37,9 +37,9 @@ export function WatchdogUserConfigs({ userConfiguration, setReload }: any) {
 
     validate: {
       processCycleSeconds: (value: number) =>
-        value >= 0 && value <= 3600 ? null : 'Must be a number between 60 and 3600',
+        value >= 5 && value <= 3600 ? null : 'Must be a number between 5 and 3600',
       expireDaysWarning: (value: number) =>
-        value >= 0 && value <= 100 ? null : 'Must be a number between 1 and 100',
+        value >= 1 && value <= 100 ? null : 'Must be a number between 1 and 100',
     },
   });
 

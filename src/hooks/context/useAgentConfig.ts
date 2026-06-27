@@ -48,19 +48,17 @@ export const useAgentConfig = () => {
       serverValues.isServerAvailable
     ) {
       getCoreAgents().then((response) => {
-        if (serverValues.isCurrentServerControlPlane) {
-          if (response !== undefined) {
-            agentValues.setAgents(response);
-            const agentIndex =
-              localStorage.getItem('agent') &&
-              Number(localStorage.getItem('agent')) < response?.length
-                ? Number(localStorage.getItem('agent'))
-                : 0;
+        if (serverValues.isCurrentServerControlPlane && response && Array.isArray(response) && response.length > 0) {
+          agentValues.setAgents(response);
+          const agentIndex =
+            localStorage.getItem('agent') &&
+            Number(localStorage.getItem('agent')) < response.length
+              ? Number(localStorage.getItem('agent'))
+              : 0;
 
-            agentValues.setCurrentAgent(response[agentIndex]);
-          } else {
-            agentValues.setCurrentAgent(undefined);
-          }
+          agentValues.setCurrentAgent(response[agentIndex]);
+        } else if (serverValues.isCurrentServerControlPlane) {
+          agentValues.setCurrentAgent(undefined);
         }
       });
     }
@@ -108,7 +106,12 @@ export const useAgentConfig = () => {
         agentValues.setArch(response);
       });
     }
-  }, [agentValues.isAgentAvailable, appValues.isAuthenticated, agentValues.currentAgent]);
+  }, [
+    agentValues.isAgentAvailable,
+    appValues.isAuthenticated,
+    agentValues.currentAgent,
+    serverValues.isCurrentServerControlPlane,
+  ]);
 
   // set current agent available
   useEffect(() => {

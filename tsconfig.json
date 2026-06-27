@@ -24,10 +24,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
-    "src/hooks/useAppWebSocket.tsx.test",
-    "src/app/(AuthLayout)/api/auth/[...nextauth]/_route.ts_",
-    "src/hooks/logger/useSocketLogger.ts.old"
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }

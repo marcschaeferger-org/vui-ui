@@ -97,15 +97,10 @@ export function Watchdog() {
 
   useEffect(() => {
     if (deployConfiguration && userConfiguration) {
-      const { hasDifferences: hDiff, differences: _diffs } = hasDifferentValues(
-        deployConfiguration,
-        userConfiguration,
-      );
+      const { hasDifferences: hDiff } = hasDifferentValues(deployConfiguration, userConfiguration);
       setHasDiff(hDiff);
     }
   }, [deployConfiguration, userConfiguration]);
-
-  useEffect(() => {}, [hasDiff]);
 
   useEffect(() => {
     const updateHeight = () => {

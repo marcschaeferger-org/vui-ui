@@ -144,7 +144,6 @@ export default [
     plugins: { 'react-hooks': reactHooks },
     rules: {
       ...reactHooks.configs.recommended.rules,
-      'react-hooks/rules-of-hooks': 'warn',
     },
   },
 

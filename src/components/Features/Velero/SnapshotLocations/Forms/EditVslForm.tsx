@@ -1,8 +1,6 @@
 import { useForm } from '@mantine/form';
 import { closeAllModals } from '@mantine/modals';
 
-import { useAppStatus } from '@/contexts/AppContext';
-
 import { useUpdateVsl } from '@/api/SnapshotLocation/useUpdateVsl';
 import VslFormView from '@/components/Features/Velero/SnapshotLocations/Forms/VslFormView';
 
@@ -12,8 +10,6 @@ interface EditBslProps {
 }
 
 export function EditVslForm({ record, setReload: _setReload }: EditBslProps) {
-  const _appValues = useAppStatus();
-
   const { handleUpdateVsl } = useUpdateVsl();
 
   const form = useForm({

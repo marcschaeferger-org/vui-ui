@@ -15,11 +15,21 @@ const getNewStorageClass = (
     (obj: { [x: string]: any }) => obj?.oldStorageClass === storageClass,
   )?.newStorageClass;
 
-  if (!newStorageClass && storageClass in veleroMapping) {
+  if (
+    !newStorageClass &&
+    veleroMapping != null &&
+    typeof veleroMapping === 'object' &&
+    storageClass in veleroMapping
+  ) {
     newStorageClass = veleroMapping[storageClass].name;
   }
 
-  if (!newStorageClass && storageClass in clusterStorageClasses) {
+  if (
+    !newStorageClass &&
+    clusterStorageClasses != null &&
+    typeof clusterStorageClasses === 'object' &&
+    storageClass in clusterStorageClasses
+  ) {
     newStorageClass = clusterStorageClasses[storageClass].name;
   }
 

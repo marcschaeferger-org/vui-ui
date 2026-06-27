@@ -4,17 +4,10 @@ export const useNatsClients = () => {
   const { data, getData, fetching, error } = useApiGet();
 
   const getNatsClients = async () => {
-    try {
-      return await getData({
-        url: '/v1/nats/clients',
-        target: 'core',
-      });
-    } catch (_e) {
-      // Error handling
-      // console.error('Error during call:', error);
-    } finally {
-      // This code will always be executed
-    }
+    return getData({
+      url: '/v1/nats/clients',
+      target: 'core',
+    });
   };
 
   // Return the function for the call and the necessary data

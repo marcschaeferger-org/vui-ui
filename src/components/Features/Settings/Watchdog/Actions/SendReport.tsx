@@ -2,7 +2,12 @@
 
 import { Button } from '@mantine/core';
 
-export default function SendReport({ requestSendReport, fetching = false }: any) {
+interface SendReportProps {
+  requestSendReport: (params: { url: string }) => void;
+  fetching?: boolean;
+}
+
+export default function SendReport({ requestSendReport, fetching = false }: SendReportProps) {
   return (
     <Button
       onClick={(e) => {
